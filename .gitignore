@@ -10,3 +10,21 @@ buildNumber.properties
 
 # Avoid ignoring Maven wrapper jar file (.jar files are usually ignored)
 !/.mvn/wrapper/maven-wrapper.jar
+
+
+# IntelliJ IDEA
+.idea
+*.iws
+*.iml
+*.ipr
+
+# Visual paradigm backup files
+*.vpp.bak_*
+*.vpp.lck
+*.vbak
+
+# project specific
+**/application.properties
+
+# For class files
+code/out
