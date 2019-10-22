@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.Socket;
 
+import dk.kea.App;
+
 public class ServerHandler {
 
     private Socket socket = null;
@@ -13,11 +15,9 @@ public class ServerHandler {
 
     Boolean connected = false;
 
-    public ServerHandler(String address, String port) {
+    public ServerHandler() {
         try {
-            int intPort = Integer.parseInt(port);
-
-            socket = new Socket(address, intPort);
+            socket = new Socket(App.address, App.port);
 
             sender = new Sender(this, socket);
             reader = new Reader(this, socket);

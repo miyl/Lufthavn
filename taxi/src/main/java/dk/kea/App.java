@@ -1,17 +1,19 @@
 package dk.kea;
 
-import java.io.IOException;
-
 import dk.kea.client.ServerHandler;
+import dk.kea.departments.TaxiHandler;
 import dk.kea.menugenerator.MenuGenerator;
 import dk.kea.menugenerator.MenuPoint;
 
 public class App {
 
+    public static String address = "172.20.10.9";
+    public static int port = 5000;
+
     public class Mp1 extends MenuPoint {
         public void run() {
             System.out.println("Running menu point 1!");
-            new ServerHandler("172.20.10.9", "5000");
+            new TaxiHandler();
         }
 
         public Mp1() {
