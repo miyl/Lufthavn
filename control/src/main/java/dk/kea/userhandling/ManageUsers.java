@@ -9,11 +9,28 @@ import java.sql.Statement;
 
 /**
  * CRUD på tabellen Personale_login
+ *
+ *         //Eksempler:
+ *
+ *         //opret bruger
+ *         manageUser.create("Hans", "123456", 2);
+ *
+ *         //slet bruger
+ *         //manageUser.delete("hans");
+ *
+ *         //udskriv brugere
+ *         manageUser.print();
+ *
+ *         //login - returnere en boolean -> true hvis password er korrekt
+ *         manageUser.chkCredentials("Hans", "123456");
+ *
+ *         //update mangler
+ *
  **/
 
-public class UserManagement {
+public class ManageUsers {
     DBConnect dbConnect;
-    public UserManagement() {
+    public ManageUsers() {
     }
 
     //Opret ny bruger
