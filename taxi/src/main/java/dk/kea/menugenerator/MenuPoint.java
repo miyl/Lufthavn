@@ -1,4 +1,4 @@
-package menugenerator;
+package dk.kea.menugenerator;
 
 public abstract class MenuPoint {
   public String name;

@@ -1,4 +1,4 @@
-package shared;
+package dk.kea.shared;
 
 public class Fly {
     private String name;

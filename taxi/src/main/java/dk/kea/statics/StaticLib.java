@@ -1,8 +1,7 @@
-package statics;
+package dk.kea.statics;
 
 import java.util.Scanner;
 import java.io.IOException;
-import java.io.File;
 import java.lang.InterruptedException;
 
 public class StaticLib {

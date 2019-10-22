@@ -1,4 +1,4 @@
-package shared;
+package dk.kea.shared;
 
 import java.util.Objects;
 

@@ -1,9 +1,9 @@
 // Info:
 // userLevel is used to make parts of the menu (the last parts) accessible to only certain users. Multiple user levels are supported, but those entries are always at the end.
 
-package menugenerator;
+package dk.kea.menugenerator;
 
-import static statics.StaticLib.*;
+import static dk.kea.statics.StaticLib.*;
 
 public class MenuGenerator {
 
