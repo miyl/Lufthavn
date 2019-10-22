@@ -1,13 +1,16 @@
 package dk.kea;
 
-/**
- * Hello world!
- *
- */
+import java.io.BufferedReader;
+import java.io.IOException;
+
 public class App 
 {
-    public static void main( String[] args )
-    {
-        System.out.println( "Hello World!" );
+    private static BufferedReader inputStream = null;
+    private static ServerHandler serverHandler = null;
+
+    public static void main(String args[]) throws IOException {
+
+        serverHandler = new ServerHandler("172.20.10.9", "5000");
+
     }
 }
