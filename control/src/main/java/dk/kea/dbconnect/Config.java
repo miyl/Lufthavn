@@ -1,5 +1,7 @@
-package dbconnect;
+package dk.kea.dbconnect;
 
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Scanner;
 import java.io.File;
 import java.util.HashMap;
@@ -23,7 +25,12 @@ public class Config {
 
   public Config() {
 
-      var fileIn = "dbconnect/config.ini";
+      Path currentRelativePath = Paths.get("");
+      String s = currentRelativePath.toAbsolutePath().toString();
+      System.out.println(s);
+      var fileIn = "control/src/main/java/dk/kea/dbconnect/config.ini";
+
+
 
       try {
 

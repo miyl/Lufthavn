@@ -1,4 +1,4 @@
-package dbconnect;
+package dk.kea.dbconnect;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
