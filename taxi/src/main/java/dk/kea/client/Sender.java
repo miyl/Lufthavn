@@ -1,4 +1,4 @@
-package dk.kea;
+package dk.kea.client;
 
 import java.io.DataOutputStream;
 import java.io.IOException;

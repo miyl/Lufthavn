@@ -1,8 +1,6 @@
-package dk.kea;
+package dk.kea.client;
 
 import java.io.BufferedReader;
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.Socket;
@@ -10,14 +8,12 @@ import java.net.Socket;
 public class ServerHandler {
 
     private Socket socket = null;
-    private DataInputStream inputStream = null;
-    private DataOutputStream outputStream = null;
     private Sender sender;
     private Reader reader;
 
     Boolean connected = false;
 
-    public ServerHandler(String address, String port) throws IOException {
+    public ServerHandler(String address, String port) {
         try {
             int intPort = Integer.parseInt(port);
 
@@ -33,11 +29,13 @@ public class ServerHandler {
                 this.connected = true;
             }
 
+            loop();
+
         } catch (IOException e) {
             System.out.println(e);
         }
 
-        loop();
+        
     }
 
     public void loop() throws IOException {
@@ -57,7 +55,6 @@ public class ServerHandler {
     public void close() throws IOException{
         connected = false;
         socket.close();
-        outputStream.close();
     }
 
     public boolean getConnected()

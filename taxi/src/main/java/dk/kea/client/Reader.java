@@ -1,4 +1,4 @@
-package dk.kea;
+package dk.kea.client;
 
 import java.io.BufferedInputStream;
 import java.io.DataInputStream;
