@@ -25,12 +25,7 @@ public class Config {
 
   public Config() {
 
-      Path currentRelativePath = Paths.get("");
-      String s = currentRelativePath.toAbsolutePath().toString();
-      System.out.println(s);
       var fileIn = "control/src/main/java/dk/kea/dbconnect/config.ini";
-
-
 
       try {
 
