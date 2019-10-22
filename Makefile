@@ -1,15 +1,17 @@
 #CC="mvn"
 CC="mave.sh"
 
-cc:
+
+ccl:
 	cd Client && $(CC) compile
 
-cs:
-	cd control && $(CC) compile
+cco:
+	cd Control && $(CC) compile
 
 
-rs:
-	cd control && mvn exec:java -Dexec.mainClass=dk.kea.App
-
-rc:
+rcl:
 	cd Client && mvn exec:java -Dexec.mainClass=dk.kea.App
+
+rco:
+	cd Control && mvn exec:java -Dexec.mainClass=dk.kea.Airport
+

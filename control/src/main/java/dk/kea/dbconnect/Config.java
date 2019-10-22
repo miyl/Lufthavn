@@ -1,9 +1,5 @@
 package dk.kea.dbconnect;
 
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.Scanner;
-import java.io.File;
 import java.util.HashMap;
 
 import java.io.FileReader;

@@ -13,7 +13,6 @@ public class Fly {
     public Fly(String name, String model, String size, String luftSelskab, String id) {
         this.name = name;
         this.model = model;
-        this.flightSize = flightSize;
         this.luftSelskab = luftSelskab;
         this.id = id;
     }

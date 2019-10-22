@@ -6,45 +6,27 @@
     "configurations": [
         {
             "type": "java",
-            "name": "Debug (Launch) - Current File",
             "request": "launch",
-            "mainClass": "${file}"
-        },
-        {
-            "type": "java",
-            "name": "Debug (Launch)-App<clean>",
-            "request": "launch",
+            "name": "Client",
             "mainClass": "dk.kea.App",
-            "projectName": "clean"
-        },
-        {
-            "type": "java",
-            "name": "Debug (Launch)-App<control>",
-            "request": "launch",
-            "mainClass": "dk.kea.App",
-            "projectName": "control"
-        },
-        {
-            "type": "java",
-            "name": "Debug (Launch)-App<fuel>",
-            "request": "launch",
-            "mainClass": "dk.kea.App",
-            "projectName": "fuel"
-        },
-        {
-            "type": "java",
-            "name": "Debug (Launch)-App<luggage>",
-            "request": "launch",
-            "mainClass": "dk.kea.App",
-            "projectName": "luggage"
-        },
-        {
-            "type": "java",
-            "name": "Debug (Launch)-App<taxi>",
-            "request": "launch",
-            "mainClass": "dk.kea.App",
-            "projectName": "taxi",
+            "cwd": "client",
+            "projectName": "client",
             "console": "externalTerminal"
+        },
+        {
+            "type": "java",
+            "request": "launch",
+            "name": "Control",
+            "mainClass": "dk.kea.Airport",
+            "cwd": "control",
+            "projectName": "control",
+            "console": "internalConsole"
+        }
+    ],
+    "compounds": [
+        {
+            "name": "Server/Client",
+            "configurations": ["Client", "Control"],
         }
     ]
 }

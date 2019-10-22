@@ -30,7 +30,6 @@ public class DepartmentHandler implements Runnable {
         try {
             // Dette er bare en test
             while (isRunning) {
-
                 String message = input.readUTF();
                 output.writeUTF(message);
                 System.out.printf(name + " thread: %s \n", message );
