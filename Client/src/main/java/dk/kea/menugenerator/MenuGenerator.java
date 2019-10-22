@@ -5,6 +5,8 @@ package dk.kea.menugenerator;
 
 import static dk.kea.statics.StaticLib.*;
 
+import java.net.SocketException;
+
 public class MenuGenerator {
 
   MenuPoint[] mps;
@@ -20,7 +22,7 @@ public class MenuGenerator {
 
     running = true;
   }
-  
+
   public void run() {
     run(length);
   }
@@ -29,38 +31,38 @@ public class MenuGenerator {
     assert userLevel > 0 && userLevel <= length;
     while (running) {
       // System.out.println(this);
-      System.out.println( print(userLevel) );
-      int choiceNum = getNumericalInputRangeLoop( 0, userLevel );
+      System.out.println(print(userLevel));
+      int choiceNum = getNumericalInputRangeLoop(0, userLevel);
       choice(choiceNum);
 
-      if (running) pressEnterToContinue();
+      if (running)
+        pressEnterToContinue();
       clearScreen();
     }
   }
 
   // Changed from toString as I needed the userLevel argument
   public String print(int userLevel) {
-      int i = 1;
-      var str = "";
-      for (MenuPoint mp : mps) {
-        if (i > userLevel) break;
-        str += i + ": " + mp.name + "\n";
-        i++;
-      }
+    int i = 1;
+    var str = "";
+    for (MenuPoint mp : mps) {
+      if (i > userLevel)
+        break;
+      str += i + ": " + mp.name + "\n";
+      i++;
+    }
 
-      return
-        "\n" + menuName + "\n" +
-        "--------------\n" +
-        str +
-        "--------------\n" +
-        "0. Exit \n" +
-        "\n" +
-        "Make your choice by typing one of the numbers above, followed by Enter. ";
+    return "\n" + menuName + "\n" + "--------------\n" + str + "--------------\n" + "0. Exit \n" + "\n"
+        + "Make your choice by typing one of the numbers above, followed by Enter. ";
   }
 
   private void choice(int choiceNum) {
-    if ( choiceNum > 0 ) {
-      mps[choiceNum-1].run();
+    if (choiceNum > 0) {
+      try {
+        mps[choiceNum - 1].run();
+      } catch (SocketException e) {
+        e.printStackTrace();
+      }
     }
     else System.exit(0);
   }

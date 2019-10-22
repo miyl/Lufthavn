@@ -20,15 +20,17 @@ public class ServerHandler {
         try {
             socket = new Socket(App.address, App.port);
 
-            sender = new Sender(this, socket);
-            reader = new Reader(this, socket);
+            if (socket.isConnected()) {
+                sender = new Sender(this, socket);
+                reader = new Reader(this, socket);
 
-            Thread readerthread = new Thread(reader);
-            readerthread.start();
+                Thread readerthread = new Thread(reader);
+                readerthread.start();
 
-            if (sender.hasStream() && reader.hasStream()) {
-                this.connected = true;
-                sender.send(name);
+                if (sender.hasStream() && reader.hasStream()) {
+                    this.connected = true;
+                    sender.send(name);
+                }
             }
 
         } catch (IOException e) {
@@ -41,7 +43,6 @@ public class ServerHandler {
         try {
             socket.close();
         } catch (IOException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
     }
