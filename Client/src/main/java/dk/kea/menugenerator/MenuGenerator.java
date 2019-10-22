@@ -5,8 +5,6 @@ package dk.kea.menugenerator;
 
 import static dk.kea.statics.StaticLib.*;
 
-import java.net.SocketException;
-
 public class MenuGenerator {
 
   MenuPoint[] mps;

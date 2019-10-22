@@ -1,5 +1,5 @@
-#CC="mvn"
-CC="mave.sh"
+CC="mvn"
+#CC="mave.sh"
 
 
 ccl:
