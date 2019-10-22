@@ -2,6 +2,9 @@ package dk.kea;
 
 import menugenerator.MenuGenerator;
 import menugenerator.MenuPoint;
+import shared.Fly;
+import shared.Gate;
+import shared.Hold;
 
 public class App {
 
