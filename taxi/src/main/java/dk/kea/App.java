@@ -1,13 +1,71 @@
 package dk.kea;
 
-/**
- * Hello world!
- *
- */
-public class App 
-{
-    public static void main( String[] args )
-    {
-        System.out.println( "Hello World!" );
+import java.io.IOException;
+
+import dk.kea.client.ServerHandler;
+import dk.kea.menugenerator.MenuGenerator;
+import dk.kea.menugenerator.MenuPoint;
+
+public class App {
+
+    public class Mp1 extends MenuPoint {
+        public void run() {
+            System.out.println("Running menu point 1!");
+            new ServerHandler("172.20.10.9", "5000");
+        }
+
+        public Mp1() {
+            name = "Taxi";
+        }
     }
+
+    public class Mp2 extends MenuPoint {
+        public void run() {
+            System.out.println("Running menu point 2!");
+        }
+
+        public Mp2() {
+            name = "Cleaning";
+        }
+    }
+
+    public class Mp3 extends MenuPoint {
+        public void run() {
+            System.out.println("Running menu point 3!");
+        }
+
+        public Mp3() {
+            name = "Luggage";
+        }
+    }
+
+    public class Mp4 extends MenuPoint {
+        public void run() {
+            System.out.println("Running menu point 4!");
+        }
+
+        public Mp4() {
+            name = "Fuel";
+        }
+    }
+
+    public class Mp5 extends MenuPoint {
+        public void run() {
+            System.out.println("Running menu point 5!");
+        }
+
+        public Mp5() {
+            name = "Options";
+        }
+    }
+
+    public static void main(String[] args) {
+    new App().run();
+  }
+
+  public void run() {
+    var mg = new MenuGenerator("Testmenu", new Mp1(), new Mp2(), new Mp3(), new Mp4(), new Mp5());
+    mg.run();
+    //mg.run(1);
+  }
 }

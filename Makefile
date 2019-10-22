@@ -1,17 +1,20 @@
+#CC="mvn"
+CC="mave.sh"
+
 ccl:
-	cd clean && mave.sh --compile
+	cd clean && $(CC) compile
 
 cco:
-	cd control && mave.sh --compile
+	cd control && $(CC) compile
 
 cf:
-	cd fuel && mave.sh --compile
+	cd fuel && $(CC) compile
 
 cl:
-	cd luggage && mave.sh --compile
+	cd luggage && $(CC) compile
 
 ct:
-	cd taxi && mave.sh --compile
+	cd taxi && $(CC) compile
 
 
 rcl:
