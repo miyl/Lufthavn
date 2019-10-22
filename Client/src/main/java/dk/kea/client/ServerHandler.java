@@ -1,9 +1,11 @@
 package dk.kea.client;
 
 import java.io.IOException;
+import java.net.ConnectException;
 import java.net.Socket;
 
 import dk.kea.App;
+import dk.kea.shared.Keyboard;
 
 public class ServerHandler {
 
@@ -11,8 +13,9 @@ public class ServerHandler {
     public Sender sender;
     public Reader reader;
     public String name;
+    public Keyboard keyboard;
 
-    public Boolean connected = false;
+    private Boolean connected = false;
 
     public ServerHandler(String name) {
         this.name = name;
@@ -31,15 +34,28 @@ public class ServerHandler {
                     this.connected = true;
                     sender.send(name);
                 }
-            }
 
-        } catch (IOException e) {
+                keyboard = new Keyboard(this);
+
+                Thread keyboardThread = new Thread(keyboard);
+                keyboardThread.start();
+
+                System.out.println("[SUCCESS]: Connected to server!");
+                System.out.println("[INFO]: back to MENU with 'exit' command");
+
+            }
+        } catch (ConnectException e) {
+            System.out.println("[ERROR] Connection failed..");
+        } catch (IOException e){
             System.out.println(e);
         }
     }
     
     public void close(){
+        System.out.println("Closing connection..");
         connected = false;
+        sender.close();
+        reader.close();
         try {
             socket.close();
         } catch (IOException e) {
@@ -47,7 +63,7 @@ public class ServerHandler {
         }
     }
 
-    public boolean getConnected()
+    public boolean isConnected()
     {
         return connected;
     }
