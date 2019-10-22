@@ -10,12 +10,15 @@ import dk.kea.App;
 public class ServerHandler {
 
     private Socket socket = null;
-    private Sender sender;
-    private Reader reader;
+    public Sender sender;
+    public Reader reader;
+    public String name;
 
-    Boolean connected = false;
+    public Boolean connected = false;
 
-    public ServerHandler() {
+    public ServerHandler(String name) {
+        this.name = name;
+        
         try {
             socket = new Socket(App.address, App.port);
 
@@ -27,29 +30,12 @@ public class ServerHandler {
 
             if (sender.hasStream() && reader.hasStream()) {
                 this.connected = true;
+                sender.send(name);
             }
-
-            loop();
 
         } catch (IOException e) {
             System.out.println(e);
         }
-
-        
-    }
-
-    public void loop(){
-        while (connected) {
-            BufferedReader keyboard = new BufferedReader(new InputStreamReader(System.in));
-            String line;
-            try {
-                line = keyboard.readLine();
-                sender.send(line);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-        close();
     }
     
     public void close(){

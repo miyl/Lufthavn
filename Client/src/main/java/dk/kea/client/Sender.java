@@ -16,8 +16,13 @@ public class Sender implements Runnable
         this.output = new DataOutputStream(socket.getOutputStream());
     }
 
-    public void send(String msg) throws SocketException, IOException {
-        output.writeUTF(msg);
+    public void send(String msg){
+        try {
+            output.writeUTF(msg);
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
     }
 
     public boolean hasStream()
