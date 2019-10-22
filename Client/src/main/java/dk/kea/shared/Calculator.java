@@ -1,3 +1,4 @@
+package dk.kea.shared;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -7,7 +8,7 @@ import java.util.function.ToDoubleFunction;
 import java.util.function.ToIntFunction;
 import java.util.function.ToLongFunction;
 
-public class Main implements Comparator {
+public class Calculator implements Comparator {
     public static void main(String[] args) {
 
         System.out.println("Antal taxiteams");
