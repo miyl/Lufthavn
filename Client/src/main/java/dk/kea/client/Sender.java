@@ -3,7 +3,6 @@ package dk.kea.client;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
-import java.net.SocketException;
 
 public class Sender implements Runnable
 {
