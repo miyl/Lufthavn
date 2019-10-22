@@ -21,20 +21,27 @@ public class Reader implements Runnable
     public void run() {
         while(client.getConnected()) 
         {
-            try {
-                read();
-            } catch (SocketException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            } catch (IOException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            }
+            read();
+        }
+        close();
+    }
+
+    public void close(){
+        try {
+            input.close();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
         }
     }
 
-    public void read() throws SocketException, IOException{
-        System.out.println(input.readUTF());
+    public void read(){
+        try {
+            System.out.println(input.readUTF());
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
     }
 
     public boolean hasStream()

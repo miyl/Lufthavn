@@ -31,6 +31,16 @@ public class Sender implements Runnable
         {
 
         }
+        close();
+    }
+
+    public void close(){
+        try {
+            output.close();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
     }
     
 }

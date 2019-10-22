@@ -38,7 +38,7 @@ public class ServerHandler {
         
     }
 
-    public void loop() throws IOException {
+    public void loop(){
         while (connected) {
             BufferedReader keyboard = new BufferedReader(new InputStreamReader(System.in));
             String line;
@@ -52,9 +52,14 @@ public class ServerHandler {
         close();
     }
     
-    public void close() throws IOException{
+    public void close(){
         connected = false;
-        socket.close();
+        try {
+            socket.close();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
     }
 
     public boolean getConnected()
