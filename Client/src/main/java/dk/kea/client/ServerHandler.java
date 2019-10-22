@@ -1,8 +1,6 @@
 package dk.kea.client;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.net.Socket;
 
 import dk.kea.App;
@@ -18,7 +16,7 @@ public class ServerHandler {
 
     public ServerHandler(String name) {
         this.name = name;
-        
+
         try {
             socket = new Socket(App.address, App.port);
 

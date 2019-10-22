@@ -1,6 +1,5 @@
 package dk.kea;
 
-import dk.kea.client.ServerHandler;
 import dk.kea.departments.TaxiHandler;
 import dk.kea.menugenerator.MenuGenerator;
 import dk.kea.menugenerator.MenuPoint;
