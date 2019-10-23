@@ -1,3 +1,6 @@
+package dk.kea.shared;
+
+
 import java.util.Date;
 
 public class Flights {

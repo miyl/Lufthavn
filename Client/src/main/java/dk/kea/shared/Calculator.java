@@ -1,3 +1,9 @@
+package dk.kea.shared;
+
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -9,7 +15,7 @@ import java.util.function.ToLongFunction;
 public class Calculator implements Comparator {
 
 
-    public static void calculate() throws ParseException {
+    public void calculate()  {
 
         /*System.out.println("Antal taxiteams");
         Scanner scanner = new Scanner(System.in);
@@ -55,6 +61,8 @@ public class Calculator implements Comparator {
         final int milliseconds = 60000;
 
         ArrayList<Flights> flights = new ArrayList<Flights>();
+
+        /*
         Date dateArrival1 = new SimpleDateFormat("yyyy-MM-dd hh:mm").parse("2019-10-22 15:00");
         Date dateDeparture1 = new SimpleDateFormat("yyyy-MM-dd hh:mm").parse("2019-10-22 17:00");
 
@@ -69,7 +77,10 @@ public class Calculator implements Comparator {
         Date dateArrival3 = new SimpleDateFormat("yyyy-MM-dd hh:mm").parse("2019-10-22 15:30");
         Date dateDeparture3 = new SimpleDateFormat("yyyy-MM-dd hh:mm").parse("2019-10-22 17:30");
         flights.add(new Flights("Boeing", "SAS", "large", "SAS", 1, dateDeparture3, dateArrival3,
-                new Gate(8, "medium", "Terminal 2"), 0, 0));
+                new Gate(8, "medium", "Terminal 2"), 0, 0));*/
+
+
+
 
 
         System.out.println(choseFlight(flights));
@@ -79,8 +90,7 @@ public class Calculator implements Comparator {
 
 
 
-
-    public static List<Flights> choseFlight(ArrayList<Flights> flights) {
+    public List<Flights> choseFlight(ArrayList<Flights> flights) {
         int taxiIndLille = 12;
         int taxiIndMellem = 10;
         int taxiIndStor = 15;
