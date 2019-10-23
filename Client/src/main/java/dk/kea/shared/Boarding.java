@@ -19,8 +19,6 @@ public class Boarding {
     public void boardPassenger(String name) {
         if (!isFull()){
                 passengers.add(0, name);
-            } else {
-                passengers.add(name);
             }
         }
 
