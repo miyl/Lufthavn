@@ -1,5 +1,7 @@
 package dk.kea.departments;
 
+import java.util.Arrays;
+
 import dk.kea.client.ServerHandler;
 import dk.kea.shared.Flights;;import java.net.Socket;
 
@@ -17,54 +19,32 @@ public class TaxiHandler extends ServerHandler
             //Får information fra keyboardet - hvis der er noget.
             System.out.printf("> ");
             if (keyboard.getReader().hasNextLine()) {
-                String line = keyboard.getReader().nextLine();
+                String[] tokens = keyboard.getReader().nextLine().split(" ");
 
-                if(line.equalsIgnoreCase("exit"))
+                if(tokens[0].equalsIgnoreCase("EXIT"))
                 {
                     close();
                     break;                    
-                } else if (line.split(" ")[0].equalsIgnoreCase("fly"))
-                {
-                    sender.sendPlane(new Flights(line.split(" ")[1]));
+                } else if (tokens[0].equalsIgnoreCase("FLIGHT")) {
+                    sender.sendPlane(new Flights(tokens[1]));
+                } else if(tokens[0].equalsIgnoreCase("LIST")) {
+
+                    if(getFlightList().size() > 0)
+                    {
+                        System.out.print("[INFO]: Active planes in this department:\n\n");
+                        getFlightList().forEach(value -> System.out.print(
+                            "        [" + value.getId() + ", " + value.getName() + "]\n"
+                            ));
+                        System.out.println();
+                    } else {
+                        System.out.print("[INFO]: No active planes in this department.\n");
+                    }
                 } else {
                     //Sender information til serveren
-                    sender.send(line, false);
+                    sender.send(String.join(" ", tokens), false);
                 }
                 
             }
-
-            // Får information fra server'
-            //Flights serverAnswer = reader.read();
-
-            if(getFlightList().size() > 0) 
-            {
-                System.out.println(getFlightList().get(getFlightList().size()-1).getName());
-            }
-
-            //System.out.println(serverAnswer.getName());
-                        
-            
-            
-            /*if((serverAnswer instanceof Flights))
-            {
-                System.out.println(test);
-                test++;
-            } else if (serverAnswer instanceof String) {
-                System.out.println("String");
-                System.out.println("SERVER: " + (String) serverAnswer);
-
-                switch((String) serverAnswer){
-                    case "TEST":
-                        System.out.println("INFO: clienten sendte en besked med teksten 'TEST' til serveren,");
-                        System.out.println("      serveren sender lige nu altid det man skriver, fra klienten, tilbage.");
-                        System.out.println("      clienten reagerer i switchcasen på svaret fra serveren");
-                        break;
-                    default:
-                        break;
-                }
-            }*/
         }
-        
     }
-
 }
