@@ -112,10 +112,10 @@ public class Users {
         dbConnect = new DBConnect();
         try {
             Statement stmt = dbConnect.getConnection().createStatement();
-            ResultSet rs = stmt.executeQuery("");
+            ResultSet rs = stmt.executeQuery("SELECT Opgavetyper.type FROM Opgavetyper;");
 
             if(rs.next()){
-
+                return rs.getString(1);
             }
             else {
                 //no result found?
