@@ -1,25 +1,27 @@
 package dk.kea.handlers;
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.OptionalDataException;
 import java.net.Socket;
+
+import dk.kea.shared.Flights;
 
 public class DepartmentHandler implements Runnable {
 
     private Socket socket;
-    private DataInputStream input;
-    private DataOutputStream output;
+    private ObjectInputStream input;
+    private ObjectOutputStream output;
     private boolean isRunning = true;
 
     public String name;
 
-    public DepartmentHandler(Socket socket, DataInputStream input, DataOutputStream output, String name) {
+    public DepartmentHandler(Socket socket, ObjectInputStream input, ObjectOutputStream output, String name) {
         this.socket = socket;
         this.input = input;
         this.output = output;
         this.name = name;
-
 
         System.out.println(name + " department thread startet.");
 
@@ -30,21 +32,42 @@ public class DepartmentHandler implements Runnable {
         try {
             // Dette er bare en test
             while (isRunning) {
-                String message = input.readUTF();
-                output.writeUTF(message);
-                System.out.printf(name + " thread: %s \n", message );
-
+                var data = input.readObject();
+                if(data != null)
+                {
+                    if (data instanceof String) {
+                        System.out.printf(name + " thread: %s \n", (String) data);
+                    }
+                    if (data instanceof Flights) {
+                        var fly = (Flights) data;
+                        sendPlane(fly);
+                    } 
+                }
             }
 
             input.close();
             output.close();
             socket.close();
 
-        } catch (IOException e) {
+        } catch (IOException | ClassNotFoundException e) {
             System.out.println("** " + name + " thread exited  **");
 
             isRunning = false;
         }
     }
+
+    public boolean sendPlane(Flights airplane) {
+        try {
+            output.writeObject(airplane);
+            output.flush();
+        } catch (IOException e) {
+            return false;
+        }
+        return true;
+    }
+
+    
 }
+
+
 

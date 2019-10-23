@@ -1,31 +1,30 @@
 package dk.kea.client;
 
-import java.io.BufferedInputStream;
-import java.io.DataInputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.net.Socket;
 
-public class Reader implements Runnable
-{
-    private ServerHandler client;
-    private DataInputStream input = null;
+import dk.kea.shared.Flights;
 
-    public Reader(ServerHandler client, Socket socket) throws IOException
-    {
+public class Reader implements Runnable {
+    private ServerHandler client;
+    private ObjectInputStream input = null;
+
+    public Reader(ServerHandler client, Socket socket) throws IOException {
         this.client = client;
-        this.input = new DataInputStream(new BufferedInputStream(socket.getInputStream()));;
+        this.input = new ObjectInputStream(socket.getInputStream());
+        ;
     }
 
     @Override
     public void run() {
-        while(client.isConnected()) 
-        {
-            
+        while (client.isConnected()) {
+            readPlanes();
         }
         close();
     }
 
-    public void close(){
+    public void close() {
         try {
             input.close();
         } catch (IOException e) {
@@ -34,19 +33,25 @@ public class Reader implements Runnable
         }
     }
 
-    public String read(){
+    public Flights read() {
         try {
-            return input.readUTF();
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
+            return (Flights) input.readObject();
+        } catch (ClassNotFoundException | IOException e) {
             e.printStackTrace();
+            return null;
         }
-        return null;
+        
     }
 
     public boolean hasStream()
     {
         return null != input;
+    }
+
+    public void readPlanes()
+    {
+        Flights airplane = read();
+        client.addFlightToList(airplane);
     }
     
 }

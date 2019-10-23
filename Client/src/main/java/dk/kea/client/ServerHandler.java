@@ -3,8 +3,10 @@ package dk.kea.client;
 import java.io.IOException;
 import java.net.ConnectException;
 import java.net.Socket;
+import java.util.ArrayList;
 
 import dk.kea.App;
+import dk.kea.shared.Flights;
 import dk.kea.shared.Keyboard;
 
 public class ServerHandler {
@@ -14,6 +16,7 @@ public class ServerHandler {
     public Sender sender;
     public Reader reader;
     public Keyboard keyboard;
+    public ArrayList<Flights> flightList = new ArrayList<>();
 
     private Boolean connected = false;
 
@@ -33,7 +36,7 @@ public class ServerHandler {
 
                 if (sender.hasStream() && reader.hasStream()) {
                     this.connected = true;
-                    sender.send(name);
+                    sender.send(name, true);
                 }
 
                 Thread keyboardThread = new Thread(keyboard);
@@ -65,5 +68,15 @@ public class ServerHandler {
     public boolean isConnected()
     {
         return connected;
+    }
+
+    public ArrayList<Flights> getFlightList()
+    {
+        return flightList;
+    }
+
+    public void addFlightToList(Flights airplane)
+    {
+        flightList.add(airplane);
     }
 }

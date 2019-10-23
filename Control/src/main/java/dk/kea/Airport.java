@@ -16,7 +16,6 @@ public class Airport {
 
         Users users = new Users();
         //users.create("bruger3", "123456", 2);
-
     }
 
 }

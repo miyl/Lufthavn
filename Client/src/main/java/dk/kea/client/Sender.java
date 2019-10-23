@@ -1,25 +1,42 @@
 package dk.kea.client;
 
-import java.io.DataOutputStream;
 import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.net.Socket;
+
+import dk.kea.shared.Flights;
 
 public class Sender implements Runnable
 {
     private ServerHandler client;
-    private DataOutputStream output = null;
+    private ObjectOutputStream output = null;
 
     public Sender(ServerHandler client, Socket socket) throws IOException
     {
         this.client = client;
-        this.output = new DataOutputStream(socket.getOutputStream());
+        this.output = new ObjectOutputStream(socket.getOutputStream());
     }
 
-    public void send(String msg){
+    public void send(String msg, Boolean utf){
         try {
-            output.writeUTF(msg);
+            if(utf)
+            {
+                output.writeUTF(msg);
+            } else 
+            {
+                output.writeObject(msg);
+            }
+            output.flush();
         } catch (IOException e) {
-            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    }
+
+    public void sendPlane(Flights airplane){
+        try {
+            output.writeObject(airplane);
+            output.flush();
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
@@ -42,7 +59,6 @@ public class Sender implements Runnable
         try {
             output.close();
         } catch (IOException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
     }
