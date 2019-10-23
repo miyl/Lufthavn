@@ -1,5 +1,3 @@
-
-import javax.lang.model.type.ArrayType;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -73,12 +71,11 @@ public class Main implements Comparator {
         flights.add(new Flights("Boeing", "SAS", "large", "SAS", 1, dateDeparture3, dateArrival3,
                 new Gate(8, "medium", "Terminal 2"), 0, 0));
 
+
         System.out.println(choseFlight(flights));
 
 
     }
-
-
 
 
 
@@ -123,7 +120,7 @@ public class Main implements Comparator {
                 if(j!=i){
                     if ((flights.get(i).getDeparture().getTime() / milliseconds) <= (flights.get(j).getArrival().getTime() / milliseconds) + taxiIndStor
                             + passagerUdStor + bagageUdStor + fuelStor + klarStor + bagageIndStor + passagererIndStor + taxiUdAfgang) {
-                        flights.get(i).
+
 
                     }
                 }

@@ -1,5 +1,3 @@
-package dk.kea.shared;
-
 public class Gate {
     private int number;
     private String gateSize;

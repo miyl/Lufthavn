@@ -1,5 +1,3 @@
-package dk.kea.shared;
-
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -11,40 +9,9 @@ import java.util.function.ToLongFunction;
 public class Calculator implements Comparator {
 
 
-    int taxiIndLille = 12;
-    int taxiIndMellem = 10;
-    int taxiIndStor = 15;
-    int passagerUdLille = 5;
-    int passagerUdMellem = 10;
-    int passagerUdStor = 15;
-    int bagageUdLille = 10;
-    int bagageUdMellem = 15;
-    int bagageUdStor = 20;
-    int fuelLille = 10;
-    int fuelMellem = 20;
-    int fuelStor = 30;
-    int klarLille = 30;
-    int klarMellem = 40;
-    int klarStor = 60;
-    int bagageIndLille = 15;
-    int bagageIndMellem = 25;
-    int bagageIndStor = 35;
-    int passagererIndLille = 15;
-    int passagererIndMellem = 20;
-    int passagererIndStor = 35;
-    int taxiUdAfgang = 10;
-    int taxiToFromWaitlille = 8;
-    int taxiToFromWaitMellem = 5;
-    int taxiToFromWaitStor = 5;
-    int personaleNabo = 0;
-    int personaleSammeTerminal = 5;
-    int personaleAndenTerminal = 10;
+    public static void calculate() throws ParseException {
 
-
-
-    public boolean choseFlight(ArrayList<Flights> flights) throws ParseException {
-
-        System.out.println("Antal taxiteams");
+        /*System.out.println("Antal taxiteams");
         Scanner scanner = new Scanner(System.in);
         int taxiTeams = scanner.nextInt();
 
@@ -55,33 +22,114 @@ public class Calculator implements Comparator {
         int fuelTeams = scanner.nextInt();
 
         System.out.println("Antal klargøringsteams:");
-        int readyTeams = scanner.nextInt();
+        int readyTeams = scanner.nextInt();*/
+
+        int taxiIndLille = 12;
+        int taxiIndMellem = 10;
+        int taxiIndStor = 15;
+        int passagerUdLille = 5;
+        int passagerUdMellem = 10;
+        int passagerUdStor = 15;
+        int bagageUdLille = 10;
+        int bagageUdMellem = 15;
+        int bagageUdStor = 20;
+        int fuelLille = 10;
+        int fuelMellem = 20;
+        int fuelStor = 30;
+        int klarLille = 30;
+        int klarMellem = 40;
+        int klarStor = 60;
+        int bagageIndLille = 15;
+        int bagageIndMellem = 25;
+        int bagageIndStor = 35;
+        int passagererIndLille = 15;
+        int passagererIndMellem = 20;
+        int passagererIndStor = 35;
+        int taxiUdAfgang = 10;
+        int taxiToFromWaitlille = 8;
+        int taxiToFromWaitMellem = 5;
+        int taxiToFromWaitStor = 5;
+        int personaleNabo = 0;
+        int personaleSammeTerminal = 5;
+        int personaleAndenTerminal = 10;
+        final int milliseconds = 60000;
+
+        ArrayList<Flights> flights = new ArrayList<Flights>();
+        Date dateArrival1 = new SimpleDateFormat("yyyy-MM-dd hh:mm").parse("2019-10-22 15:00");
+        Date dateDeparture1 = new SimpleDateFormat("yyyy-MM-dd hh:mm").parse("2019-10-22 17:00");
+
+        flights.add(new Flights("Boeing", "SAS", "large", "SAS", 1, dateDeparture1, dateArrival1,
+                new Gate(10, "large", "Terminal 2"), 0, 0));
+
+        Date dateArrival2 = new SimpleDateFormat("yyyy-MM-dd hh:mm").parse("2019-10-22 16:00");
+        Date dateDeparture2 = new SimpleDateFormat("yyyy-MM-dd hh:mm").parse("2019-10-22 17:15");
+        flights.add(new Flights("Boeing", "SAS", "large", "SAS", 1, dateDeparture2, dateArrival2,
+                new Gate(12, "large", "Terminal 2"), 0, 0));
+
+        Date dateArrival3 = new SimpleDateFormat("yyyy-MM-dd hh:mm").parse("2019-10-22 15:30");
+        Date dateDeparture3 = new SimpleDateFormat("yyyy-MM-dd hh:mm").parse("2019-10-22 17:30");
+        flights.add(new Flights("Boeing", "SAS", "large", "SAS", 1, dateDeparture3, dateArrival3,
+                new Gate(8, "medium", "Terminal 2"), 0, 0));
 
 
-        Date date1 = new SimpleDateFormat("yyyy-MM-dd hh:mm").parse("2019-22-10 17:00");
-        flights.add(new Flights("Boeing", "SAS", "large", "SAS", 1, date1,
-                new Gate(10, "large", "Terminal 2")));
+        System.out.println(choseFlight(flights));
 
 
-        Date date2 = new SimpleDateFormat("yyyy-MM-dd hh:mm").parse("2019-22-10 17:15");
-        flights.add(new Flights("Boeing", "SAS", "large", "SAS", 1, date2,
-                new Gate(12, "large", "Terminal 2")));
-
-        Date date3 = new SimpleDateFormat("yyyy-MM-dd hh:mm").parse("2019-22-10 17:30");
-        flights.add(new Flights("Boeing", "SAS", "large", "SAS", 1, date3,
-                new Gate(8, "medium", "Terminal 2")));
-
-        if
-
-        return false;
     }
 
-    public boolean isNeighbour(int gate1, int gate2){
-        if(gate1-gate2 == 2 || gate1-gate2 == -2){
-            return true;
+
+
+
+    public static List<Flights> choseFlight(ArrayList<Flights> flights) {
+        int taxiIndLille = 12;
+        int taxiIndMellem = 10;
+        int taxiIndStor = 15;
+        int passagerUdLille = 5;
+        int passagerUdMellem = 10;
+        int passagerUdStor = 15;
+        int bagageUdLille = 10;
+        int bagageUdMellem = 15;
+        int bagageUdStor = 20;
+        int fuelLille = 10;
+        int fuelMellem = 20;
+        int fuelStor = 30;
+        int klarLille = 30;
+        int klarMellem = 40;
+        int klarStor = 60;
+        int bagageIndLille = 15;
+        int bagageIndMellem = 25;
+        int bagageIndStor = 35;
+        int passagererIndLille = 15;
+        int passagererIndMellem = 20;
+        int passagererIndStor = 35;
+        int taxiUdAfgang = 10;
+        int taxiToFromWaitlille = 8;
+        int taxiToFromWaitMellem = 5;
+        int taxiToFromWaitStor = 5;
+        int personaleNabo = 0;
+        int personaleSammeTerminal = 5;
+        int personaleAndenTerminal = 10;
+        final int milliseconds = 60000;
+
+        int tal;
+
+        ArrayList<Flights> newFlights = new ArrayList<Flights>();
+
+        for (int i = 0; i < flights.size(); i++) {
+            for (int j = i + 1; j < flights.size(); j++) {
+                if(j!=i){
+                    if ((flights.get(i).getDeparture().getTime() / milliseconds) <= (flights.get(j).getArrival().getTime() / milliseconds) + taxiIndStor
+                            + passagerUdStor + bagageUdStor + fuelStor + klarStor + bagageIndStor + passagererIndStor + taxiUdAfgang) {
+
+
+                    }
+                }
+            }
         }
-        return false;
+        return newFlights;
     }
+
+
 
 
 
