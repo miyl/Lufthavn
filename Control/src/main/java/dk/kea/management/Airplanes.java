@@ -19,11 +19,26 @@ public class Airplanes{
 
     public void getPlanes(){
         dbConnect = new DBConnect();
+        List<Flights> flights = new ArrayList<Flights>();
         try {
             Statement stmt = dbConnect.getConnection().createStatement();
+
             ResultSet rs = stmt.executeQuery("SELECT * FROM Fly");
             while(rs.next()){
-                System.out.println(rs.getString(2) + ";" + rs.getString(3));
+                Flights flight = new Flights();
+                flight.setId(rs.getInt("fly_id"));
+                flight.setName(rs.getString("name"));
+                flight.setModel(rs.getString("model"));
+                flight.setFlightSize(rs.getString("flightSize"));
+                flight.setLuftSelskab(rs.getString("luftSelskab"));
+                flight.setDeparture(rs.getDate("departure"));
+                flight.setArrival(rs.getDate("arrival"));
+                flight.setGate(rs.getObject("gate"));
+                flight.setPriorityNumber(rs.getInt("priorityNumber"));
+                flight.setStandPlads(rs.getInt("standPlads"));
+                flights.add(flight);
+
+
             }
 
         }catch (SQLException e){
@@ -31,5 +46,5 @@ public class Airplanes{
         }
     }
 
-    List<Flights> flights = new ArrayList<Flights>();
+
 }
