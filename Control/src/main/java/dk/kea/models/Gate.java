@@ -1,7 +1,11 @@
-package dk.kea.Models;
+package dk.kea.models;
 
+import java.io.Serializable;
 
-public class Gate {
+public class Gate implements Serializable{
+    
+    private static final long serialVersionUID = -3033650136052167960L;
+
     private int number;
     private String gateSize;
     private String terminal;

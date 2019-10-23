@@ -1,7 +1,7 @@
 package dk.kea.management;
 
-import dk.kea.Models.Flights;
-import dk.kea.Models.Gate;
+import dk.kea.models.Flights;
+import dk.kea.models.Gate;
 import dk.kea.dbconnect.DBConnect;
 
 import java.sql.ResultSet;
