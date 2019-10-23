@@ -33,7 +33,7 @@ public class Airplanes{
                 flight.setLuftSelskab(rs.getString("luftSelskab"));
                 flight.setDeparture(rs.getDate("departure"));
                 flight.setArrival(rs.getDate("arrival"));
-                flight.setGate(rs.getObject("gate"));
+                //flight.setGate(rs.getObject("gate"));
                 flight.setPriorityNumber(rs.getInt("priorityNumber"));
                 flight.setStandPlads(rs.getInt("standPlads"));
                 flights.add(flight);
