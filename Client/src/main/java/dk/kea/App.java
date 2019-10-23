@@ -23,7 +23,7 @@ public class App {
     ObjectInputStream input;
     String username;
     String password;
-    static boolean running = false;
+    public static boolean running = false;
 
     public static void main(String[] args) {
     while(!running){
@@ -83,6 +83,7 @@ public class App {
             }
             else {
                 System.out.println("Something went wrong connection error");
+                socket.close();
             }
 
 

@@ -13,7 +13,7 @@ import dk.kea.shared.Keyboard;
 
 public class ServerHandler {
 
-    private Socket socket = null;
+    public Socket socket = null;
     public String name;
     public Sender sender;
     public Reader reader;
