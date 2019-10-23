@@ -19,6 +19,9 @@ public class Server implements Runnable {
     private static ServerSocket server = null;
 
     public TaxiDepartmentHandler taxi = null;
+    public CleaningDepartmentHandler clean = null;
+    public FuelDepartmentHandler fuel = null;
+    public LuggageDepartmentHandler luggage = null;
 
     // constructor with port
     public Server(int port) {
@@ -67,21 +70,21 @@ public class Server implements Runnable {
 
                     case "clean":
                         System.out.printf("** Client accepted %s ** \n", splitMessage[0]);
-                        CleaningDepartmentHandler clean = new CleaningDepartmentHandler(socket, input, output);
+                        clean = new CleaningDepartmentHandler(socket, input, output);
                         Thread cleanThread = new Thread(clean);
                         cleanThread.start();
                         break;
 
                     case "fuel":
                         System.out.printf("** Client accepted %s ** \n", splitMessage[0]);
-                        FuelDepartmentHandler fuel = new FuelDepartmentHandler(socket, input, output);
+                        fuel = new FuelDepartmentHandler(socket, input, output);
                         Thread fuelThread = new Thread(fuel);
                         fuelThread.start();
                         break;
 
                     case "luggage":
                         System.out.printf("** Client accepted %s ** \n", splitMessage[0]);
-                        LuggageDepartmentHandler luggage = new LuggageDepartmentHandler(socket, input, output);
+                        luggage = new LuggageDepartmentHandler(socket, input, output);
                         Thread luggageThread = new Thread(luggage);
                         luggageThread.start();
                         break;

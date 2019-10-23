@@ -6,7 +6,7 @@ import java.io.ObjectOutputStream;
 import java.io.OptionalDataException;
 import java.net.Socket;
 
-import dk.kea.shared.Flights;
+import dk.kea.models.Flights;
 
 public class    DepartmentHandler implements Runnable {
 
