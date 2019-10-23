@@ -56,8 +56,8 @@ CREATE TABLE Personale (
   PRIMARY KEY (hold_id));
 CREATE TABLE Personale_login (
   login_id   int(10) NOT NULL AUTO_INCREMENT, 
-  brugernavn varchar(50), 
-  kodeord    varchar(50), 
+  brugernavn varchar(50) UNIQUE, 
+  kodeord    varchar(100), 
   `e-mail`   varchar(100), 
   hold_id    int(10) NOT NULL, 
   PRIMARY KEY (login_id));

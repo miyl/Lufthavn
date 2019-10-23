@@ -1,10 +1,5 @@
 package dk.kea.departments;
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-
-import dk.kea.client.ServerHandler;
+import dk.kea.client.ServerHandler;;
 
 public class TaxiHandler extends ServerHandler
 {
@@ -14,15 +9,37 @@ public class TaxiHandler extends ServerHandler
     }
 
     public void start(){
-        while (connected) {
-            BufferedReader keyboard = new BufferedReader(new InputStreamReader(System.in));
-            String line;
-            try {
-                line = keyboard.readLine();
+
+        while (isConnected()) {
+
+            //Får information fra keyboardet - hvis der er noget.
+            System.out.printf("> ");
+            if (keyboard.getReader().hasNextLine()) {
+                String line = keyboard.getReader().nextLine();
+
+                if(line.equalsIgnoreCase("exit"))
+                {
+                    close();
+                    break;                    
+                }
+
+                //Sender information til serveren
                 sender.send(line);
-            } catch (IOException e) {
-                close();
-                e.printStackTrace();
+            }
+
+            // Får information fra server
+            var serverAnswer = reader.read();
+
+            System.out.println("SERVER: " + serverAnswer);
+
+            switch(serverAnswer){
+                case "TEST":
+                    System.out.println("INFO: clienten sendte en besked med teksten 'TEST' til serveren,");
+                    System.out.println("      serveren sender lige nu altid det man skriver, fra klienten, tilbage.");
+                    System.out.println("      clienten reagerer i switchcasen på svaret fra serveren");
+                    break;
+                default:
+                    break;
             }
         }
         

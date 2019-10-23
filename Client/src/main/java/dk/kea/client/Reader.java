@@ -4,7 +4,6 @@ import java.io.BufferedInputStream;
 import java.io.DataInputStream;
 import java.io.IOException;
 import java.net.Socket;
-import java.net.SocketException;
 
 public class Reader implements Runnable
 {
@@ -19,9 +18,9 @@ public class Reader implements Runnable
 
     @Override
     public void run() {
-        while(client.getConnected()) 
+        while(client.isConnected()) 
         {
-            read();
+            
         }
         close();
     }
@@ -35,13 +34,14 @@ public class Reader implements Runnable
         }
     }
 
-    public void read(){
+    public String read(){
         try {
-            System.out.println(input.readUTF());
+            return input.readUTF();
         } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
+        return null;
     }
 
     public boolean hasStream()

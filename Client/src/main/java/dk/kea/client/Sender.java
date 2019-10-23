@@ -3,7 +3,6 @@ package dk.kea.client;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
-import java.net.SocketException;
 
 public class Sender implements Runnable
 {
@@ -32,7 +31,7 @@ public class Sender implements Runnable
 
     @Override
     public void run() {
-        while(client.getConnected())
+        while(client.isConnected())
         {
 
         }

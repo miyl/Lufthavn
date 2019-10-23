@@ -17,7 +17,6 @@ public class Flights {
     public Flights(String name, String model, String flightSize, String luftSelskab, int id, Date departure, Gate gate) {
         this.name = name;
         this.model = model;
-        this.flightSize = flightSize;
         this.luftSelskab = luftSelskab;
         this.id = id;
         this.departure = departure;

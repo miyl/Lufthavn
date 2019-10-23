@@ -1,0 +1,31 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "verify client",
+            "type": "shell",
+            "command": "cd Client && mvn -B verify",
+            "group": "build"
+        },
+        {
+            "label": "test client",
+            "type": "shell",
+            "command": "cd Client && mvn -B test",
+            "group": "test"
+        },
+        {
+            "label": "verify server",
+            "type": "shell",
+            "command": "cd Control && mvn -B verify",
+            "group": "build"
+        },
+        {
+            "label": "test server",
+            "type": "shell",
+            "command": "cd Control && mvn -B test",
+            "group": "test"
+        }
+    ]
+}
