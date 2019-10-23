@@ -106,7 +106,25 @@ public class Users {
         }
         //something went wrong
         return false;
+    }
+    //TODO: SQL Statement mangler
+    public String getAfdeling(String username){
+        dbConnect = new DBConnect();
+        try {
+            Statement stmt = dbConnect.getConnection().createStatement();
+            ResultSet rs = stmt.executeQuery("");
 
+            if(rs.next()){
+
+            }
+            else {
+                //no result found?
+            }
+
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return "";
     }
 
 }
