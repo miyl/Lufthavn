@@ -1,20 +1,22 @@
 package dk.kea.handlers;
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.net.Socket;
+
+import dk.kea.shared.Flights;
 
 public class DepartmentHandler implements Runnable {
 
     private Socket socket;
-    private DataInputStream input;
-    private DataOutputStream output;
+    private ObjectInputStream input;
+    private ObjectOutputStream output;
     private boolean isRunning = true;
 
     public String name;
 
-    public DepartmentHandler(Socket socket, DataInputStream input, DataOutputStream output, String name) {
+    public DepartmentHandler(Socket socket, ObjectInputStream input, ObjectOutputStream output, String name) {
         this.socket = socket;
         this.input = input;
         this.output = output;
@@ -46,5 +48,17 @@ public class DepartmentHandler implements Runnable {
             isRunning = false;
         }
     }
+
+    public boolean sendPlane(Flights airplane)
+    {
+        try {
+            output.writeObject(airplane);
+        } catch (IOException e) {
+            return false;
+        }
+        return true;
+    }
 }
+
+
 

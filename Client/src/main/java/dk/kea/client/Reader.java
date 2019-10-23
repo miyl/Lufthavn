@@ -1,19 +1,18 @@
 package dk.kea.client;
 
-import java.io.BufferedInputStream;
-import java.io.DataInputStream;
+import java.io.ObjectInputStream;
 import java.io.IOException;
 import java.net.Socket;
 
 public class Reader implements Runnable
 {
     private ServerHandler client;
-    private DataInputStream input = null;
+    private ObjectInputStream input = null;
 
     public Reader(ServerHandler client, Socket socket) throws IOException
     {
         this.client = client;
-        this.input = new DataInputStream(new BufferedInputStream(socket.getInputStream()));;
+        this.input = new ObjectInputStream(socket.getInputStream());;
     }
 
     @Override

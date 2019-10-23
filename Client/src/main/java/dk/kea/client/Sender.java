@@ -1,18 +1,18 @@
 package dk.kea.client;
 
-import java.io.DataOutputStream;
+import java.io.ObjectOutputStream;
 import java.io.IOException;
 import java.net.Socket;
 
 public class Sender implements Runnable
 {
     private ServerHandler client;
-    private DataOutputStream output = null;
+    private ObjectOutputStream output = null;
 
     public Sender(ServerHandler client, Socket socket) throws IOException
     {
         this.client = client;
-        this.output = new DataOutputStream(socket.getOutputStream());
+        this.output = new ObjectOutputStream(socket.getOutputStream());
     }
 
     public void send(String msg){

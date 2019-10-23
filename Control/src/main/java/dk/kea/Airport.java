@@ -1,5 +1,7 @@
 package dk.kea;
 
+import dk.kea.shared.*;
+
 public class Airport {
 
     public static void main(String args[]) {
@@ -11,6 +13,14 @@ public class Airport {
 
         // Do something
         // ...
+
+        /*while (true) {
+            if (server.isAllConnected())
+            {
+                server.getTaxi().sendPlane(new Flights());
+                break;
+            }
+        }*/
     }
 
 }

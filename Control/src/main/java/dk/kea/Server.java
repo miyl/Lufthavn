@@ -1,18 +1,23 @@
 package dk.kea;
 
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.net.ServerSocket;
+import java.net.Socket;
+
 import dk.kea.handlers.CleaningDepartmentHandler;
 import dk.kea.handlers.FuelDepartmentHandler;
 import dk.kea.handlers.LuggageDepartmentHandler;
 import dk.kea.handlers.TaxiDepartmentHandler;
 
-import java.net.*;
-import java.io.*;
-
-public class Server implements Runnable  {
+public class Server implements Runnable {
 
     //initialize socket and input stream
     private static Socket socket = null;
     private static ServerSocket server = null;
+
+    public TaxiDepartmentHandler taxi = null;
 
     // constructor with port
     public Server(int port) {
@@ -37,15 +42,15 @@ public class Server implements Runnable  {
             System.out.println("** Someone connected ... **");
 
 
-            DataInputStream input  = new DataInputStream(new BufferedInputStream(socket.getInputStream()));
-            DataOutputStream output = new DataOutputStream(socket.getOutputStream());
+            ObjectOutputStream output  = new ObjectOutputStream(socket.getOutputStream());
+            ObjectInputStream input = new ObjectInputStream(socket.getInputStream());
 
             String message = input.readUTF();
 
             switch (message) {
                 case "taxi":
                     System.out.printf("** Client connected %s ** \n", message);
-                    TaxiDepartmentHandler taxi = new TaxiDepartmentHandler(socket, input, output);
+                    taxi = new TaxiDepartmentHandler(socket, input, output);
                     Thread taxiThread = new Thread(taxi);
                     taxiThread.start();
                     break;
@@ -83,5 +88,15 @@ public class Server implements Runnable  {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public TaxiDepartmentHandler getTaxi() 
+    {
+        return taxi;
+    }
+
+    public boolean isAllConnected()
+    {
+        return getTaxi() != null;
     }
 }
