@@ -71,7 +71,7 @@ public class Calculator implements Comparator {
         flights.add(new Flights("Boeing", "SAS", "large", "SAS", 1, date3,
                 new Gate(8, "medium", "Terminal 2")));
 
-        if
+        //if
 
         return false;
     }
