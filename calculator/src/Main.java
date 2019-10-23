@@ -1,4 +1,4 @@
-import java.text.DateFormat;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -8,9 +8,11 @@ import java.util.function.ToIntFunction;
 import java.util.function.ToLongFunction;
 
 public class Main implements Comparator {
-    public static void main(String[] args) {
 
-        System.out.println("Antal taxiteams");
+
+    public static void main(String[] args) throws ParseException {
+
+        /*System.out.println("Antal taxiteams");
         Scanner scanner = new Scanner(System.in);
         int taxiTeams = scanner.nextInt();
 
@@ -21,9 +23,21 @@ public class Main implements Comparator {
         int fuelTeams = scanner.nextInt();
 
         System.out.println("Antal klargøringsteams:");
-        int readyTeams = scanner.nextInt();
+        int readyTeams = scanner.nextInt();*/
 
 
+
+        System.out.println(choseFlight());
+
+
+    }
+
+
+
+
+
+
+    public static boolean choseFlight() throws ParseException {
 
         int taxiIndLille = 12;
         int taxiIndMellem = 10;
@@ -53,34 +67,29 @@ public class Main implements Comparator {
         int personaleNabo = 0;
         int personaleSammeTerminal = 5;
         int personaleAndenTerminal = 10;
+        final int milliseconds = 60000;
 
-
-
-
-    }
-
-
-
-
-
-
-    public boolean choseFlight(ArrayList<Flights> flights) throws ParseException {
-
-
-        Date date1 = new SimpleDateFormat("yyyy-MM-dd hh:mm").parse("2019-22-10 17:00");
+        ArrayList<Flights> flights = new ArrayList<Flights>();
+        Date date1 = new SimpleDateFormat("yyyy-MM-dd hh:mm").parse("2019-10-22 17:00");
         flights.add(new Flights("Boeing", "SAS", "large", "SAS", 1, date1,
                 new Gate(10, "large", "Terminal 2")));
 
 
-        Date date2 = new SimpleDateFormat("yyyy-MM-dd hh:mm").parse("2019-22-10 17:15");
+        Date date2 = new SimpleDateFormat("yyyy-MM-dd hh:mm").parse("2019-10-22 17:15");
         flights.add(new Flights("Boeing", "SAS", "large", "SAS", 1, date2,
                 new Gate(12, "large", "Terminal 2")));
 
-        Date date3 = new SimpleDateFormat("yyyy-MM-dd hh:mm").parse("2019-22-10 17:30");
+        Date date3 = new SimpleDateFormat("yyyy-MM-dd hh:mm").parse("2019-10-22 17:30");
         flights.add(new Flights("Boeing", "SAS", "large", "SAS", 1, date3,
                 new Gate(8, "medium", "Terminal 2")));
 
-
+        if((flights.get(1).getDeparture().getTime()/milliseconds)<=(flights.get(2).getDeparture().getTime()/milliseconds)+taxiIndStor
+        +passagerUdStor+bagageUdStor+fuelStor+klarStor+bagageIndStor+passagererIndStor+taxiUdAfgang){
+            System.out.println(flights.get(1).getDeparture().getTime()/milliseconds);
+            System.out.println((flights.get(2).getDeparture().getTime()/milliseconds)+taxiIndStor
+                    +passagerUdStor+bagageUdStor+fuelStor+klarStor+bagageIndStor+passagererIndStor+taxiUdAfgang);
+           return true;
+        }
         return false;
     }
 
