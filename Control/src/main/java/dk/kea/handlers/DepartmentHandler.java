@@ -50,6 +50,7 @@ public class    DepartmentHandler implements Runnable {
             socket.close();
 
         } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
             System.out.println("** " + name + " thread exited  **");
 
             isRunning = false;
