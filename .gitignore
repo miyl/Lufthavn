@@ -28,3 +28,9 @@ buildNumber.properties
 
 # For class files
 out
+
+# VSCode
+.vscode
+*.classpath$
+*.settings$
+*.project

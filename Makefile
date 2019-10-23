@@ -14,4 +14,3 @@ rcl:
 
 rco:
 	cd Control && mvn exec:java -Dexec.mainClass=dk.kea.Airport
-

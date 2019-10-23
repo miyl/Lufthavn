@@ -6,24 +6,13 @@ import dk.kea.menugenerator.MenuPoint;
 
 public class App {
 
-<<<<<<< HEAD
     public static String address = "localhost";
-=======
-
-    public static String address = "localhost";
-
->>>>>>> 72c691c6e54d93c0b9ec27d15fc13c30298307e9
     public static int port = 5000;
 
     public class Mp1 extends MenuPoint {
         public void run() {
-<<<<<<< HEAD
-            System.out.println("Running menu point 1!");
-            TaxiHandler taxi = new TaxiHandler();
-=======
             System.out.println("Running the TAXI Client..");
             var taxi = new TaxiHandler();
->>>>>>> 72c691c6e54d93c0b9ec27d15fc13c30298307e9
             taxi.start();
         }
 
