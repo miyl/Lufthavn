@@ -46,11 +46,7 @@ public class Airplanes{
                     gate.setGateSize(rs_.getString("gateSize"));
                     gate.setTerminal(rs_.getString("terminal"));
                 }
-
-
                 flights.add(flight);
-
-
             }
 
         }catch (SQLException e){
