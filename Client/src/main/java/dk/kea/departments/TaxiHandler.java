@@ -36,6 +36,11 @@ public class TaxiHandler extends ServerHandler
             // Får information fra server'
             //Flights serverAnswer = reader.read();
 
+            if(getFlightList().size() > 0) 
+            {
+                System.out.println(getFlightList().get(0).name);
+            }
+
             //System.out.println(serverAnswer.getName());
                         
             

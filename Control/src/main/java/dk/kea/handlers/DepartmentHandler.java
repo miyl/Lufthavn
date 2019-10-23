@@ -41,6 +41,7 @@ public class DepartmentHandler implements Runnable {
                     if (data instanceof Flights) {
                         var fly = (Flights) data;
                         System.out.println(fly.getName());
+                        sendPlane(fly);
                     } 
                 }
 
