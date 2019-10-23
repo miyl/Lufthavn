@@ -5,13 +5,15 @@ import java.util.ArrayList;
 public class Boarding {
     private ArrayList<String> passengers;
     private int capacity;
+    private String flightSize;
 
     public Boarding(){
     }
 
-    public Boarding(int numSeats){
+    public Boarding(int numSeats, String flightSize){
         capacity = numSeats;
         passengers = new ArrayList<String>();
+        this.flightSize = flightSize;
     }
 
     public void boardPassenger(String name, boolean priority)  {
@@ -22,6 +24,10 @@ public class Boarding {
                 passengers.add(name);
             }
         }
+    }
+
+    public String getFlightSize() {
+        return flightSize;
     }
 
     public boolean isFull() {
