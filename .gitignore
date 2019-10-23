@@ -30,7 +30,7 @@ buildNumber.properties
 out
 
 # VSCode
-.vscode
-*.classpath$
-*.settings$
-*.project
+.vscode/
+*.classpath/
+*.settings/
+Control/.project
