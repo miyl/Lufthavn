@@ -39,7 +39,7 @@ public class Airplanes{
                 flight.setGate(gate);
                 flight.setPriorityNumber(rs.getInt("priorityNumber"));
                 flight.setStandPlads(rs.getInt("standPlads"));
-x
+
                 ResultSet rs_ = stmt.executeQuery("SELECT * FROM Gate WHERE id = " + flight.getId());
                 while(rs_.next()){
                     gate.setNumber(rs_.getInt("number"));
