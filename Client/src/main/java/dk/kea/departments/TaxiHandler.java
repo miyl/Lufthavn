@@ -23,9 +23,9 @@ public class TaxiHandler extends ServerHandler
                 {
                     close();
                     break;                    
-                } else if (line.equalsIgnoreCase("fly"))
+                } else if (line.split(" ")[0].equalsIgnoreCase("fly"))
                 {
-                    sender.sendPlane(new Flights());
+                    sender.sendPlane(new Flights(line.split(" ")[1]));
                 } else {
                     //Sender information til serveren
                     sender.send(line, false);
@@ -38,7 +38,7 @@ public class TaxiHandler extends ServerHandler
 
             if(getFlightList().size() > 0) 
             {
-                System.out.println(getFlightList().get(0).name);
+                System.out.println(getFlightList().get(getFlightList().size()-1).getName());
             }
 
             //System.out.println(serverAnswer.getName());

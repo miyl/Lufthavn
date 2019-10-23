@@ -21,6 +21,10 @@ public class Flights implements Serializable{
         this.name = "A7431";
     }
 
+    public Flights(String name) {
+        this.name = name;
+    }
+
     public Flights(String name, String model, String flightSize, String luftSelskab, int id, Date departure, Gate gate) {
         this.name = name;
         this.model = model;

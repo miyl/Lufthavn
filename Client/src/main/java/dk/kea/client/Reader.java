@@ -19,7 +19,7 @@ public class Reader implements Runnable {
     @Override
     public void run() {
         while (client.isConnected()) {
-            
+            readPlanes();
         }
         close();
     }
