@@ -1,8 +1,10 @@
 package dk.kea.client;
 
-import java.io.ObjectOutputStream;
 import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.net.Socket;
+
+import dk.kea.shared.Flights;
 
 public class Sender implements Runnable
 {
@@ -18,8 +20,17 @@ public class Sender implements Runnable
     public void send(String msg){
         try {
             output.writeUTF(msg);
+            output.flush();
         } catch (IOException e) {
-            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    }
+
+    public void sendPlane(Flights airplane){
+        try {
+            output.writeObject(airplane);
+            output.flush();
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }

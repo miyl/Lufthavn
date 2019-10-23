@@ -1,8 +1,14 @@
 package dk.kea.shared;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Flights {
+public class Flights implements Serializable{
+    /**
+     *
+     */
+    private static final long serialVersionUID = 1L;
+    
     private String name;
     private String model;
     private String flightSize;

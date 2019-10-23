@@ -1,7 +1,7 @@
 package dk.kea.client;
 
-import java.io.ObjectInputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.net.Socket;
 
 public class Reader implements Runnable
@@ -33,12 +33,13 @@ public class Reader implements Runnable
         }
     }
 
-    public String read(){
+    public Object read(){
         try {
-            return input.readUTF();
+            return input.readObject();
         } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+            
+        } catch (ClassNotFoundException e) {
+            System.out.print("hej");
         }
         return null;
     }

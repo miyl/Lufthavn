@@ -34,6 +34,7 @@ public class DepartmentHandler implements Runnable {
             while (isRunning) {
                 String message = input.readUTF();
                 output.writeUTF(message);
+                output.flush();
                 System.out.printf(name + " thread: %s \n", message );
 
             }
@@ -53,6 +54,7 @@ public class DepartmentHandler implements Runnable {
     {
         try {
             output.writeObject(airplane);
+            output.flush();
         } catch (IOException e) {
             return false;
         }
