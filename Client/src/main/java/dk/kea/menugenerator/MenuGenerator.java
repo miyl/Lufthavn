@@ -5,8 +5,6 @@ package dk.kea.menugenerator;
 
 import static dk.kea.statics.StaticLib.*;
 
-import java.net.SocketException;
-
 public class MenuGenerator {
 
   MenuPoint[] mps;
@@ -58,11 +56,7 @@ public class MenuGenerator {
 
   private void choice(int choiceNum) {
     if (choiceNum > 0) {
-      try {
         mps[choiceNum - 1].run();
-      } catch (SocketException e) {
-        e.printStackTrace();
-      }
     }
     else System.exit(0);
   }
