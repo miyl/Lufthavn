@@ -1,5 +1,6 @@
 package dk.kea;
 
+import dk.kea.departments.LuggageHandler;
 import dk.kea.departments.TaxiHandler;
 import dk.kea.menugenerator.MenuGenerator;
 import dk.kea.menugenerator.MenuPoint;
@@ -36,7 +37,10 @@ public class App {
 
     public class Mp3 extends MenuPoint {
         public void run() {
-            System.out.println("Running menu point 3!");
+
+            System.out.println("Running the TAXI Client..");
+            var luggage = new LuggageHandler();
+            luggage.start();
         }
 
         public Mp3() {

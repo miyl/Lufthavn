@@ -1,4 +1,5 @@
-package dk.kea.shared;
+package dk.kea.Models;
+
 
 import java.util.Date;
 

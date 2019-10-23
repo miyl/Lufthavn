@@ -1,10 +1,13 @@
 package dk.kea.management;
 
+import dk.kea.Models.Flights;
 import dk.kea.dbconnect.DBConnect;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class Airplanes{
@@ -27,4 +30,6 @@ public class Airplanes{
             e.printStackTrace();
         }
     }
+
+    List<Flights> flights = new ArrayList<Flights>();
 }
