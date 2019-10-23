@@ -9,7 +9,40 @@ import java.util.function.ToIntFunction;
 import java.util.function.ToLongFunction;
 
 public class Calculator implements Comparator {
-    public static void main(String[] args) {
+
+
+    int taxiIndLille = 12;
+    int taxiIndMellem = 10;
+    int taxiIndStor = 15;
+    int passagerUdLille = 5;
+    int passagerUdMellem = 10;
+    int passagerUdStor = 15;
+    int bagageUdLille = 10;
+    int bagageUdMellem = 15;
+    int bagageUdStor = 20;
+    int fuelLille = 10;
+    int fuelMellem = 20;
+    int fuelStor = 30;
+    int klarLille = 30;
+    int klarMellem = 40;
+    int klarStor = 60;
+    int bagageIndLille = 15;
+    int bagageIndMellem = 25;
+    int bagageIndStor = 35;
+    int passagererIndLille = 15;
+    int passagererIndMellem = 20;
+    int passagererIndStor = 35;
+    int taxiUdAfgang = 10;
+    int taxiToFromWaitlille = 8;
+    int taxiToFromWaitMellem = 5;
+    int taxiToFromWaitStor = 5;
+    int personaleNabo = 0;
+    int personaleSammeTerminal = 5;
+    int personaleAndenTerminal = 10;
+
+
+
+    public boolean choseFlight(ArrayList<Flights> flights) throws ParseException {
 
         System.out.println("Antal taxiteams");
         Scanner scanner = new Scanner(System.in);
@@ -23,49 +56,6 @@ public class Calculator implements Comparator {
 
         System.out.println("Antal klargøringsteams:");
         int readyTeams = scanner.nextInt();
-
-
-
-        int taxiIndLille = 12;
-        int taxiIndMellem = 10;
-        int taxiIndStor = 15;
-        int passagerUdLille = 5;
-        int passagerUdMellem = 10;
-        int passagerUdStor = 15;
-        int bagageUdLille = 10;
-        int bagageUdMellem = 15;
-        int bagageUdStor = 20;
-        int fuelLille = 10;
-        int fuelMellem = 20;
-        int fuelStor = 30;
-        int klarLille = 30;
-        int klarMellem = 40;
-        int klarStor = 60;
-        int bagageIndLille = 15;
-        int bagageIndMellem = 25;
-        int bagageIndStor = 35;
-        int passagererIndLille = 15;
-        int passagererIndMellem = 20;
-        int passagererIndStor = 35;
-        int taxiUdAfgang = 10;
-        int taxiToFromWaitlille = 8;
-        int taxiToFromWaitMellem = 5;
-        int taxiToFromWaitStor = 5;
-        int personaleNabo = 0;
-        int personaleSammeTerminal = 5;
-        int personaleAndenTerminal = 10;
-
-
-
-
-    }
-
-
-
-
-
-
-    public boolean choseFlight(ArrayList<Flights> flights) throws ParseException {
 
 
         Date date1 = new SimpleDateFormat("yyyy-MM-dd hh:mm").parse("2019-22-10 17:00");
