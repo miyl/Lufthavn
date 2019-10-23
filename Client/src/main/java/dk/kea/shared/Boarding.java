@@ -1,27 +1,29 @@
-package main.java.dk.kea.shared;
+package dk.kea.shared;
 import java.util.ArrayList;
 
 //Klasse til boarding af passengers. Fra høj til lav prioritet
 public class Boarding {
     private ArrayList<String> passengers;
     private int capacity;
+    private String flightSize;
 
     public Boarding(){
     }
 
-    public Boarding(int numSeats){
+    public Boarding(int numSeats, String flightSize){
         capacity = numSeats;
         passengers = new ArrayList<String>();
+        this.flightSize = flightSize;
     }
 
-    public void boardPassenger(String name, boolean priority)  {
+    public void boardPassenger(String name) {
         if (!isFull()){
-            if (priority){
                 passengers.add(0, name);
-            } else {
-                passengers.add(name);
             }
         }
+
+    public String getFlightSize() {
+        return flightSize;
     }
 
     public boolean isFull() {
