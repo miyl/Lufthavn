@@ -1,4 +1,4 @@
-package dk.kea.userhandling;
+package dk.kea.management;
 
 import dk.kea.dbconnect.DBConnect;
 import org.mindrot.jbcrypt.BCrypt;
@@ -28,16 +28,19 @@ import java.sql.Statement;
  *
  **/
 
-public class ManageUsers {
+public class Users {
     DBConnect dbConnect;
-    public ManageUsers() {
+    //randomword tilføjes til plaintext password når password hashes og checkes.
+    final String randomWord = "Aerobics";
+    public Users() {
     }
 
     //Opret ny bruger
     //TODO: mangler email adresse (hardcoded i insert string pt.)
     public void create(String username, String plaintext_pw, int hold_id){
         //hash password
-        String hashedPassword = BCrypt.hashpw(plaintext_pw, BCrypt.gensalt());
+        String randomWord = "Aerobics";
+        String hashedPassword = BCrypt.hashpw((plaintext_pw + randomWord), BCrypt.gensalt());
 
         //tilføj bruger til db
         dbConnect = new DBConnect();
@@ -86,7 +89,7 @@ public class ManageUsers {
 
             if(rs.next()){
                 String hashedPassword = rs.getString(1);
-                if(BCrypt.checkpw(plaintext_pw, hashedPassword)){
+                if(BCrypt.checkpw((plaintext_pw + randomWord), hashedPassword)){
                     //password correct
                     return true;
                 }
