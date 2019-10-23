@@ -11,13 +11,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class Airplanes{
+public class FlightDbHandler{
     DBConnect dbConnect;
 
-    public Airplanes() {
-    }
-
-    public List getPlanes(){
+    public List<Flights> getPlanes(){
         dbConnect = new DBConnect();
         List<Flights> flights = new ArrayList<Flights>();
         try {

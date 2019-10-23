@@ -18,10 +18,10 @@ public class Server implements Runnable {
     private static Socket socket = null;
     private static ServerSocket server = null;
 
-    public TaxiDepartmentHandler taxi = null;
-    public CleaningDepartmentHandler clean = null;
-    public FuelDepartmentHandler fuel = null;
-    public LuggageDepartmentHandler luggage = null;
+    private TaxiDepartmentHandler taxi = null;
+    private CleaningDepartmentHandler clean = null;
+    private FuelDepartmentHandler fuel = null;
+    private LuggageDepartmentHandler luggage = null;
 
     // constructor with port
     public Server(int port) {
@@ -115,13 +115,23 @@ public class Server implements Runnable {
         }
     }
 
-    public TaxiDepartmentHandler getTaxi() 
-    {
+    public TaxiDepartmentHandler getTaxi() {
         return taxi;
     }
 
-    public boolean isAllConnected()
-    {
+    public CleaningDepartmentHandler getClean() {
+        return clean;
+    }
+
+    public FuelDepartmentHandler getFuel() {
+        return fuel;
+    }
+
+    public LuggageDepartmentHandler getLuggage() {
+        return luggage;
+    }
+
+    public boolean isAllConnected() {
         return getTaxi() != null;
     }
 }
