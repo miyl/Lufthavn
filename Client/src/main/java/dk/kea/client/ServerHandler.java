@@ -84,4 +84,9 @@ public class ServerHandler {
     {
         flightList.add(airplane);
     }
+
+    public void removeFlightToList()
+    {
+        flightList.remove(0);
+    }
 }

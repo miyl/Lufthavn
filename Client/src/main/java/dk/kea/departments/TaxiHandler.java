@@ -22,31 +22,50 @@ public class TaxiHandler extends ServerHandler
             //Får information fra keyboardet - hvis der er noget.
             System.out.printf("> ");
             if (keyboard.getReader().hasNextLine()) {
-                String[] tokens = keyboard.getReader().nextLine().split(" ");
+                String[] tokens = keyboard.getReader().nextLine().toUpperCase().split(" ");
 
-                if(tokens[0].equalsIgnoreCase("EXIT"))
+                switch(tokens[0])
                 {
-                    close();
-                    break;                    
-                } else if (tokens[0].equalsIgnoreCase("FLIGHT")) {
-                    sender.sendPlane(new Flights(tokens[1]));
-                } else if(tokens[0].equalsIgnoreCase("LIST")) {
+                    case "EXIT":
+                        close();
+                        break;
+                    case "LIST":
+                        if(getFlightList().size() > 0)
+                        {
+                            System.out.print("[INFO]: Active planes in this department:\n\n");
 
-                    if(getFlightList().size() > 0)
-                    {
-                        System.out.print("[INFO]: Active planes in this department:\n\n");
-                        getFlightList().forEach(value -> System.out.print(
-                            "        [" + value.getId() + ", " + value.getName() + "]\n"
-                            ));
-                        System.out.println();
-                    } else {
-                        System.out.print("[INFO]: No active planes in this department.\n");
-                    }
-                } else {
-                    //Sender information til serveren
-                    sender.send(String.join(" ", tokens), false);
-                }
-                
+                            getFlightList().forEach(value -> System.out.print(
+                                "        [" + value.getId() + ", " + value.getName() + "]\n"
+                                ));
+
+                            System.out.println();
+                        } else {
+                            System.out.print("[INFO]: No active planes in this department.\n");
+                        }
+                        break;
+                    case "ADD":
+                        if(tokens.length == 2){
+                            sender.sendPlane(new Flights(tokens[1]));
+                            System.out.println("[INFO]: Flight [" + tokens[1] + "] added to queue.");
+                        } else {
+                            System.out.print("[ERROR]: Use syntax.\n");
+                            System.out.print("         ADD <name>\n");
+                        }                        
+                        break;
+                    case "REMOVE":
+                        if(getFlightList().size() > 0)
+                        {
+                            System.out.println("[INFO]: Flight [" + getFlightList().get(0).getName() + "] removed from queue.");
+                            removeFlightToList();
+                        } else {
+                            System.out.print("[INFO]: No active planes in this department.\n");
+                        }
+
+                        break;
+                    default:
+                        sender.send(String.join(" ", tokens), false);
+                        break;
+                }                
             }
         }
     }
