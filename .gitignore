@@ -31,6 +31,6 @@ out
 
 # VSCode
 .vscode/
-*.classpath/
-*.settings/
+*.classpath*
+*.settings
 Control/.project
