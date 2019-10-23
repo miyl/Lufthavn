@@ -1,6 +1,6 @@
 package dk.kea.management;
 
-import dk.kea.models.Flights;
+import dk.kea.models.Flight;
 import dk.kea.models.Gate;
 import dk.kea.dbconnect.DBConnect;
 
@@ -14,16 +14,16 @@ import java.util.List;
 public class FlightDbHandler{
     DBConnect dbConnect;
 
-    public List<Flights> getPlanes(){
+    public List<Flight> getPlanes(){
         dbConnect = new DBConnect();
-        List<Flights> flights = new ArrayList<Flights>();
+        List<Flight> flights = new ArrayList<Flight>();
         try {
             Statement stmt = dbConnect.getConnection().createStatement();
 
             ResultSet rs = stmt.executeQuery("SELECT * FROM Fly");
             while(rs.next()){
 
-                Flights flight = new Flights();
+                Flight flight = new Flight();
                 Gate gate = new Gate();
                 flight.setId(rs.getInt("fly_id"));
                 flight.setName(rs.getString("name"));

@@ -3,7 +3,7 @@ package dk.kea.models;
 import java.io.Serializable;
 import java.util.Date;
 
-public class Flights implements Serializable{
+public class Flight implements Serializable{
     /**
      *
      */
@@ -20,7 +20,7 @@ public class Flights implements Serializable{
     private int priorityNumber;
     private int standPlads;
 
-    public Flights() {
+    public Flight() {
         this.name = "name";
         this.model = "model";
         this.luftSelskab = "luftSelskab";
@@ -29,7 +29,7 @@ public class Flights implements Serializable{
         this.gate = new Gate();
     }
 
-    public Flights(String name, String model, String flightSize, String luftSelskab, int id, Date departure, Gate gate, Date arrival, int priorityNumber, int standPlads) {
+    public Flight(String name, String model, String flightSize, String luftSelskab, int id, Date departure, Gate gate, Date arrival, int priorityNumber, int standPlads) {
         this.id = id;
         this.name = name;
         this.model = model;
