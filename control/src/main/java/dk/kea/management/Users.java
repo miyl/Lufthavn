@@ -39,7 +39,6 @@ public class Users {
     //TODO: mangler email adresse (hardcoded i insert string pt.)
     public void create(String username, String plaintext_pw, int hold_id){
         //hash password
-        String randomWord = "Aerobics";
         String hashedPassword = BCrypt.hashpw((plaintext_pw + randomWord), BCrypt.gensalt());
 
         //tilføj bruger til db
