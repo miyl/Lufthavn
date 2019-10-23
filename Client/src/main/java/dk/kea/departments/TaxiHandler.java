@@ -30,9 +30,12 @@ public class TaxiHandler extends ServerHandler
             }
 
             // Får information fra server'
-            var serverAnswer = reader.read();
+            Flights serverAnswer = reader.read();
+
+            System.out.println(serverAnswer.getName());
+                        
+            /*
             
-            var test  =1;
             if((serverAnswer instanceof Flights))
             {
                 System.out.println(test);
@@ -50,7 +53,7 @@ public class TaxiHandler extends ServerHandler
                     default:
                         break;
                 }
-            }
+            }*/
         }
         
     }

@@ -14,20 +14,13 @@ public class Airport {
         // Do something
         // ...
 
-        var test = 1;
+        /*var test = 1;
         while (true) {
             if (server.isAllConnected()) {
                 server.getTaxi().sendPlane(new Flights());
                 System.out.println(test);
-                test++;
-                try {
-                    Thread.sleep(4);
-                } catch (InterruptedException e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                }
             }
-        }
+        }*/
     }
 
 }

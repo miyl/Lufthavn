@@ -22,7 +22,6 @@ public class DepartmentHandler implements Runnable {
         this.output = output;
         this.name = name;
 
-
         System.out.println(name + " department thread startet.");
 
     }
@@ -33,9 +32,9 @@ public class DepartmentHandler implements Runnable {
             // Dette er bare en test
             while (isRunning) {
                 String message = input.readUTF();
-                output.writeUTF(message);
+                output.writeObject(new Flights());
                 output.flush();
-                System.out.printf(name + " thread: %s \n", message );
+                System.out.printf(name + " thread: %s \n", (String) message);
 
             }
 
@@ -50,8 +49,7 @@ public class DepartmentHandler implements Runnable {
         }
     }
 
-    public boolean sendPlane(Flights airplane)
-    {
+    public boolean sendPlane(Flights airplane) {
         try {
             output.writeObject(airplane);
             output.flush();
@@ -60,6 +58,17 @@ public class DepartmentHandler implements Runnable {
         }
         return true;
     }
+
+    public Flights readPlane() {
+        try {
+            return (Flights) input.readObject();
+        } catch (ClassNotFoundException | IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    
 }
 
 
