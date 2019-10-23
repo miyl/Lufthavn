@@ -12,13 +12,25 @@ public class ServerHandler {
     private Socket socket = null;
     public Sender sender;
     public Reader reader;
-    public String name;
     public Keyboard keyboard;
 
     private Boolean connected = false;
 
-    public ServerHandler(String name) {
-        this.name = name;
+    public ServerHandler() {
+        String username = "";
+        String password = "";
+        String credentials = "";
+        keyboard = new Keyboard(this);
+
+        System.out.println("Enter username:");
+        if(keyboard.getReader().hasNextLine()){
+            username = keyboard.getReader().nextLine();
+        }
+        System.out.println("Enter password:");
+        if(keyboard.getReader().hasNextLine()){
+            password = keyboard.getReader().nextLine();
+        }
+        credentials = username + ";" + password;
 
         try {
             socket = new Socket(App.address, App.port);
@@ -32,10 +44,8 @@ public class ServerHandler {
 
                 if (sender.hasStream() && reader.hasStream()) {
                     this.connected = true;
-                    sender.send(name);
+                    sender.send(credentials);
                 }
-
-                keyboard = new Keyboard(this);
 
                 Thread keyboardThread = new Thread(keyboard);
                 keyboardThread.start();

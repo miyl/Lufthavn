@@ -109,7 +109,7 @@ public class Users {
     }
     //TODO: SQL Statement mangler
     public String getAfdeling(String username){
-        dbConnect = new DBConnect();
+        /*dbConnect = new DBConnect();
         try {
             Statement stmt = dbConnect.getConnection().createStatement();
             ResultSet rs = stmt.executeQuery("SELECT Opgavetyper.type FROM Opgavetyper;");
@@ -125,6 +125,9 @@ public class Users {
             e.printStackTrace();
         }
         return "";
+
+         */
+        return "taxi";
     }
 
 }
