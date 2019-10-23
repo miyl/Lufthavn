@@ -6,9 +6,7 @@ import dk.kea.menugenerator.MenuPoint;
 
 public class App {
 
-
     public static String address = "localhost";
-
     public static int port = 5000;
 
     public class Mp1 extends MenuPoint {
