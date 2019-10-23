@@ -1,13 +1,13 @@
 package dk.kea.departments;
 
 import dk.kea.client.ServerHandler;
-import dk.kea.shared.Flights;;
+import dk.kea.shared.Flights;;import java.net.Socket;
 
 public class TaxiHandler extends ServerHandler
 {
 
-    public TaxiHandler(){
-        super("taxi");
+    public TaxiHandler(Socket socket){
+        super( socket);
     }
 
     public void start(){

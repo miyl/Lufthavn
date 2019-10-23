@@ -3,9 +3,11 @@ package dk.kea.departments;
 import dk.kea.client.ServerHandler;
 import dk.kea.shared.Flights;
 
+import java.net.Socket;
+
 public class FuelHandler extends ServerHandler {
-    public FuelHandler(){
-        super("fuel");
+    public FuelHandler(Socket socket){
+        super(socket);
     }
     
     public void start(){

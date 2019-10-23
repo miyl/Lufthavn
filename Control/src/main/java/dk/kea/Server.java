@@ -47,46 +47,64 @@ public class Server implements Runnable {
             ObjectOutputStream output  = new ObjectOutputStream(socket.getOutputStream());
             ObjectInputStream input = new ObjectInputStream(socket.getInputStream());
 
-            //"brugernavn;kode
+
+            Users userManage = new Users();
 
             String message = input.readUTF();
+            String[] splitMessage = message.split(";");
+            if(userManage.chkCredentials(splitMessage[0], splitMessage[1])){
+                String afdeling =userManage.getAfdeling(splitMessage[0]);
+                output.writeUTF("Ok" + ";" + afdeling);
+                output.flush();
 
-            switch (message) {
-                case "taxi":
-                    System.out.printf("** Client connected %s ** \n", message);
-                    taxi = new TaxiDepartmentHandler(socket, input, output);
-                    Thread taxiThread = new Thread(taxi);
-                    taxiThread.start();
-                    break;
+                switch (afdeling) {
+                    case "taxi":
+                        System.out.printf("** Client accepted %s ** \n", splitMessage[0]);
+                        taxi = new TaxiDepartmentHandler(socket, input, output);
+                        Thread taxiThread = new Thread(taxi);
+                        taxiThread.start();
+                        break;
 
-                case "clean":
-                    System.out.printf("** Client connected %s ** \n", message);
-                    CleaningDepartmentHandler clean = new CleaningDepartmentHandler(socket, input, output);
-                    Thread cleanThread = new Thread(clean);
-                    cleanThread.start();
-                    break;
+                    case "clean":
+                        System.out.printf("** Client accepted %s ** \n", splitMessage[0]);
+                        CleaningDepartmentHandler clean = new CleaningDepartmentHandler(socket, input, output);
+                        Thread cleanThread = new Thread(clean);
+                        cleanThread.start();
+                        break;
 
-                case "fuel":
-                    System.out.printf("** Client connected %s ** \n", message);
-                    FuelDepartmentHandler fuel = new FuelDepartmentHandler(socket, input, output);
-                    Thread fuelThread = new Thread(fuel);
-                    fuelThread.start();
-                    break;
+                    case "fuel":
+                        System.out.printf("** Client accepted %s ** \n", splitMessage[0]);
+                        FuelDepartmentHandler fuel = new FuelDepartmentHandler(socket, input, output);
+                        Thread fuelThread = new Thread(fuel);
+                        fuelThread.start();
+                        break;
 
-                case "luggage":
-                    System.out.printf("** Client connected %s ** \n", message);
-                    LuggageDepartmentHandler luggage = new LuggageDepartmentHandler(socket, input, output);
-                    Thread luggageThread = new Thread(luggage);
-                    luggageThread.start();
-                    break;
+                    case "luggage":
+                        System.out.printf("** Client accepted %s ** \n", splitMessage[0]);
+                        LuggageDepartmentHandler luggage = new LuggageDepartmentHandler(socket, input, output);
+                        Thread luggageThread = new Thread(luggage);
+                        luggageThread.start();
+                        break;
 
-                default:
-                    System.out.println("Wrong input, closing connection");
-                    socket.close();
-                    input.close();
-                    output.close();
-                    break;
+                    default:
+                        System.out.println("Wrong input, closing connection");
+                        socket.close();
+                        input.close();
+                        output.close();
+                        break;
+                }
+
             }
+            else {
+                System.out.println("** Someone was rejected **");
+                output.writeUTF("notOk");
+                output.flush();
+                socket.close();
+                input.close();
+                output.close();
+            }
+
+
         }
 
         } catch (IOException e) {

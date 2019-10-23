@@ -8,7 +8,7 @@ import java.net.Socket;
 
 import dk.kea.shared.Flights;
 
-public class DepartmentHandler implements Runnable {
+public class    DepartmentHandler implements Runnable {
 
     private Socket socket;
     private ObjectInputStream input;

@@ -3,9 +3,11 @@ package dk.kea.departments;
 import dk.kea.client.ServerHandler;
 import dk.kea.shared.Flights;
 
+import java.net.Socket;
+
 public class LuggageHandler extends ServerHandler {
-    public LuggageHandler(){
-        super("luggage");
+    public LuggageHandler(Socket socket){
+        super(socket);
     }
 
     public void start(){

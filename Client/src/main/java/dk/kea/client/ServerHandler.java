@@ -20,23 +20,24 @@ public class ServerHandler {
 
     private Boolean connected = false;
 
-    public ServerHandler(String name) {
+    public ServerHandler(Socket socket) {
 
         keyboard = new Keyboard(this);
 
         try {
-            socket = new Socket(App.address, App.port);
+            this.socket = socket;
 
-            if (socket.isConnected()) {
+            if (this.socket.isConnected()) {
+                System.out.println("Is connected");
                 sender = new Sender(this, socket);
                 reader = new Reader(this, socket);
 
                 Thread readerthread = new Thread(reader);
                 readerthread.start();
 
+
                 if (sender.hasStream() && reader.hasStream()) {
                     this.connected = true;
-                    sender.send(name, true);
                 }
 
                 Thread keyboardThread = new Thread(keyboard);

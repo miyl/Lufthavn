@@ -6,87 +6,90 @@ import dk.kea.menugenerator.MenuGenerator;
 import dk.kea.menugenerator.MenuPoint;
 import dk.kea.shared.Calculator;
 
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.net.Socket;
 import java.text.ParseException;
+import java.util.Scanner;
 
 public class App {
 
-    public static String address = "localhost";
-    public static int port = 5000;
-
-    public class Mp1 extends MenuPoint {
-        public void run() {
-            System.out.println("Running the TAXI Client..");
-            var taxi = new TaxiHandler();
-            taxi.start();
-        }
-
-        public Mp1() {
-            name = "Taxi";
-        }
-    }
-
-    public class Mp2 extends MenuPoint {
-        public void run() {
-            System.out.println("Running menu point 2!");
-        }
-
-        public Mp2() {
-            name = "Cleaning";
-        }
-    }
-
-    public class Mp3 extends MenuPoint {
-        public void run() {
-
-            System.out.println("Running the TAXI Client..");
-            var luggage = new LuggageHandler();
-            luggage.start();
-        }
-
-        public Mp3() {
-            name = "Luggage";
-        }
-    }
-
-    public class Mp4 extends MenuPoint {
-        public void run() {
-            System.out.println("Running menu point 4!");
-        }
-
-        public Mp4() {
-            name = "Fuel";
-        }
-    }
-
-    public class Mp5 extends MenuPoint {
-        public void run() {
-            System.out.println("Running menu point 5!");
-        }
-
-        public Mp5() {
-            name = "Options";
-        }
-    }
-
-    public class Mp6 extends MenuPoint {
-        public void run() {
-                Calculator calculator = new Calculator();
-                calculator.calculate();
-
-        }
-
-        public Mp6() {
-            name = "Calculator";
-        }
-    }
+    static String address = "localhost";
+    static int port = 5000;
+    Scanner scanner = new Scanner(System.in);
+    Socket socket;
+    ObjectOutputStream output;
+    ObjectInputStream input;
+    String username;
+    String password;
+    static boolean running = false;
 
     public static void main(String[] args) {
-    new App().run();
+    while(!running){
+        new App().run();
+    }
   }
 
   public void run() {
-    var mg = new MenuGenerator("Testmenu", new Mp1(), new Mp2(), new Mp3(), new Mp4(), new Mp5(), new Mp6());
-    mg.run();
-    //mg.run(1);
+
+      System.out.println("Enter username: ");
+      username = scanner.nextLine();
+      System.out.println("Enter password: ");
+      password = scanner.nextLine();
+
+      String serverAnswer = "";
+
+        try{
+            socket = new Socket(address, port);
+
+            if(socket.isConnected()){
+                output = new ObjectOutputStream(socket.getOutputStream());
+                input = new ObjectInputStream(socket.getInputStream());
+
+                output.writeUTF(username + ";" + password);
+                output.flush();
+                serverAnswer = input.readUTF();
+
+                //Ok;taxi
+                String[] splitServerAnswer = serverAnswer.split(";");
+
+                if(splitServerAnswer[0].equals("Ok")){
+
+                    switch (splitServerAnswer[1]){
+                        case "taxi":
+                            running = true;
+                            var taxi = new TaxiHandler(socket);
+                            taxi.start();
+                            break;
+                        case "luggage":
+                            System.out.println("I luggage");
+                            running = true;
+                            break;
+                        default:
+                            break;
+                    }
+
+                }
+                else {
+                    System.out.println("Username/Password incorrect");
+                    socket.close();
+                    input.close();
+                    output.close();
+
+                }
+
+
+            }
+            else {
+                System.out.println("Something went wrong connection error");
+            }
+
+
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+
+
   }
 }
