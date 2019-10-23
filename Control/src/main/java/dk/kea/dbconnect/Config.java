@@ -38,6 +38,8 @@ public class Config {
           config.put(fields[0], fields[1]);
         }
 
+        br.close();
+
       }
       catch (IOException e) {
         System.out.println("No config found/made! Please ensure there's a config.ini file in the same directory as this program!");

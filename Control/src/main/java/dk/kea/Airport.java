@@ -14,7 +14,6 @@ public class Airport {
         // Do something
         // ...
 
-        Users users = new Users();
         //users.create("bruger3", "123456", 2);
     }
 

@@ -7,7 +7,6 @@ import java.net.ConnectException;
 import java.net.Socket;
 import java.util.ArrayList;
 
-import dk.kea.App;
 import dk.kea.shared.Flights;
 import dk.kea.shared.Keyboard;
 

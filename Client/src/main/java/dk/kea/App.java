@@ -1,16 +1,11 @@
 package dk.kea;
 
-import dk.kea.departments.LuggageHandler;
 import dk.kea.departments.TaxiHandler;
-import dk.kea.menugenerator.MenuGenerator;
-import dk.kea.menugenerator.MenuPoint;
-import dk.kea.shared.Calculator;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
-import java.text.ParseException;
 import java.util.Scanner;
 
 public class App {

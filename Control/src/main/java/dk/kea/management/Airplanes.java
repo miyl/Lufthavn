@@ -17,7 +17,6 @@ public class Airplanes{
     public Airplanes() {
     }
 
-
     public List getPlanes(){
         dbConnect = new DBConnect();
         List<Flights> flights = new ArrayList<Flights>();

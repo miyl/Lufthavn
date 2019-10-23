@@ -1,11 +1,8 @@
 package dk.kea.departments;
 
-import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.util.Arrays;
 
-import dk.kea.App;
 import dk.kea.client.ServerHandler;
 import dk.kea.shared.Flights;
 import java.net.Socket;
@@ -28,7 +25,6 @@ public class TaxiHandler extends ServerHandler
 
                 if(tokens[0].equalsIgnoreCase("EXIT"))
                 {
-                    App.running = false;
                     close();
                     break;                    
                 } else if (tokens[0].equalsIgnoreCase("FLIGHT")) {
