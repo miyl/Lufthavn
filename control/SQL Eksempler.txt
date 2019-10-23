@@ -1,0 +1,4 @@
+SELECT Personale.hold_id,Terminaler.navn AS Terminal, Opgavetyper.type AS Ansvarsområde, Personale.standplads_id FROM lufthavn.Personale
+INNER JOIN Opgavetyper ON Opgavetyper.opgavetype_id = Personale.opgavetype_id
+INNER JOIN Standpladser ON Standpladser.standplads_id = Personale.standplads_id
+INNER JOIN Terminaler ON Terminaler.terminal_id = Standpladser.terminal_id;
