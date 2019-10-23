@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 
-import dk.kea.shared.Flights;
+import dk.kea.shared.Flight;
 
 public class Sender implements Runnable
 {
@@ -32,7 +32,7 @@ public class Sender implements Runnable
         }
     }
 
-    public void sendPlane(Flights airplane){
+    public void sendPlane(Flight airplane){
         try {
             output.writeObject(airplane);
             output.flush();

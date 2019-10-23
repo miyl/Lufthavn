@@ -14,7 +14,7 @@ import java.util.List;
 public class FlightDbHandler{
     DBConnect dbConnect;
 
-    public List<Flight> getPlanes(){
+    public List<Flight> getFlights(){
         dbConnect = new DBConnect();
         List<Flight> flights = new ArrayList<Flight>();
         try {

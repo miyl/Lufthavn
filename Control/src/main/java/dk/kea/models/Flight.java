@@ -29,6 +29,10 @@ public class Flight implements Serializable{
         this.gate = new Gate();
     }
 
+    public Flight(String name) {
+        this.name = name;
+    }
+
     public Flight(String name, String model, String flightSize, String luftSelskab, int id, Date departure, Gate gate, Date arrival, int priorityNumber, int standPlads) {
         this.id = id;
         this.name = name;
