@@ -1,5 +1,7 @@
 package dk.kea;
 
+import dk.kea.management.Users;
+
 public class Airport {
 
     public static void main(String args[]) {
@@ -11,6 +13,10 @@ public class Airport {
 
         // Do something
         // ...
+
+        Users users = new Users();
+        //users.create("bruger3", "123456", 2);
+
     }
 
 }

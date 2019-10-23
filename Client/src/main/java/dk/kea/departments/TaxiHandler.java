@@ -5,7 +5,7 @@ public class TaxiHandler extends ServerHandler
 {
 
     public TaxiHandler(){
-        super("taxi");
+        super();
     }
 
     public void start(){
