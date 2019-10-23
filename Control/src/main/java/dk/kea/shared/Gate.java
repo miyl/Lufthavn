@@ -2,13 +2,10 @@ package dk.kea.shared;
 
 import java.io.Serializable;
 
-public class Gate implements Serializable 
-{
-	/**
-     *
-     */
-    private static final long serialVersionUID = -3033650136052167960L;
+public class Gate implements Serializable{
     
+    private static final long serialVersionUID = -3033650136052167960L;
+
     private int number;
     private String gateSize;
     private String terminal;

@@ -9,44 +9,30 @@ public class Flights implements Serializable{
      */
     private static final long serialVersionUID = 1L;
     
-    private int id;
     private String name;
     private String model;
     private String flightSize;
     private String luftSelskab;
+    private int id;
     private Date departure;
-    private Date arrival;
     private Gate gate;
-    private int priorityNumber;
-    private int standPlads;
 
     public Flights() {
-        this.name = "A7431";
+        this.name = "name";
+        this.model = "model";
+        this.luftSelskab = "luftSelskab";
+        this.id = 1;
+        this.departure = new Date();
+        this.gate = new Gate();
     }
 
-    public Flights(String name) {
-        this.name = name;
-    }
-
-    public Flights(int id, String name, String model, String flightSize, String luftSelskab, Date departure, Date arrival, Gate gate, int priorityNumber, int standPlads) {
-        this.id = id;
+    public Flights(String name, String model, String flightSize, String luftSelskab, int id, Date departure, Gate gate) {
         this.name = name;
         this.model = model;
-        this.flightSize = flightSize;
         this.luftSelskab = luftSelskab;
-        this.departure = departure;
-        this.arrival = arrival;
-        this.gate = gate;
-        this.priorityNumber = priorityNumber;
-        this.standPlads = standPlads;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
         this.id = id;
+        this.departure = departure;
+        this.gate = gate;
     }
 
     public String getName() {
@@ -81,6 +67,14 @@ public class Flights implements Serializable{
         this.luftSelskab = luftSelskab;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public Date getDeparture() {
         return departure;
     }
@@ -89,35 +83,11 @@ public class Flights implements Serializable{
         this.departure = departure;
     }
 
-    public Date getArrival() {
-        return arrival;
-    }
-
-    public void setArrival(Date arrival) {
-        this.arrival = arrival;
-    }
-
     public Gate getGate() {
         return gate;
     }
 
     public void setGate(Gate gate) {
         this.gate = gate;
-    }
-
-    public int getPriorityNumber() {
-        return priorityNumber;
-    }
-
-    public void setPriorityNumber(int priorityNumber) {
-        this.priorityNumber = priorityNumber;
-    }
-
-    public int getStandPlads() {
-        return standPlads;
-    }
-
-    public void setStandPlads(int standPlads) {
-        this.standPlads = standPlads;
     }
 }
