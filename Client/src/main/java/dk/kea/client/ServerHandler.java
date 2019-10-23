@@ -7,6 +7,7 @@ import java.net.ConnectException;
 import java.net.Socket;
 import java.util.ArrayList;
 
+import dk.kea.App;
 import dk.kea.shared.Flights;
 import dk.kea.shared.Keyboard;
 
@@ -65,6 +66,7 @@ public class ServerHandler {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        App.running = false;
     }
 
     public boolean isConnected()

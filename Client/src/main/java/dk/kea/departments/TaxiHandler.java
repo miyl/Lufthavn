@@ -3,6 +3,7 @@ package dk.kea.departments;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
+import dk.kea.App;
 import dk.kea.client.ServerHandler;
 import dk.kea.shared.Flights;
 import java.net.Socket;
