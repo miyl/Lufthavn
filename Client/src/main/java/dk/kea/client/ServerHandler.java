@@ -1,6 +1,8 @@
 package dk.kea.client;
 
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.net.ConnectException;
 import java.net.Socket;
 import java.util.ArrayList;
@@ -20,7 +22,7 @@ public class ServerHandler {
 
     private Boolean connected = false;
 
-    public ServerHandler(Socket socket) {
+    public ServerHandler(Socket socket, ObjectInputStream objectInputStream, ObjectOutputStream objectOutputStream) {
 
         keyboard = new Keyboard(this);
 
@@ -29,8 +31,8 @@ public class ServerHandler {
 
             if (this.socket.isConnected()) {
                 System.out.println("Is connected");
-                sender = new Sender(this, socket);
-                reader = new Reader(this, socket);
+                sender = new Sender(this, socket, objectOutputStream);
+                reader = new Reader(this, socket, objectInputStream);
 
                 Thread readerthread = new Thread(reader);
                 readerthread.start();

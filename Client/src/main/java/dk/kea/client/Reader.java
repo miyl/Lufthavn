@@ -11,9 +11,9 @@ public class Reader implements Runnable {
     private ServerHandler client;
     private ObjectInputStream input = null;
 
-    public Reader(ServerHandler client, Socket socket) throws IOException {
+    public Reader(ServerHandler client, Socket socket, ObjectInputStream objectInputStream) throws IOException {
         this.client = client;
-        this.input = new ObjectInputStream(socket.getInputStream());
+        this.input = objectInputStream;
         ;
     }
 

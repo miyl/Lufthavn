@@ -3,11 +3,13 @@ package dk.kea.departments;
 import dk.kea.client.ServerHandler;
 import dk.kea.shared.Flights;
 
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.net.Socket;
 
 public class CleanHandler extends ServerHandler {
-    public CleanHandler(Socket socket){
-        super(socket);
+    public CleanHandler(Socket socket, ObjectInputStream objectInputStream, ObjectOutputStream objectOutputStream){
+        super(socket, objectInputStream, objectOutputStream);
     }
     public void start(){
 

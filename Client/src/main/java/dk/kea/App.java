@@ -59,7 +59,7 @@ public class App {
                     switch (splitServerAnswer[1]){
                         case "taxi":
                             running = true;
-                            var taxi = new TaxiHandler(socket);
+                            var taxi = new TaxiHandler(socket, input, output);
                             taxi.start();
                             break;
                         case "luggage":

@@ -11,10 +11,10 @@ public class Sender implements Runnable
     private ServerHandler client;
     private ObjectOutputStream output = null;
 
-    public Sender(ServerHandler client, Socket socket) throws IOException
+    public Sender(ServerHandler client, Socket socket, ObjectOutputStream objectOutputStream) throws IOException
     {
         this.client = client;
-        this.output = new ObjectOutputStream(socket.getOutputStream());
+        this.output = objectOutputStream;
     }
 
     public void send(String msg, Boolean utf){
