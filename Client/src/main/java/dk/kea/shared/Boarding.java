@@ -1,4 +1,4 @@
-package main.java.dk.kea.shared;
+package dk.kea.shared;
 import java.util.ArrayList;
 
 //Klasse til boarding af passengers. Fra høj til lav prioritet
