@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import dk.kea.App;
 import dk.kea.shared.Flights;
 import dk.kea.shared.Keyboard;
+import static dk.kea.statics.StaticLib.*;
 
 public class ServerHandler {
 
@@ -30,7 +31,7 @@ public class ServerHandler {
             this.socket = socket;
 
             if (this.socket.isConnected()) {
-                System.out.println("Is connected");
+                clearScreen();
                 sender = new Sender(this, socket, objectOutputStream);
                 reader = new Reader(this, socket, objectInputStream);
 

@@ -10,6 +10,7 @@ import java.io.IOException;
 public class Config {
 
   private HashMap<String, String> config = new HashMap<>();
+  private String path = "/src/main/java/dk/kea/dbconnect/config.ini";
 
   public String getConfigValue(String value) {
     if ( !config.containsKey(value) ) {
@@ -20,24 +21,32 @@ public class Config {
    return (String) config.get(value); // Will only run if it's found
   }
 
+  private File usePath()
+  {
+    var userdir = System.getProperty("user.dir");
+    var fileIn = userdir + path;
+
+    var file = new File(fileIn);
+
+    if(!file.exists())
+    {
+      fileIn = userdir + "/Control" + path;
+      file = new File(fileIn);
+    }
+
+    if (!file.exists())
+    {
+      fileIn = "control" + path;
+      file = new File(fileIn);
+    }
+    
+    return file;
+
+  }
+
   public Config() {
 
-      var userdir = System.getProperty("user.dir");
-      var path = "/src/main/java/dk/kea/dbconnect/config.ini";
-      var fileIn = userdir + path;
-      var file = new File(fileIn);
-
-      if (!file.exists())
-      {
-        fileIn = userdir + "/Control" + path;
-        file = new File(fileIn);
-      }
-
-      if (!file.exists())
-      {
-        fileIn = "control" + path;
-        file = new File(fileIn);
-      }
+      var file = usePath();
 
       try {
 

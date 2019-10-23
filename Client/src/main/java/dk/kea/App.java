@@ -1,6 +1,8 @@
 package dk.kea;
 
 import dk.kea.departments.TaxiHandler;
+import dk.kea.menugenerator.MenuGenerator;
+import dk.kea.menugenerator.MenuPoint;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -26,12 +28,14 @@ public class App {
     }
   }
 
-  public void run() {
-
-      System.out.println("Enter username: ");
+  public class Mp1 extends MenuPoint {
+    public void run() {
+      System.out.println("\nLog in\n--------------");
+      System.out.printf("Enter username\n> ");
       username = scanner.nextLine();
-      System.out.println("Enter password: ");
+      System.out.printf("Enter password\n> ");
       password = scanner.nextLine();
+      System.out.println("--------------");
 
       String serverAnswer = "";
 
@@ -58,7 +62,6 @@ public class App {
                             taxi.start();
                             break;
                         case "luggage":
-                            System.out.println("I luggage");
                             running = true;
                             break;
                         default:
@@ -67,7 +70,7 @@ public class App {
 
                 }
                 else {
-                    System.out.println("Username/Password incorrect");
+                    System.out.println("[ERROR]: Incorrect username or password");
                     socket.close();
                     input.close();
                     output.close();
@@ -85,7 +88,27 @@ public class App {
         }catch (IOException e){
             e.printStackTrace();
         }
+    }
 
+    public Mp1() {
+        name = "Login";
+    }
+    }
+
+    public class Mp2 extends MenuPoint {
+        public void run() {
+            System.out.println("No options available..");
+        }
+
+        public Mp2() {
+            name = "Options";
+        }
+    }
+
+  public void run() {
+
+      var mg = new MenuGenerator("Client", new Mp1(), new Mp2());
+      mg.run();
 
   }
 }
