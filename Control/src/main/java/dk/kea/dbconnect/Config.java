@@ -4,6 +4,7 @@ import java.util.HashMap;
 
 import java.io.FileReader;
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
 
 public class Config {
@@ -20,12 +21,21 @@ public class Config {
   }
 
   public Config() {
-    
-      var fileIn = System.getProperty("user.dir") + "/src/main/java/dk/kea/dbconnect/config.ini";
+
+      var userdir = System.getProperty("user.dir");
+      var path = "/src/main/java/dk/kea/dbconnect/config.ini";
+      var fileIn = userdir + path;
+      var file = new File(fileIn);
+
+      if (!file.exists())
+      {
+        fileIn = userdir + "/Control" + path;
+        file = new File(fileIn);
+      }
 
       try {
 
-        var fr = new FileReader(fileIn);
+        var fr = new FileReader(file);
         var br = new BufferedReader(fr);
         var delimiter = "=";
         var line = "";

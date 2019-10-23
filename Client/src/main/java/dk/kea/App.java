@@ -44,10 +44,9 @@ public class App {
 
                 output.writeUTF(username + ";" + password);
                 output.flush();
-                
+
                 serverAnswer = input.readUTF();
 
-                //Ok;taxi
                 String[] splitServerAnswer = serverAnswer.split(";");
 
                 if(splitServerAnswer[0].equals("Ok")){
