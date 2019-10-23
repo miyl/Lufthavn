@@ -23,20 +23,24 @@ public class TaxiHandler extends ServerHandler
                 {
                     close();
                     break;                    
+                } else if (line.equalsIgnoreCase("fly"))
+                {
+                    sender.sendPlane(new Flights());
+                } else {
+                    //Sender information til serveren
+                    sender.send(line, false);
                 }
-
-                //Sender information til serveren
-                sender.send(line);
+                
             }
 
             // Får information fra server'
-            Flights serverAnswer = reader.read();
+            //Flights serverAnswer = reader.read();
 
-            System.out.println(serverAnswer.getName());
+            //System.out.println(serverAnswer.getName());
                         
-            /*
             
-            if((serverAnswer instanceof Flights))
+            
+            /*if((serverAnswer instanceof Flights))
             {
                 System.out.println(test);
                 test++;

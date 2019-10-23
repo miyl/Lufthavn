@@ -32,7 +32,7 @@ public class ServerHandler {
 
                 if (sender.hasStream() && reader.hasStream()) {
                     this.connected = true;
-                    sender.send(name);
+                    sender.send(name, true);
                 }
 
                 keyboard = new Keyboard(this);

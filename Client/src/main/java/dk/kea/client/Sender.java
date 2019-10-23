@@ -17,9 +17,15 @@ public class Sender implements Runnable
         this.output = new ObjectOutputStream(socket.getOutputStream());
     }
 
-    public void send(String msg){
+    public void send(String msg, Boolean utf){
         try {
-            output.writeUTF(msg);
+            if(utf)
+            {
+                output.writeUTF(msg);
+            } else 
+            {
+                output.writeObject(msg);
+            }
             output.flush();
         } catch (IOException e) {
             e.printStackTrace();
@@ -53,7 +59,6 @@ public class Sender implements Runnable
         try {
             output.close();
         } catch (IOException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
     }

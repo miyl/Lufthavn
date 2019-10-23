@@ -3,6 +3,7 @@ package dk.kea.handlers;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.OptionalDataException;
 import java.net.Socket;
 
 import dk.kea.shared.Flights;
@@ -31,10 +32,17 @@ public class DepartmentHandler implements Runnable {
         try {
             // Dette er bare en test
             while (isRunning) {
-                String message = input.readUTF();
-                output.writeObject(new Flights());
-                output.flush();
-                System.out.printf(name + " thread: %s \n", (String) message);
+                var data = input.readObject();
+                if(data != null)
+                {
+                    if (data instanceof String) {
+                        System.out.printf(name + " thread: %s \n", (String) data);
+                    }
+                    if (data instanceof Flights) {
+                        var fly = (Flights) data;
+                        System.out.println(fly.getName());
+                    } 
+                }
 
             }
 
@@ -42,7 +50,7 @@ public class DepartmentHandler implements Runnable {
             output.close();
             socket.close();
 
-        } catch (IOException e) {
+        } catch (IOException | ClassNotFoundException e) {
             System.out.println("** " + name + " thread exited  **");
 
             isRunning = false;
@@ -57,15 +65,6 @@ public class DepartmentHandler implements Runnable {
             return false;
         }
         return true;
-    }
-
-    public Flights readPlane() {
-        try {
-            return (Flights) input.readObject();
-        } catch (ClassNotFoundException | IOException e) {
-            e.printStackTrace();
-        }
-        return null;
     }
 
     
