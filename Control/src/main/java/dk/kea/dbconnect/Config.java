@@ -20,8 +20,8 @@ public class Config {
   }
 
   public Config() {
-
-      var fileIn = "control/src/main/java/dk/kea/dbconnect/config.ini";
+    
+      var fileIn = System.getProperty("user.dir") + "/src/main/java/dk/kea/dbconnect/config.ini";
 
       try {
 

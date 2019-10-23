@@ -44,6 +44,7 @@ public class App {
 
                 output.writeUTF(username + ";" + password);
                 output.flush();
+                
                 serverAnswer = input.readUTF();
 
                 //Ok;taxi
