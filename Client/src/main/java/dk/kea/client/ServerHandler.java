@@ -10,27 +10,16 @@ import dk.kea.shared.Keyboard;
 public class ServerHandler {
 
     private Socket socket = null;
+    public String name;
     public Sender sender;
     public Reader reader;
     public Keyboard keyboard;
 
     private Boolean connected = false;
 
-    public ServerHandler() {
-        String username = "";
-        String password = "";
-        String credentials = "";
-        keyboard = new Keyboard(this);
+    public ServerHandler(String name) {
 
-        System.out.println("Enter username:");
-        if(keyboard.getReader().hasNextLine()){
-            username = keyboard.getReader().nextLine();
-        }
-        System.out.println("Enter password:");
-        if(keyboard.getReader().hasNextLine()){
-            password = keyboard.getReader().nextLine();
-        }
-        credentials = username + ";" + password;
+        keyboard = new Keyboard(this);
 
         try {
             socket = new Socket(App.address, App.port);
@@ -44,7 +33,7 @@ public class ServerHandler {
 
                 if (sender.hasStream() && reader.hasStream()) {
                     this.connected = true;
-                    sender.send(credentials);
+                    sender.send(name);
                 }
 
                 Thread keyboardThread = new Thread(keyboard);

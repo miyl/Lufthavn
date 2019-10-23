@@ -43,15 +43,11 @@ public class Server implements Runnable  {
             DataOutputStream output = new DataOutputStream(socket.getOutputStream());
 
             //"brugernavn;kode
-            String message = input.readUTF();
-            String[] splitMessage = message.split(";");
 
-            Users userManage = new Users();
-            if(userManage.chkCredentials(splitMessage[0], splitMessage[1])){
-                System.out.println(userManage.getAfdeling(splitMessage[0]));
-                switch (userManage.getAfdeling(splitMessage[0])) {
+            String message = input.readUTF();
+                switch (message) {
                     case "taxi":
-                        System.out.println("i taxa nu");
+
                         System.out.printf("** Client connected %s ** \n", message);
                         TaxiDepartmentHandler taxi = new TaxiDepartmentHandler(socket, input, output);
                         Thread taxiThread = new Thread(taxi);
@@ -88,10 +84,6 @@ public class Server implements Runnable  {
                 }
 
             }
-
-
-
-        }
         } catch (IOException e) {
             e.printStackTrace();
         }
