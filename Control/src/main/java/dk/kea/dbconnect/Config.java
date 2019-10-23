@@ -33,6 +33,12 @@ public class Config {
         file = new File(fileIn);
       }
 
+      if (!file.exists())
+      {
+        fileIn = "control" + path;
+        file = new File(fileIn);
+      }
+
       try {
 
         var fr = new FileReader(file);
