@@ -16,15 +16,14 @@ public class Boarding {
         this.flightSize = flightSize;
     }
 
-    public void boardPassenger(String name, boolean priority)  {
+    public void boardPassenger(String name) {
         if (!isFull()){
-            if (priority){
+
                 passengers.add(0, name);
             } else {
                 passengers.add(name);
             }
         }
-    }
 
     public String getFlightSize() {
         return flightSize;
