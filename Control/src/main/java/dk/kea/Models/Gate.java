@@ -1,4 +1,4 @@
-package dk.kea.Models;
+package dk.kea.models;
 
 
 public class Gate {

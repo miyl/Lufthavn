@@ -11,6 +11,8 @@ import dk.kea.App;
 import dk.kea.shared.Flights;
 import dk.kea.shared.Keyboard;
 
+import static dk.kea.statics.StaticLib.clearScreen;;
+
 public class ServerHandler {
 
     public Socket socket = null;
@@ -30,7 +32,7 @@ public class ServerHandler {
             this.socket = socket;
 
             if (this.socket.isConnected()) {
-                System.out.println("Is connected");
+                clearScreen();
                 sender = new Sender(this, socket, objectOutputStream);
                 reader = new Reader(this, socket, objectInputStream);
 
@@ -82,5 +84,10 @@ public class ServerHandler {
     public void addFlightToList(Flights airplane)
     {
         flightList.add(airplane);
+    }
+
+    public void removeFlightToList()
+    {
+        flightList.remove(0);
     }
 }
