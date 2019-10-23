@@ -1,7 +1,5 @@
 package dk.kea.shared;
 
-import java.util.Objects;
-
 public class Gate {
     private int number;
     private String gateSize;
@@ -41,23 +39,5 @@ public class Gate {
 
     public void setTerminal(String terminal) {
         this.terminal = terminal;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Gate gate = (Gate) o;
-        return number == gate.number &&
-                Objects.equals(gateSize, gate.gateSize) &&
-                Objects.equals(terminal, gate.terminal);
-    }
-
-    @Override
-    public String toString() {
-        return "Gate " +
-                "number=" + number +
-                ", gateSize='" + gateSize + '\'' +
-                ", terminal='" + terminal + '\'';
     }
 }

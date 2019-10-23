@@ -1,7 +1,5 @@
-package dbconnect;
+package dk.kea.dbconnect;
 
-import java.util.Scanner;
-import java.io.File;
 import java.util.HashMap;
 
 import java.io.FileReader;
@@ -23,7 +21,7 @@ public class Config {
 
   public Config() {
 
-      var fileIn = "dbconnect/config.ini";
+      var fileIn = "control/src/main/java/dk/kea/dbconnect/config.ini";
 
       try {
 

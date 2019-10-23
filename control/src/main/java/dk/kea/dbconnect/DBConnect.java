@@ -1,8 +1,7 @@
-package dbconnect;
+package dk.kea.dbconnect;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.SQLException;
 //import java.sql.*; // Experiment to see if it makes a difference
 
 // Just for debugging

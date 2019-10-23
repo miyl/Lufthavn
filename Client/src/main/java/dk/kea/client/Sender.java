@@ -31,7 +31,7 @@ public class Sender implements Runnable
 
     @Override
     public void run() {
-        while(client.getConnected())
+        while(client.isConnected())
         {
 
         }
