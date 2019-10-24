@@ -105,7 +105,9 @@ public class Airport {
         //   //Personel move among own terminal
         //   //Personel move across terminals
 
+        System.out.println("Ran through the queue with:");
         temp.forEach(plane -> System.out.print("      [" + plane.getName() + ", " + plane.getArrival() + "]\n"));
+        System.out.println();
 
     }
 }
