@@ -1,6 +1,6 @@
 package dk.kea;
 
-import dk.kea.management.DBConnectTest;
+import dk.kea.dbconnect.DBConnect;
 import dk.kea.models.Gate;
 import org.junit.jupiter.api.Test;
 
@@ -22,7 +22,7 @@ public class AppTest {
     @Test
     void testGates() {
 
-        DBConnectTest dbConnect = new DBConnectTest();
+        DBConnect dbConnect = new DBConnect();
         List<Gate> gates = new ArrayList<Gate>();
 
         try {
