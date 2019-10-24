@@ -8,8 +8,9 @@ import java.net.Socket;
 import java.util.ArrayList;
 
 import dk.kea.App;
-import dk.kea.shared.Flights;
+import dk.kea.models.Flight;
 import dk.kea.shared.Keyboard;
+import static dk.kea.statics.StaticLib.*;
 
 import static dk.kea.statics.StaticLib.clearScreen;;
 
@@ -20,7 +21,7 @@ public class ServerHandler {
     public Sender sender;
     public Reader reader;
     public Keyboard keyboard;
-    public ArrayList<Flights> flightList = new ArrayList<>();
+    public ArrayList<Flight> flightList = new ArrayList<>();
 
     private Boolean connected = false;
 
@@ -76,12 +77,12 @@ public class ServerHandler {
         return connected;
     }
 
-    public ArrayList<Flights> getFlightList()
+    public ArrayList<Flight> getFlightList()
     {
         return flightList;
     }
 
-    public void addFlightToList(Flights airplane)
+    public void addFlightToList(Flight airplane)
     {
         flightList.add(airplane);
     }

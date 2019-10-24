@@ -3,10 +3,9 @@ package dk.kea.handlers;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.io.OptionalDataException;
 import java.net.Socket;
 
-import dk.kea.shared.Flights;
+import dk.kea.models.Flight;
 
 public class    DepartmentHandler implements Runnable {
 
@@ -38,8 +37,8 @@ public class    DepartmentHandler implements Runnable {
                     if (data instanceof String) {
                         System.out.printf(name + " thread: %s \n", (String) data);
                     }
-                    if (data instanceof Flights) {
-                        var fly = (Flights) data;
+                    if (data instanceof Flight) {
+                        var fly = (Flight) data;
                         sendPlane(fly);
                     } 
                 }
@@ -56,7 +55,7 @@ public class    DepartmentHandler implements Runnable {
         }
     }
 
-    public boolean sendPlane(Flights airplane) {
+    public boolean sendPlane(Flight airplane) {
         try {
             output.writeObject(airplane);
             output.flush();

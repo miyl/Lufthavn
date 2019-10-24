@@ -3,9 +3,8 @@ package dk.kea.departments;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
-import dk.kea.App;
 import dk.kea.client.ServerHandler;
-import dk.kea.shared.Flights;
+import dk.kea.models.Flight;
 import java.net.Socket;
 
 public class TaxiHandler extends ServerHandler
@@ -45,7 +44,7 @@ public class TaxiHandler extends ServerHandler
                         break;
                     case "ADD":
                         if(tokens.length == 2){
-                            sender.sendPlane(new Flights(tokens[1]));
+                            sender.sendPlane(new Flight(tokens[1]));
                             System.out.println("[INFO]: Flight [" + tokens[1] + "] added to queue.");
                         } else {
                             System.out.print("[ERROR]: Use syntax.\n");

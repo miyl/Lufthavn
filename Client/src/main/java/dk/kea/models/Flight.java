@@ -1,9 +1,9 @@
-package dk.kea.shared;
+package dk.kea.models;
 
 import java.io.Serializable;
 import java.util.Date;
 
-public class Flights implements Serializable{
+public class Flight implements Serializable{
     /**
      *
      */
@@ -20,33 +20,28 @@ public class Flights implements Serializable{
     private int priorityNumber;
     private int standPlads;
 
-    public Flights() {
-        this.name = "A7431";
+    public Flight() {
+        this.name = "name";
+        this.model = "model";
+        this.luftSelskab = "luftSelskab";
+        this.id = 1;
+        this.departure = new Date();
+        this.gate = new Gate();
     }
 
-    public Flights(String name) {
+    public Flight(String name) {
         this.name = name;
     }
 
-    public Flights(int id, String name, String model, String flightSize, String luftSelskab, Date departure, Date arrival, Gate gate, int priorityNumber, int standPlads) {
+    public Flight(String name, String model, String flightSize, String luftSelskab, int id, Date departure, Gate gate, Date arrival, int priorityNumber, int standPlads) {
         this.id = id;
         this.name = name;
         this.model = model;
-        this.flightSize = flightSize;
         this.luftSelskab = luftSelskab;
         this.departure = departure;
-        this.arrival = arrival;
         this.gate = gate;
+        this.arrival = arrival;
         this.priorityNumber = priorityNumber;
-        this.standPlads = standPlads;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getName() {
@@ -79,6 +74,14 @@ public class Flights implements Serializable{
 
     public void setLuftSelskab(String luftSelskab) {
         this.luftSelskab = luftSelskab;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public Date getDeparture() {

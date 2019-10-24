@@ -18,7 +18,10 @@ public class Server implements Runnable {
     private static Socket socket = null;
     private static ServerSocket server = null;
 
-    public TaxiDepartmentHandler taxi = null;
+    private TaxiDepartmentHandler taxi = null;
+    private CleaningDepartmentHandler clean = null;
+    private FuelDepartmentHandler fuel = null;
+    private LuggageDepartmentHandler luggage = null;
 
     // constructor with port
     public Server(int port) {
@@ -58,30 +61,30 @@ public class Server implements Runnable {
                 output.flush();
 
                 switch (afdeling) {
-                    case "taxi":
+                    case "Taxi":
                         System.out.printf("** Client accepted %s ** \n", splitMessage[0]);
                         taxi = new TaxiDepartmentHandler(socket, input, output);
                         Thread taxiThread = new Thread(taxi);
                         taxiThread.start();
                         break;
 
-                    case "clean":
+                    case "Rengøring":
                         System.out.printf("** Client accepted %s ** \n", splitMessage[0]);
-                        CleaningDepartmentHandler clean = new CleaningDepartmentHandler(socket, input, output);
+                        clean = new CleaningDepartmentHandler(socket, input, output);
                         Thread cleanThread = new Thread(clean);
                         cleanThread.start();
                         break;
 
-                    case "fuel":
+                    case "Brændstof":
                         System.out.printf("** Client accepted %s ** \n", splitMessage[0]);
-                        FuelDepartmentHandler fuel = new FuelDepartmentHandler(socket, input, output);
+                        fuel = new FuelDepartmentHandler(socket, input, output);
                         Thread fuelThread = new Thread(fuel);
                         fuelThread.start();
                         break;
 
-                    case "luggage":
+                    case "Baggage":
                         System.out.printf("** Client accepted %s ** \n", splitMessage[0]);
-                        LuggageDepartmentHandler luggage = new LuggageDepartmentHandler(socket, input, output);
+                        luggage = new LuggageDepartmentHandler(socket, input, output);
                         Thread luggageThread = new Thread(luggage);
                         luggageThread.start();
                         break;
@@ -112,13 +115,23 @@ public class Server implements Runnable {
         }
     }
 
-    public TaxiDepartmentHandler getTaxi() 
-    {
+    public TaxiDepartmentHandler getTaxi() {
         return taxi;
     }
 
-    public boolean isAllConnected()
-    {
+    public CleaningDepartmentHandler getClean() {
+        return clean;
+    }
+
+    public FuelDepartmentHandler getFuel() {
+        return fuel;
+    }
+
+    public LuggageDepartmentHandler getLuggage() {
+        return luggage;
+    }
+
+    public boolean isAllConnected() {
         return getTaxi() != null;
     }
 }

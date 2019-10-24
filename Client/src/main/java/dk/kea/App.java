@@ -1,6 +1,6 @@
 package dk.kea;
 
-import dk.kea.departments.TaxiHandler;
+import dk.kea.departments.*;
 import dk.kea.menugenerator.MenuGenerator;
 import dk.kea.menugenerator.MenuPoint;
 
@@ -56,12 +56,12 @@ public class App {
                 if(splitServerAnswer[0].equals("Ok")){
 
                     switch (splitServerAnswer[1]){
-                        case "taxi":
+                        case "Taxi":
                             running = true;
                             var taxi = new TaxiHandler(socket, input, output);
                             taxi.start();
                             break;
-                        case "luggage":
+                        case "Baggage":
                             running = true;
                             break;
                         default:

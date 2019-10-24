@@ -1,6 +1,6 @@
 package dk.kea.management;
 
-import dk.kea.models.Flights;
+import dk.kea.models.Flight;
 import dk.kea.models.Gate;
 import dk.kea.dbconnect.DBConnect;
 
@@ -11,22 +11,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class Airplanes{
+public class FlightDbHandler{
     DBConnect dbConnect;
 
-    public Airplanes() {
-    }
-
-    public List getPlanes(){
+    public List<Flight> getFlights(){
         dbConnect = new DBConnect();
-        List<Flights> flights = new ArrayList<Flights>();
+        List<Flight> flights = new ArrayList<Flight>();
         try {
             Statement stmt = dbConnect.getConnection().createStatement();
 
             ResultSet rs = stmt.executeQuery("SELECT * FROM Fly");
             while(rs.next()){
 
-                Flights flight = new Flights();
+                Flight flight = new Flight();
                 Gate gate = new Gate();
                 flight.setId(rs.getInt("fly_id"));
                 flight.setName(rs.getString("name"));
@@ -39,7 +36,7 @@ public class Airplanes{
                 flight.setPriorityNumber(rs.getInt("priorityNumber"));
                 flight.setStandPlads(rs.getInt("standPlads"));
 
-                ResultSet rs_ = stmt.executeQuery("SELECT * FROM Gate WHERE id = " + flight.getId());
+                ResultSet rs_ = stmt.executeQuery("SELECT * FROM gate WHERE number = " + flight.getGate());
                 while(rs_.next()){
                     gate.setNumber(rs_.getInt("number"));
                     gate.setGateSize(rs_.getString("gateSize"));

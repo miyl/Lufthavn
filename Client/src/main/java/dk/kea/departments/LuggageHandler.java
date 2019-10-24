@@ -1,7 +1,7 @@
 package dk.kea.departments;
 
 import dk.kea.client.ServerHandler;
-import dk.kea.shared.Flights;
+import dk.kea.models.Flight;
 
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -26,7 +26,7 @@ public class LuggageHandler extends ServerHandler {
                     close();
                     break;                    
                 } else if (tokens[0].equalsIgnoreCase("FLIGHT")) {
-                    sender.sendPlane(new Flights(tokens[1]));
+                    sender.sendPlane(new Flight(tokens[1]));
                 } else if(tokens[0].equalsIgnoreCase("LIST")) {
 
                     if(getFlightList().size() > 0)

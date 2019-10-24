@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.net.Socket;
 
-import dk.kea.shared.Flights;
+import dk.kea.models.Flight;
 
 public class Reader implements Runnable {
     private ServerHandler client;
@@ -33,9 +33,9 @@ public class Reader implements Runnable {
         }
     }
 
-    public Flights read() {
+    public Flight read() {
         try {
-            return (Flights) input.readObject();
+            return (Flight) input.readObject();
         } catch (ClassNotFoundException | IOException e) {
             return null;
         }
@@ -49,7 +49,7 @@ public class Reader implements Runnable {
 
     public void readPlanes()
     {
-        Flights airplane = read();
+        Flight airplane = read();
         client.addFlightToList(airplane);
 
     }
