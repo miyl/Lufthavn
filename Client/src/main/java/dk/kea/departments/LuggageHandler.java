@@ -83,10 +83,10 @@ public class LuggageHandler extends ServerHandler {
                 if(flight.getGate().getGateSize().equals("lille")){
                     flight.setExpectedDeparture(new Timestamp(flight.getExpectedDeparture().getTime() + 86400000) );
                 }
-                if(flight.getGate().getGateSize().equals("mellem")){
+                else if(flight.getGate().getGateSize().equals("mellem")){
                     //flight.setExpectedDeparture(flight.getExpectedDeparture().getTime());
                 }
-                if(flight.getGate().getGateSize().equals("stor")){
+                else {
                     //flight.setExpectedDeparture(flight.getExpectedDeparture().getTime());
                 }
             }

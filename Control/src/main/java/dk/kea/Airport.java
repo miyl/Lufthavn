@@ -49,10 +49,10 @@ public class Airport {
 
         // Main airport flow
         // Send gates to all who need it
-        // taxi.send(gates);
-        // luggage.send(gates);
-        // clean.send(gates);
-        // fuel.send(gates);
+        // taxi.sendList(gates);
+        // luggage.sendList(gates);
+        // clean.sendList(gates);
+        // fuel.sendList(gates);
         
         // TODO/Thoughts: Spawn it in a thread when/if two or more can happen simultaneously, and check that both have finished before continuing?
         // send them the planes gradually? With randomisation?
@@ -63,7 +63,7 @@ public class Airport {
         if(taxi != null && t_step == 0)
         {
             System.out.printf("Taxi -> ");
-            taxi.send(flights);
+            taxi.sendList(flights);
             temp = taxi.readList();
             t_step++;
         }
@@ -75,7 +75,7 @@ public class Airport {
         if(luggage != null && l_step == 0)
         {
             System.out.printf("Luggage -> ");
-            luggage.send(temp);
+            luggage.sendList(temp);
             temp = luggage.readList();
             l_step++;
         }
@@ -84,7 +84,7 @@ public class Airport {
         if(fuel != null)
         {
             System.out.printf("Fuel -> ");
-            fuel.send(temp);
+            fuel.sendList(temp);
             temp = fuel.readList();
         }
     
@@ -92,7 +92,7 @@ public class Airport {
         if(clean != null)
         {
             System.out.printf("Clean -> ");
-            clean.send(temp);
+            clean.sendList(temp);
             temp = clean.readList();
         }
     
@@ -100,7 +100,7 @@ public class Airport {
         if(luggage != null && l_step == 1)
         {
             System.out.printf("Luggage -> ");
-            luggage.send(temp);
+            luggage.sendList(temp);
             temp = luggage.readList();
             l_step = 0;
         }
@@ -111,7 +111,7 @@ public class Airport {
         // Taxi to departure
         if(taxi != null && t_step == 1)
         {
-            taxi.send(temp);
+            taxi.sendList(temp);
             temp = taxi.readList();
             t_step = 0;
         }
