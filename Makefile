@@ -21,3 +21,6 @@ cco:
 
 tco: 
 	cd Control && mvn test
+
+db:
+	mysql --host="167.71.38.68" --port="3306" --user="fly" --password="flysystem" --database="lufthavn"
