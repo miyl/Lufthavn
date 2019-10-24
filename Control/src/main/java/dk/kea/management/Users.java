@@ -107,27 +107,19 @@ public class Users {
         //something went wrong
         return false;
     }
-    //TODO: SQL Statement mangler
+
     public String getAfdeling(String username){
-        /*dbConnect = new DBConnect();
+        dbConnect = new DBConnect();
         try {
             Statement stmt = dbConnect.getConnection().createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT Opgavetyper.type FROM Opgavetyper;");
-
+            ResultSet rs = stmt.executeQuery("SELECT hold_navn FROM Personale INNER JOIN Personale_login on Personale_login.hold_id = Personale.hold_id where brugernavn='"+username+"';");
             if(rs.next()){
-                return rs.getString(1);
-            }
-            else {
-                //no result found?
+                return rs.getString(1).toLowerCase();
             }
 
         }catch (SQLException e){
             e.printStackTrace();
         }
         return "";
-
-         */
-        return "taxi";
     }
-
 }
