@@ -32,10 +32,7 @@ public class DepartmentHandler implements Runnable {
         try {
             // Dette er bare en test
             while (isRunning) {
-                List<Flight> airPlaneList = read();
-                airPlaneList.forEach(value -> System.out.print(
-                    "        [" + value.getId() + ", " + value.getName() + "]\n"
-                    ));
+                
             }
 
             input.close();
@@ -58,9 +55,18 @@ public class DepartmentHandler implements Runnable {
         }
     }
 
-    public List<Flight> read() {
+    public List<Flight> readList() {
         try {
             return (List<Flight>) input.readObject();
+        } catch (ClassNotFoundException | IOException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public Flight readSingle() {
+        try {
+            return (Flight) input.readObject();
         } catch (ClassNotFoundException | IOException e) {
             e.printStackTrace();
             return null;

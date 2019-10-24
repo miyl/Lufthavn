@@ -3,12 +3,12 @@ package dk.kea.models;
 import java.io.Serializable;
 import java.util.Date;
 
-public class Flight implements Serializable{
+public class Flight implements Serializable {
     /**
      *
      */
     private static final long serialVersionUID = 1L;
-    
+
     private int id;
     private String name;
     private String model;
@@ -19,29 +19,35 @@ public class Flight implements Serializable{
     private Gate gate;
     private int priorityNumber;
     private int standPlads;
+    private Date expectedDeparture;
 
     public Flight() {
-        this.name = "name";
-        this.model = "model";
-        this.luftSelskab = "luftSelskab";
-        this.id = 1;
-        this.departure = new Date();
-        this.gate = new Gate();
     }
 
-    public Flight(String name) {
-        this.name = name;
-    }
-
-    public Flight(String name, String model, String flightSize, String luftSelskab, int id, Date departure, Gate gate, Date arrival, int priorityNumber, int standPlads) {
+    public Flight(int id, String name, String model, String flightSize, String luftSelskab, Date departure, Date arrival, Gate gate, int priorityNumber, int standPlads, Date expectedDeparture) {
         this.id = id;
         this.name = name;
         this.model = model;
+        this.flightSize = flightSize;
         this.luftSelskab = luftSelskab;
         this.departure = departure;
-        this.gate = gate;
         this.arrival = arrival;
+        this.gate = gate;
         this.priorityNumber = priorityNumber;
+        this.standPlads = standPlads;
+        this.expectedDeparture = expectedDeparture;
+    }
+
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -74,14 +80,6 @@ public class Flight implements Serializable{
 
     public void setLuftSelskab(String luftSelskab) {
         this.luftSelskab = luftSelskab;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public Date getDeparture() {
@@ -122,5 +120,13 @@ public class Flight implements Serializable{
 
     public void setStandPlads(int standPlads) {
         this.standPlads = standPlads;
+    }
+
+    public Date getExpectedDeparture() {
+        return expectedDeparture;
+    }
+
+    public void setExpectedDeparture(Date expectedDeparture) {
+        this.expectedDeparture = expectedDeparture;
     }
 }

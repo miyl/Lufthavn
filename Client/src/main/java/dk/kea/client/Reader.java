@@ -29,33 +29,21 @@ public class Reader implements Runnable {
         try {
             input.close();
         } catch (IOException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
     }
 
-    public List<Flight> read() {
-        try {
-            return (List<Flight>) input.readObject();
-        } catch (ClassNotFoundException | IOException e) {
-            return null;
-        }
-        
-    }
-
-    public boolean hasStream()
-    {
+    public boolean hasStream() {
         return null != input;
     }
 
-    public void readPlanes()
-    {
-        List<Flight> airplaneList = read();
-        airplaneList.forEach(value -> System.out.print(
-                                "        [" + value.getId() + ", " + value.getName() + "]\n"
-                                ));
-        client.addFlightToList(airplaneList);
-
+    public void readPlanes() {
+        List<Flight> airplaneList;
+        try {
+            airplaneList = (List<Flight>) input.readObject();
+            client.updateFlightList(airplaneList);
+        } catch (ClassNotFoundException | IOException e) {
+            e.printStackTrace();
+        }      
     }
-    
 }

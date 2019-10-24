@@ -44,6 +44,8 @@ public class Airport {
         var fuel = server.getFuel();
 
         taxi.send(flights);
+        taxi.readList().forEach(plane -> System.out.print(plane.getName() + "\n"));
+        //luggage.send(taxi.readList());
 
         // Main airport flow
         // Send gates to all who need it
