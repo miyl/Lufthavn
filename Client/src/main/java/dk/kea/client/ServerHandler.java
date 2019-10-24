@@ -78,17 +78,17 @@ public class ServerHandler {
         return connected;
     }
 
-    public ArrayList<List<Flight>> getFlightList()
+    public List<Flight> getFlightList()
     {
         return flightList;
     }
 
     public void addFlightToList(List<Flight> airplane)
     {
-        flightList.add(airplane);
+        flightList.addAll(airplane);
     }
 
-    public void removeFlightToList()
+    public void removeFlightFromList()
     {
         flightList.remove(0);
     }

@@ -33,27 +33,27 @@ public class TaxiHandler extends ServerHandler
                         {
                             System.out.print("[INFO]: Active planes in this department:\n\n");
 
-                            getFlightList().forEach(value -> value.forEach(plane -> System.out.print(plane.getName())));
+                            getFlightList().forEach(plane -> System.out.print("      [" + plane.getName() + "]\n"));
 
                             System.out.println();
                         } else {
                             System.out.print("[INFO]: No active planes in this department.\n");
                         }
                         break;
-                    case "ADD":
-                        if(tokens.length == 2){
-                            sender.sendPlane(new Flight(tokens[1]));
-                            System.out.println("[INFO]: Flight [" + tokens[1] + "] added to queue.");
+                    case "SEND":
+                        if(getFlightList().size() > 0){
+                            sender.sendPlanes(getFlightList());
+                            System.out.println("[INFO]: Flights is send to server");
                         } else {
-                            System.out.print("[ERROR]: Use syntax.\n");
-                            System.out.print("         ADD <name>\n");
+                            System.out.print("[ERROR]: No active planes in this apartment.\n");
                         }                        
                         break;
                     case "REMOVE":
                         if(getFlightList().size() > 0)
                         {
-                            getFlightList().forEach(value -> System.out.println("[INFO]: Flight [" + value.get(0).getName() + "] removed from queue."));
-                            removeFlightToList();
+                            getFlightList().forEach(plane -> System.out.print("      [" + plane.getName() + "]\n"));
+                            System.out.println("      removed from local list.");
+                            removeFlightFromList();
                         } else {
                             System.out.print("[INFO]: No active planes in this department.\n");
                         }

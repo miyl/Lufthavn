@@ -19,29 +19,48 @@ public class LuggageHandler extends ServerHandler {
             //Får information fra keyboardet - hvis der er noget.
             System.out.printf("> ");
             if (keyboard.getReader().hasNextLine()) {
-                String[] tokens = keyboard.getReader().nextLine().split(" ");
+                String[] tokens = keyboard.getReader().nextLine().toUpperCase().split(" ");
 
-                if(tokens[0].equalsIgnoreCase("EXIT"))
+                switch(tokens[0])
                 {
-                    close();
-                    break;                    
-                } else if (tokens[0].equalsIgnoreCase("FLIGHT")) {
-                    sender.sendPlane(new Flight(tokens[1]));
-                } else if(tokens[0].equalsIgnoreCase("LIST")) {
+                    case "EXIT":
+                        close();
+                        break;
+                    case "LIST":
+                        if(getFlightList().size() > 0)
+                        {
+                            System.out.print("[INFO]: Active planes in this department:\n\n");
 
-                    if(getFlightList().size() > 0)
-                    {
-                        System.out.print("[INFO]: Active planes in this department:\n\n");
-                        getFlightList().forEach(value -> value.forEach(plane -> System.out.print(plane.getName())));
-                        System.out.println();
-                    } else {
-                        System.out.print("[INFO]: No active planes in this department.\n");
-                    }
-                } else {
-                    //Sender information til serveren
-                    sender.send(String.join(" ", tokens), false);
-                }
-                
+                            getFlightList().forEach(plane -> System.out.print("      [" + plane.getName() + "]\n"));
+
+                            System.out.println();
+                        } else {
+                            System.out.print("[INFO]: No active planes in this department.\n");
+                        }
+                        break;
+                    case "SEND":
+                        if(getFlightList().size() > 0){
+                            sender.sendPlanes(getFlightList());
+                            System.out.println("[INFO]: Flights is send to server");
+                        } else {
+                            System.out.print("[ERROR]: No active planes in this apartment.\n");
+                        }                        
+                        break;
+                    case "REMOVE":
+                        if(getFlightList().size() > 0)
+                        {
+                            getFlightList().forEach(plane -> System.out.print("      [" + plane.getName() + "]\n"));
+                            System.out.println("      removed from local list.");
+                            removeFlightFromList();
+                        } else {
+                            System.out.print("[INFO]: No active planes in this department.\n");
+                        }
+
+                        break;
+                    default:
+                        sender.send(String.join(" ", tokens), false);
+                        break;
+                }                
             }
         }
     }

@@ -3,6 +3,7 @@ package dk.kea.client;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.util.List;
 
 import dk.kea.models.Flight;
 
@@ -32,9 +33,9 @@ public class Sender implements Runnable
         }
     }
 
-    public void sendPlane(Flight airplane){
+    public void sendPlanes(List<Flight> airplanes){
         try {
-            output.writeObject(airplane);
+            output.writeObject(airplanes);
             output.flush();
         } catch (IOException e) {
             e.printStackTrace();
