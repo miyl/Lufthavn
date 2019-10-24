@@ -58,6 +58,7 @@
             <mainClass>dk.kea.Airport</mainClass>
           </manifest>
         </archive>
+        <encoding>UTF-8</encoding>
       </configuration>
     </plugin>
 

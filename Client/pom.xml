@@ -42,6 +42,7 @@
             <mainClass>dk.kea.App</mainClass>
           </manifest>
         </archive>
+        <encoding>UTF-8</encoding>
       </configuration>
     </plugin>
 
