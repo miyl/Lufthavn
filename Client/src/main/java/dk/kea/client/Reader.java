@@ -42,7 +42,7 @@ public class Reader implements Runnable {
         try {
             airplaneList = (List<Flight>) input.readObject();
             client.updateFlightList(airplaneList);
-            System.out.println(" ...\n[INFO] A list of planes is recieved\n> ");
+            System.out.print("...\n[INFO] A list of planes is recieved\n> ");
         } catch (ClassNotFoundException | IOException e) {
             e.printStackTrace();
         }      
