@@ -10,12 +10,10 @@ import java.net.Socket;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
+import java.sql.Timestamp;
 import java.util.List;
 
 public class LuggageHandler extends ServerHandler {
-
-    Date newDate = new Date();
 
     public LuggageHandler(Socket socket, ObjectInputStream objectInputStream, ObjectOutputStream objectOutputStream){
         super(socket, objectInputStream, objectOutputStream);
@@ -83,16 +81,13 @@ public class LuggageHandler extends ServerHandler {
         if(getFlightList().size() > 0){ 
             for(Flight flight : getFlightList()){
                 if(flight.getGate().getGateSize().equals("lille")){
-                    newDate.setTime(flight.getExpectedDeparture().getTime() * 8640000);
-                    flight.setExpectedDeparture(newDate);
+                    flight.setExpectedDeparture(new Timestamp(flight.getExpectedDeparture().getTime() + 86400000) );
                 }
                 if(flight.getGate().getGateSize().equals("mellem")){
-                    //newDate.setTime(flight.getExpectedDeparture().getTime());
-                    //flight.setExpectedDeparture(newDate);
+                    //flight.setExpectedDeparture(flight.getExpectedDeparture().getTime());
                 }
                 if(flight.getGate().getGateSize().equals("stor")){
-                    //newDate.setTime(flight.getExpectedDeparture().getTime());
-                    //flight.setExpectedDeparture(newDate);
+                    //flight.setExpectedDeparture(flight.getExpectedDeparture().getTime());
                 }
             }
         }
