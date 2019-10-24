@@ -24,10 +24,6 @@ public class TaxiHandler extends ServerHandler
                 String[] tokens = keyboard.getReader().nextLine().toUpperCase().split(" ");
 
 
-                getFlightList().get(1).setName("lort");
-
-                sender.sendPlanes(getFlightList());
-
                 switch(tokens[0])
                 {
                     case "EXIT":
