@@ -47,7 +47,8 @@ public class LuggageHandler extends ServerHandler {
                     }
                 }
             }
-            sender.sendPlanes(newFlights);
+            flightList = newFlights;
+            sender.sendPlanes(flightList);
 
             //Får information fra keyboardet - hvis der er noget.
 //            System.out.printf("> ");
