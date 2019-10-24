@@ -23,6 +23,11 @@ public class TaxiHandler extends ServerHandler
             if (keyboard.getReader().hasNextLine()) {
                 String[] tokens = keyboard.getReader().nextLine().toUpperCase().split(" ");
 
+
+                getFlightList().get(1).setName("lort");
+
+                sender.sendPlanes(getFlightList());
+
                 switch(tokens[0])
                 {
                     case "EXIT":
@@ -53,7 +58,7 @@ public class TaxiHandler extends ServerHandler
                         {
                             getFlightList().forEach(plane -> System.out.print("      [" + plane.getName() + "]\n"));
                             System.out.println("      removed from local list.");
-                            removeFlightFromList();
+                            removeFlightList();
                         } else {
                             System.out.print("[INFO]: No active planes in this department.\n");
                         }

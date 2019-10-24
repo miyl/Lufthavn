@@ -83,13 +83,13 @@ public class ServerHandler {
         return flightList;
     }
 
-    public void addFlightToList(List<Flight> airplane)
+    public void updateFlightList(List<Flight> airplane)
     {
-        flightList.addAll(airplane);
+        flightList = airplane;
     }
 
-    public void removeFlightFromList()
+    public void removeFlightList()
     {
-        flightList.remove(0);
+        flightList = new ArrayList<>();
     }
 }

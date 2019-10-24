@@ -41,7 +41,7 @@ public class Reader implements Runnable {
         List<Flight> airplaneList;
         try {
             airplaneList = (List<Flight>) input.readObject();
-            client.addFlightToList(airplaneList);
+            client.updateFlightList(airplaneList);
         } catch (ClassNotFoundException | IOException e) {
             e.printStackTrace();
         }      
