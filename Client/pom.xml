@@ -11,6 +11,7 @@
   <properties>
     <maven.compiler.source>1.10</maven.compiler.source>
     <maven.compiler.target>1.10</maven.compiler.target>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
 
   <dependencies>
@@ -42,7 +43,6 @@
             <mainClass>dk.kea.App</mainClass>
           </manifest>
         </archive>
-        <encoding>UTF-8</encoding>
       </configuration>
     </plugin>
 
