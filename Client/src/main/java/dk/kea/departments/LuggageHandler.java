@@ -14,88 +14,86 @@ import java.util.List;
 public class LuggageHandler extends ServerHandler {
 
     Date newDate = new Date();
+    List<Flight> newList = new ArrayList<>();
 
     public LuggageHandler(Socket socket, ObjectInputStream objectInputStream, ObjectOutputStream objectOutputStream){
         super(socket, objectInputStream, objectOutputStream);
     }
 
     public void start(){
-        List<Flight> flights = getFlightList();
-        List<Flight> newFlights = new ArrayList<Flight>();
-
 
         while (isConnected()) {
 
+            if(getFlightList().size() > 0){
 
+                newList = new ArrayList<>();
 
-            if(flights.size()>0){
-                for(Flight flight : flights){
+                //System.out.println(getFlightList().get(0).getExpectedDeparture());
+
+                for(Flight flight : getFlightList()){
                     if(flight.getGate().getGateSize().equals("lille")){
-                        newDate.setTime(flight.getExpectedDeparture().getTime() + Time.bagageUdLille*Time.seconds);
-                        flight.setExpectedDeparture(newDate);
-                        newFlights.add(flight);
+                        //newDate.setTime(flight.getExpectedDeparture());
+                        //flight.setExpectedDeparture(newDate);
                     }
                     if(flight.getGate().getGateSize().equals("mellem")){
-                        newDate.setTime(flight.getExpectedDeparture().getTime() + Time.bagageUdMellem*Time.seconds);
-                        flight.setExpectedDeparture(newDate);
-                        newFlights.add(flight);
+                        newDate.setTime(flight.getExpectedDeparture().getTime() / Time.seconds + Time.bagageUdMellem);
+                        //flight.setExpectedDeparture(newDate);
                     }
                     if(flight.getGate().getGateSize().equals("stor")){
-                        newDate.setTime(flight.getExpectedDeparture().getTime() + Time.bagageUdStor*Time.seconds);
-                        flight.setExpectedDeparture(newDate);
-                        newFlights.add(flight);
+                        newDate.setTime(flight.getExpectedDeparture().getTime() / Time.seconds + Time.bagageUdStor);
+                        //flight.setExpectedDeparture(newDate);
                     }
+                    newList.add(flight);
                 }
             }
-            flightList = newFlights;
-            sender.sendPlanes(flightList);
+            
 
             //Får information fra keyboardet - hvis der er noget.
-//            System.out.printf("> ");
-//            if (keyboard.getReader().hasNextLine()) {
-//                String[] tokens = keyboard.getReader().nextLine().toUpperCase().split(" ");
-//
-//                switch(tokens[0])
-//                {
-//                    case "EXIT":
-//                        close();
-//                        break;
-//                    case "LIST":
-//                        if(getFlightList().size() > 0)
-//                        {
-//                            System.out.print("[INFO]: Active planes in this department:\n\n");
-//
-//                            getFlightList().forEach(plane -> System.out.print("      [" + plane.getName() + "]\n"));
-//
-//                            System.out.println();
-//                        } else {
-//                            System.out.print("[INFO]: No active planes in this department.\n");
-//                        }
-//                        break;
-//                    case "SEND":
-//                        if(getFlightList().size() > 0){
-//                            sender.sendPlanes(getFlightList());
-//                            System.out.println("[INFO]: Flights is send to server");
-//                        } else {
-//                            System.out.print("[ERROR]: No active planes in this apartment.\n");
-//                        }
-//                        break;
-//                    case "REMOVE":
-//                        if(getFlightList().size() > 0)
-//                        {
-//                            getFlightList().forEach(plane -> System.out.print("      [" + plane.getName() + "]\n"));
-//                            System.out.println("      removed from local list.");
-//                            removeFlightList();
-//                        } else {
-//                            System.out.print("[INFO]: No active planes in this department.\n");
-//                        }
-//
-//                        break;
-//                    default:
-//                        sender.send(String.join(" ", tokens), false);
-//                        break;
-//                }
-//            }
+           System.out.printf("> ");
+           if (keyboard.getReader().hasNextLine()) {
+               String[] tokens = keyboard.getReader().nextLine().toUpperCase().split(" ");
+
+               switch(tokens[0])
+               {
+                   case "EXIT":
+                       close();
+                       break;
+                   case "LIST":
+                       if(getFlightList().size() > 0)
+                       {
+                           System.out.print("[INFO]: Active planes in this department:\n\n");
+
+                           getFlightList().forEach(plane -> System.out.print("      [" + plane.getName() + "]\n"));
+
+                           System.out.println();
+                       } else {
+                           System.out.print("[INFO]: No active planes in this department.\n");
+                       }
+                       break;
+                   case "SEND":
+                       if(getFlightList().size() > 0){
+                           sender.sendPlanes(newList);
+                           System.out.println("[INFO]: Flights is send to server");
+                       } else {
+                           System.out.print("[ERROR]: No active planes in this apartment.\n");
+                       }
+                       break;
+                   case "REMOVE":
+                       if(getFlightList().size() > 0)
+                       {
+                           getFlightList().forEach(plane -> System.out.print("      [" + plane.getName() + "]\n"));
+                           System.out.println("      removed from local list.");
+                           removeFlightList();
+                       } else {
+                           System.out.print("[INFO]: No active planes in this department.\n");
+                       }
+
+                       break;
+                   default:
+                       sender.send(String.join(" ", tokens), false);
+                       break;
+               }
+           }
         }
     }
 }
