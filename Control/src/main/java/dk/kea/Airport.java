@@ -21,7 +21,7 @@ public class Airport {
         //
         while(true) 
         {
-            if(server.isAllConnected())
+            if(server.isOneConnected())
             {
                 airportFlow();
             }
@@ -30,7 +30,7 @@ public class Airport {
 
     public static void airportFlow() {
 
-        System.out.println("Running queue");
+        System.out.println("Running queue:");
 
         // If this should be refactored to somewhere else feel free to do so
         //
@@ -43,6 +43,9 @@ public class Airport {
         var luggage = server.getLuggage();
         var clean = server.getClean();
         var fuel = server.getFuel();
+
+        var l_step = 0;
+        var t_step = 0;
 
         // Main airport flow
         // Send gates to all who need it
@@ -57,25 +60,30 @@ public class Airport {
         List<Flight> temp = flights;
 
         // Taxi in
-        if(taxi != null)
+        if(taxi != null && t_step == 0)
         {
+            System.out.printf("Taxi -> ");
             taxi.send(flights);
             temp = taxi.readList();
+            t_step++;
         }
     
         // Passengers out
         // Handled by the server currently, or?
         
         // Luggage out
-        if(luggage != null)
+        if(luggage != null && l_step == 0)
         {
+            System.out.printf("Luggage -> ");
             luggage.send(temp);
             temp = luggage.readList();
+            l_step++;
         }
     
         // Refuel
         if(fuel != null)
         {
+            System.out.printf("Fuel -> ");
             fuel.send(temp);
             temp = fuel.readList();
         }
@@ -83,32 +91,38 @@ public class Airport {
         // Clean
         if(clean != null)
         {
+            System.out.printf("Clean -> ");
             clean.send(temp);
             temp = clean.readList();
         }
     
         // Luggage in
-        if(luggage != null)
+        if(luggage != null && l_step == 1)
         {
+            System.out.printf("Luggage -> ");
             luggage.send(temp);
             temp = luggage.readList();
+            l_step = 0;
         }
     
         // Passengers in
         // Handled by the server currently, or?
     
         // Taxi to departure
-        // if(taxi != null)
-        // {
-        //     taxi.send(temp);
-        //     temp = taxi.readList();
-        // }
+        if(taxi != null && t_step == 1)
+        {
+            taxi.send(temp);
+            temp = taxi.readList();
+            t_step = 0;
+        }
         //   // After dealing with the plane taxi client is free to "taxi til og fra ventepladser"
         //   // The plane has departed and can be logged for time of departure, deleted and/or whatever
         //
         //   //Personel move among neighboring gates
         //   //Personel move among own terminal
         //   //Personel move across terminals
+
+        System.out.printf("Done\n\n");
 
         System.out.println("Ran through the queue with:");
         temp.forEach(plane -> System.out.print("      [" + plane.getName() + ", " + plane.getArrival() + "]\n"));

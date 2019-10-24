@@ -1,5 +1,4 @@
 package dk.kea.models;
-
 import java.io.Serializable;
 import java.util.Date;
 
@@ -18,11 +17,11 @@ public class Flight implements Serializable {
     private Date arrival;
     private Gate gate;
     private int priorityNumber;
-    private int standPlads;
     private Date expectedDeparture;
 
     public Flight() {
     }
+
 
     public Flight(int id, String name, String model, String flightSize, String luftSelskab, Date departure, Date arrival, Gate gate, int priorityNumber, int standPlads, Date expectedDeparture) {
         this.id = id;
@@ -34,7 +33,6 @@ public class Flight implements Serializable {
         this.arrival = arrival;
         this.gate = gate;
         this.priorityNumber = priorityNumber;
-        this.standPlads = standPlads;
         this.expectedDeparture = expectedDeparture;
     }
 
@@ -114,13 +112,6 @@ public class Flight implements Serializable {
         this.priorityNumber = priorityNumber;
     }
 
-    public int getStandPlads() {
-        return standPlads;
-    }
-
-    public void setStandPlads(int standPlads) {
-        this.standPlads = standPlads;
-    }
 
     public Date getExpectedDeparture() {
         return expectedDeparture;
