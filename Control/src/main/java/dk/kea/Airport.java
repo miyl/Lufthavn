@@ -44,6 +44,9 @@ public class Airport {
         var clean = server.getClean();
         var fuel = server.getFuel();
 
+        var l_step = 0;
+        var t_step = 0;
+
         // Main airport flow
         // Send gates to all who need it
         // taxi.send(gates);
@@ -57,22 +60,24 @@ public class Airport {
         List<Flight> temp = flights;
 
         // Taxi in
-        if(taxi != null)
+        if(taxi != null && t_step == 0)
         {
             System.out.printf("Taxi -> ");
             taxi.send(flights);
             temp = taxi.readList();
+            t_step++;
         }
     
         // Passengers out
         // Handled by the server currently, or?
         
         // Luggage out
-        if(luggage != null)
+        if(luggage != null && l_step == 0)
         {
             System.out.printf("Luggage -> ");
             luggage.send(temp);
             temp = luggage.readList();
+            l_step++;
         }
     
         // Refuel
@@ -92,22 +97,24 @@ public class Airport {
         }
     
         // Luggage in
-        if(luggage != null)
+        if(luggage != null && l_step == 1)
         {
             System.out.printf("Luggage -> ");
             luggage.send(temp);
             temp = luggage.readList();
+            l_step = 0;
         }
     
         // Passengers in
         // Handled by the server currently, or?
     
         // Taxi to departure
-        // if(taxi != null)
-        // {
-        //     taxi.send(temp);
-        //     temp = taxi.readList();
-        // }
+        if(taxi != null && t_step == 1)
+        {
+            taxi.send(temp);
+            temp = taxi.readList();
+            t_step = 0;
+        }
         //   // After dealing with the plane taxi client is free to "taxi til og fra ventepladser"
         //   // The plane has departed and can be logged for time of departure, deleted and/or whatever
         //
