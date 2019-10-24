@@ -2,19 +2,32 @@ package dk.kea.departments;
 
 import dk.kea.client.ServerHandler;
 import dk.kea.models.Flight;
+import dk.kea.shared.Time;
 
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.util.ArrayList;
+import java.util.List;
 
 public class LuggageHandler extends ServerHandler {
+
     public LuggageHandler(Socket socket, ObjectInputStream objectInputStream, ObjectOutputStream objectOutputStream){
         super(socket, objectInputStream, objectOutputStream);
     }
 
     public void start(){
 
+
+
         while (isConnected()) {
+
+            List<Flight> flights = getFlightList();
+
+            for(Flight flight : flights){
+                if(flight.getGate().getGateSize().equals("lille")){
+                }
+            }
 
             //Får information fra keyboardet - hvis der er noget.
             System.out.printf("> ");
