@@ -20,13 +20,13 @@ public class LuggageHandler extends ServerHandler {
     }
 
     public void start(){
-
+        List<Flight> flights = getFlightList();
+        List<Flight> newFlights = new ArrayList<Flight>();
 
 
         while (isConnected()) {
 
-            List<Flight> flights = getFlightList();
-            List<Flight> newFlights = new ArrayList<Flight>();
+
 
             if(flights.size()>0){
                 for(Flight flight : flights){
