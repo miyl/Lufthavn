@@ -23,8 +23,8 @@ public class Airport {
         {
             if (server.isAllConnected()) 
             {
-                airportFlow();
-                break;
+                //airportFlow();
+                //break;
             }
         }
     }

@@ -1,6 +1,7 @@
 package dk.kea.management;
 
 import dk.kea.dbconnect.DBConnect;
+import dk.kea.models.User;
 import org.mindrot.jbcrypt.BCrypt;
 
 import java.sql.ResultSet;
@@ -28,11 +29,12 @@ import java.sql.Statement;
  *
  **/
 
-public class Users {
+public class UserDbHandler {
     DBConnect dbConnect;
+    User user;
     //randomword tilføjes til plaintext password når password hashes og checkes.
     final String randomWord = "Aerobics";
-    public Users() {
+    public UserDbHandler() {
     }
 
     //Opret ny bruger
