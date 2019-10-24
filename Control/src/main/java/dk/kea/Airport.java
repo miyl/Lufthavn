@@ -62,7 +62,7 @@ public class Airport {
                         // do something different
                     }
                     System.out.printf(" -> " + next);
-                    taxi.send(flights);
+                    taxi.sendList(flights);
                     flights = taxi.readList();
                     t_step++;
                     break;
@@ -72,18 +72,18 @@ public class Airport {
                         // do something different
                     }
                     System.out.printf(" -> " + next);
-                    luggage.send(flights);
+                    luggage.sendList(flights);
                     flights = luggage.readList();
                     l_step++;
                     break;
                 case "CLEAN":
                     System.out.printf(" -> " + next);
-                    clean.send(flights);
+                    clean.sendList(flights);
                     flights = clean.readList();
                     break;
                 case "FUEL":
                     System.out.printf(" -> " + next);
-                    fuel.send(flights);
+                    fuel.sendList(flights);
                     flights = fuel.readList();
                     break;
             }

@@ -5,6 +5,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.util.List;
+import java.io.Serializable;
 
 import dk.kea.models.Flight;
 
@@ -46,9 +47,18 @@ public class DepartmentHandler implements Runnable {
         }
     }
 
-    public void send(List<Flight> airplane) {
+    public void sendSingle(Serializable serialized) {
         try {
-            output.writeObject(airplane);
+            output.writeObject(serialized);
+            output.flush();
+        } catch (IOException e) {
+            System.err.println(e);
+        }
+    }
+
+    public void sendList(List<? extends Serializable> serializedList) {
+        try {
+            output.writeObject(serializedList);
             output.flush();
         } catch (IOException e) {
             System.err.println(e);
