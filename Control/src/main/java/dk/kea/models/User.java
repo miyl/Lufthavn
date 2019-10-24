@@ -3,14 +3,14 @@ package dk.kea.models;
 public class User {
 
     String username;
-    String password;
+    String plaintext_pw;
     int hold_id;
     String emailadress;
     User (){}
 
-    public User(String username, String password, int hold_id, String emailadress) {
+    public User(String username, String plaintext_pw, int hold_id, String emailadress) {
         this.username = username;
-        this.password = password;
+        this.plaintext_pw = plaintext_pw;
         this.hold_id = hold_id;
         this.emailadress = emailadress;
     }
@@ -21,14 +21,6 @@ public class User {
 
     public void setUsername(String username) {
         this.username = username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     public int getHold_id() {
@@ -47,13 +39,11 @@ public class User {
         this.emailadress = emailadress;
     }
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "username='" + username + '\'' +
-                ", password='" + password + '\'' +
-                ", hold_id='" + hold_id + '\'' +
-                ", emailadress='" + emailadress + '\'' +
-                '}';
+    public String getPlaintext_pw() {
+        return plaintext_pw;
+    }
+
+    public void setPlaintext_pw(String plaintext_pw) {
+        this.plaintext_pw = plaintext_pw;
     }
 }

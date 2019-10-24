@@ -14,16 +14,16 @@ import java.sql.Statement;
  *         //Eksempler:
  *
  *         //opret bruger
- *         manageUser.create("Hans", "123456", 2);
+ *         userDbHandler.create(new User("User1", "User1", 2, "t@dk.dk"));
  *
  *         //slet bruger
- *         //manageUser.delete("hans");
+ *         //userDbHandler.delete("hans");
  *
  *         //udskriv brugere
- *         manageUser.print();
+ *         userDbHandler.print();
  *
  *         //login - returnere en boolean -> true hvis password er korrekt
- *         manageUser.chkCredentials("Hans", "123456");
+ *         userDbHandler.chkCredentials("Hans", "123456");
  *
  *         //update mangler
  *
@@ -31,23 +31,22 @@ import java.sql.Statement;
 
 public class UserDbHandler {
     DBConnect dbConnect;
-    User user;
-    //randomword tilføjes til plaintext password når password hashes og checkes.
+    //randomword tilføjes sættes sammen med plaintext password før password hashes og checkes.
     final String randomWord = "Aerobics";
     public UserDbHandler() {
     }
 
     //Opret ny bruger
-    //TODO: mangler email adresse (hardcoded i insert string pt.)
-    public void create(String username, String plaintext_pw, int hold_id){
+
+    public void create(User user){
         //hash password
-        String hashedPassword = BCrypt.hashpw((plaintext_pw + randomWord), BCrypt.gensalt());
+        String hashedPassword = BCrypt.hashpw((user.getPlaintext_pw() + randomWord), BCrypt.gensalt());
 
         //tilføj bruger til db
         dbConnect = new DBConnect();
         try {
             Statement stmt = dbConnect.getConnection().createStatement();
-            stmt.executeUpdate("insert into Personale_login (brugernavn, kodeord, `e-mail`, hold_id) VALUES ('"+username+"', '"+hashedPassword+"', '"+"emailadresshere"+"', "+hold_id+");");
+            stmt.executeUpdate("insert into Personale_login (brugernavn, kodeord, `e-mail`, hold_id) VALUES ('"+user.getUsername()+"', '"+hashedPassword+"', '"+user.getEmailadress()+"', "+user.getHold_id()+");");
 
         }catch (SQLException e){
             e.printStackTrace();
