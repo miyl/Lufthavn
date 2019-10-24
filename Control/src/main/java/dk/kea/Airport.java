@@ -1,5 +1,11 @@
 package dk.kea;
 
+import dk.kea.management.FlightDbHandler;
+import dk.kea.management.GateDbHandler;
+import dk.kea.models.Flight;
+import dk.kea.models.Gate;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class Airport {
@@ -16,6 +22,9 @@ public class Airport {
         // Do something
         // ...
         //
+
+
+
     }
 
     public static void airportFlow() {
@@ -23,9 +32,10 @@ public class Airport {
         // If this should be refactored to somewhere else feel free to do so
         //
         // FETCH data from the database for the clients
-        //List<Flight> flights = new FlightDbHandler().getFlights();
-        //List<Gate> gates = new GateDbHandler().getGates();
-        
+        List<Flight> flights = new FlightDbHandler().getFlights();
+        List<Gate> gates = new GateDbHandler().getGates();
+
+
         // GET the client handlers
         var taxi = server.getTaxi();
         var luggage = server.getLuggage();

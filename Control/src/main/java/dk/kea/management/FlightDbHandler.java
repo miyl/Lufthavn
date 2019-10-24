@@ -4,6 +4,7 @@ import dk.kea.models.Flight;
 import dk.kea.models.Gate;
 import dk.kea.dbconnect.DBConnect;
 
+import java.sql.Array;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -13,6 +14,7 @@ import java.util.List;
 
 public class FlightDbHandler{
     DBConnect dbConnect;
+
 
     public List<Flight> getFlights(){
         dbConnect = new DBConnect();
