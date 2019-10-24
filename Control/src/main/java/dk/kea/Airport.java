@@ -22,11 +22,16 @@ public class Airport {
         //
         while(true) 
         {
-            airportFlow();
+            if(server.isAllConnected())
+            {
+                airportFlow();
+            }
         }
     }
 
     public static void airportFlow() {
+
+        System.out.println("Running queue");
 
         // If this should be refactored to somewhere else feel free to do so
         //
@@ -94,11 +99,11 @@ public class Airport {
         // Handled by the server currently, or?
     
         // Taxi to departure
-        if(taxi != null)
-        {
-            taxi.send(temp);
-            temp = taxi.readList();
-        }
+        // if(taxi != null)
+        // {
+        //     taxi.send(temp);
+        //     temp = taxi.readList();
+        // }
         //   // After dealing with the plane taxi client is free to "taxi til og fra ventepladser"
         //   // The plane has departed and can be logged for time of departure, deleted and/or whatever
         //

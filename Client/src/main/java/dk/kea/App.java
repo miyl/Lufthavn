@@ -54,7 +54,6 @@ public class App {
                 String[] splitServerAnswer = serverAnswer.split(";");
 
                 if(splitServerAnswer[0].equals("Ok")){
-                    System.out.print(splitServerAnswer[1]);
 
                     switch (splitServerAnswer[1]){
                         case "Taxi":
@@ -72,7 +71,7 @@ public class App {
                             var clean = new CleanHandler(socket, input, output);
                             clean.start();
                             break;
-                        case "Fuel":
+                        case "Brændstof":
                             running = true;
                             var fuel = new FuelHandler(socket, input, output);
                             fuel.start();

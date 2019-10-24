@@ -134,4 +134,11 @@ public class Server implements Runnable {
     public boolean isAllConnected() {
         return getTaxi() != null;
     }
+
+    public boolean isOneConnected() {
+        return getTaxi() != null ||
+               getClean() != null ||
+               getFuel() != null ||
+               getLuggage() != null;
+    }
 }

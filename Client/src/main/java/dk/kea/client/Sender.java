@@ -37,6 +37,7 @@ public class Sender implements Runnable
         try {
             output.writeObject(airplanes);
             output.flush();
+            client.removeFlightList();
         } catch (IOException e) {
             e.printStackTrace();
         }
