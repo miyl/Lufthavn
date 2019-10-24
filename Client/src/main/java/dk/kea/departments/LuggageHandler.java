@@ -32,8 +32,8 @@ public class LuggageHandler extends ServerHandler {
 
                 for(Flight flight : getFlightList()){
                     if(flight.getGate().getGateSize().equals("lille")){
-                        //newDate.setTime(flight.getExpectedDeparture());
-                        //flight.setExpectedDeparture(newDate);
+                        newDate.setTime(flight.getExpectedDeparture().getTime() / Time.seconds * Time.bagageUdLille);
+                        flight.setExpectedDeparture(newDate);
                     }
                     if(flight.getGate().getGateSize().equals("mellem")){
                         newDate.setTime(flight.getExpectedDeparture().getTime() / Time.seconds + Time.bagageUdMellem);
