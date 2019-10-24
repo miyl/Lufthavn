@@ -26,24 +26,28 @@ public class LuggageHandler extends ServerHandler {
         while (isConnected()) {
 
             List<Flight> flights = getFlightList();
+            List<Flight> newFlights = new ArrayList<Flight>();
 
             if(flights.size()>0){
                 for(Flight flight : flights){
                     if(flight.getGate().getGateSize().equals("lille")){
                         newDate.setTime(flight.getExpectedDeparture().getTime() + Time.bagageUdLille*Time.seconds);
                         flight.setExpectedDeparture(newDate);
+                        newFlights.add(flight);
                     }
                     if(flight.getGate().getGateSize().equals("mellem")){
                         newDate.setTime(flight.getExpectedDeparture().getTime() + Time.bagageUdMellem*Time.seconds);
                         flight.setExpectedDeparture(newDate);
+                        newFlights.add(flight);
                     }
                     if(flight.getGate().getGateSize().equals("stor")){
                         newDate.setTime(flight.getExpectedDeparture().getTime() + Time.bagageUdStor*Time.seconds);
                         flight.setExpectedDeparture(newDate);
+                        newFlights.add(flight);
                     }
                 }
             }
-            sender.sendPlanes(getFlightList());
+            sender.sendPlanes(newFlights);
 
             //Får information fra keyboardet - hvis der er noget.
 //            System.out.printf("> ");
