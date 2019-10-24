@@ -7,14 +7,15 @@ import dk.kea.shared.Time;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
 public class LuggageHandler extends ServerHandler {
 
     Date newDate = new Date();
-    List<Flight> newList = new ArrayList<>();
 
     public LuggageHandler(Socket socket, ObjectInputStream objectInputStream, ObjectOutputStream objectOutputStream){
         super(socket, objectInputStream, objectOutputStream);
@@ -22,31 +23,7 @@ public class LuggageHandler extends ServerHandler {
 
     public void start(){
 
-        while (isConnected()) {
-
-            if(getFlightList().size() > 0){
-
-                newList = new ArrayList<>();
-
-                //System.out.println(getFlightList().get(0).getExpectedDeparture());
-
-                for(Flight flight : getFlightList()){
-                    if(flight.getGate().getGateSize().equals("lille")){
-                        newDate.setTime(flight.getExpectedDeparture().getTime() / Time.seconds * Time.bagageUdLille);
-                        flight.setExpectedDeparture(newDate);
-                    }
-                    if(flight.getGate().getGateSize().equals("mellem")){
-                        newDate.setTime(flight.getExpectedDeparture().getTime() / Time.seconds + Time.bagageUdMellem);
-                        //flight.setExpectedDeparture(newDate);
-                    }
-                    if(flight.getGate().getGateSize().equals("stor")){
-                        newDate.setTime(flight.getExpectedDeparture().getTime() / Time.seconds + Time.bagageUdStor);
-                        //flight.setExpectedDeparture(newDate);
-                    }
-                    newList.add(flight);
-                }
-            }
-            
+        while (isConnected()) {            
 
             //Får information fra keyboardet - hvis der er noget.
            System.out.printf("> ");
@@ -63,7 +40,7 @@ public class LuggageHandler extends ServerHandler {
                        {
                            System.out.print("[INFO]: Active planes in this department:\n\n");
 
-                           getFlightList().forEach(plane -> System.out.print("      [" + plane.getName() + "]\n"));
+                           getFlightList().forEach(plane -> System.out.print("      [" + plane.getName() + ", " + plane.getExpectedDeparture() + "]\n"));
 
                            System.out.println();
                        } else {
@@ -72,7 +49,7 @@ public class LuggageHandler extends ServerHandler {
                        break;
                    case "SEND":
                        if(getFlightList().size() > 0){
-                           sender.sendPlanes(newList);
+                           sender.sendPlanes(getFlightList());
                            System.out.println("[INFO]: Flights is send to server");
                        } else {
                            System.out.print("[ERROR]: No active planes in this apartment.\n");
@@ -89,11 +66,36 @@ public class LuggageHandler extends ServerHandler {
                        }
 
                        break;
+                   case "MANI":
+                       manipulate();
+                       break;
                    default:
                        sender.send(String.join(" ", tokens), false);
                        break;
                }
            }
         }
+    }
+
+
+    public void manipulate()
+    {
+        if(getFlightList().size() > 0){ 
+            for(Flight flight : getFlightList()){
+                if(flight.getGate().getGateSize().equals("lille")){
+                    newDate.setTime(flight.getExpectedDeparture().getTime() * 8640000);
+                    flight.setExpectedDeparture(newDate);
+                }
+                if(flight.getGate().getGateSize().equals("mellem")){
+                    //newDate.setTime(flight.getExpectedDeparture().getTime());
+                    //flight.setExpectedDeparture(newDate);
+                }
+                if(flight.getGate().getGateSize().equals("stor")){
+                    //newDate.setTime(flight.getExpectedDeparture().getTime());
+                    //flight.setExpectedDeparture(newDate);
+                }
+            }
+        }
+        System.out.println("[INFO] Flight manipulated.");
     }
 }
