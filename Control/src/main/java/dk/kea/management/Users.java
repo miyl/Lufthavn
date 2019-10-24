@@ -114,7 +114,7 @@ public class Users {
             Statement stmt = dbConnect.getConnection().createStatement();
             ResultSet rs = stmt.executeQuery("SELECT hold_navn FROM Personale INNER JOIN Personale_login on Personale_login.hold_id = Personale.hold_id where brugernavn='"+username+"';");
             if(rs.next()){
-                return rs.getString(1).toLowerCase();
+                return rs.getString(1);
             }
 
         }catch (SQLException e){

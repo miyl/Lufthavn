@@ -61,28 +61,28 @@ public class Server implements Runnable {
                 output.flush();
 
                 switch (afdeling) {
-                    case "taxi":
+                    case "Taxi":
                         System.out.printf("** Client accepted %s ** \n", splitMessage[0]);
                         taxi = new TaxiDepartmentHandler(socket, input, output);
                         Thread taxiThread = new Thread(taxi);
                         taxiThread.start();
                         break;
 
-                    case "clean":
+                    case "Rengøring":
                         System.out.printf("** Client accepted %s ** \n", splitMessage[0]);
                         clean = new CleaningDepartmentHandler(socket, input, output);
                         Thread cleanThread = new Thread(clean);
                         cleanThread.start();
                         break;
 
-                    case "fuel":
+                    case "Brændstof":
                         System.out.printf("** Client accepted %s ** \n", splitMessage[0]);
                         fuel = new FuelDepartmentHandler(socket, input, output);
                         Thread fuelThread = new Thread(fuel);
                         fuelThread.start();
                         break;
 
-                    case "luggage":
+                    case "Baggage":
                         System.out.printf("** Client accepted %s ** \n", splitMessage[0]);
                         luggage = new LuggageDepartmentHandler(socket, input, output);
                         Thread luggageThread = new Thread(luggage);
