@@ -56,12 +56,12 @@ public class App {
                 if(splitServerAnswer[0].equals("Ok")){
 
                     switch (splitServerAnswer[1]){
-                        case "taxi":
+                        case "Taxi":
                             running = true;
                             var taxi = new TaxiHandler(socket, input, output);
                             taxi.start();
                             break;
-                        case "luggage":
+                        case "Baggage":
                             running = true;
                             break;
                         default:
