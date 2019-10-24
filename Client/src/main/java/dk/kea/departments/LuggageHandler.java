@@ -1,18 +1,12 @@
 package dk.kea.departments;
 
 import dk.kea.client.ServerHandler;
-import dk.kea.models.Flight;
-import dk.kea.shared.Time;
 
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.sql.Timestamp;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
 
 public class LuggageHandler extends ServerHandler {
 
