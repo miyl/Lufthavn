@@ -7,5 +7,5 @@ public interface Crud<T> {
     void deleteById(int id);
     List findById(int id);
     void updateObject (T object);
-    List fetchAll();
+    List<T> fetchAll();
 }

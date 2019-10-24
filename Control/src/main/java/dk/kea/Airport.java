@@ -1,6 +1,5 @@
 package dk.kea;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import dk.kea.management.FlightDbHandler;
@@ -31,7 +30,7 @@ public class Airport {
         // If this should be refactored to somewhere else feel free to do so
         //
         // FETCH data from the database for the clients
-        List<Flight> flights = new FlightDbHandler().getFlights();
+        List<Flight> flights = new FlightDbHandler().fetchAll();
         //List<Gate> gates = new GateDbHandler().getGates();
         
         // GET the client handlers
