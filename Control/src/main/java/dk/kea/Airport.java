@@ -51,10 +51,16 @@ public class Airport {
         var l_step = 0;
         var t_step = 0;
 
-        System.out.print(getQueue().get(0));
-        for(int current = 0 ; current < getQueue().size(); current += 1){
-            var item = getQueue().get(current);
-            String next = getQueue().size() > current + 1 ? getQueue().get(current + 1) : "FINISH\n\n";
+        var queue = getQueue();
+
+        System.out.printf("[INFO]:    CURRENT QUEUE\n           ");
+        queue.forEach(item -> System.out.printf(item + " "));
+        System.out.printf("\n\n[RUNNING]: ");
+
+        System.out.print(queue.get(0));
+        for(int current = 0 ; current < queue.size(); current += 1){
+            var item = queue.get(current);
+            String next = queue.size() > current + 1 ? queue.get(current + 1) : "FINISH\n\n";
             switch(item){
                 case "TAXI":
                     if(t_step == 1)
