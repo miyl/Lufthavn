@@ -3,9 +3,8 @@ package dk.kea.departments;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
-import dk.kea.App;
 import dk.kea.client.ServerHandler;
-import dk.kea.shared.Flight;
+import dk.kea.models.Flight;
 import java.net.Socket;
 
 public class TaxiHandler extends ServerHandler

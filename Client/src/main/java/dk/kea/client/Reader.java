@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.net.Socket;
 
-import dk.kea.shared.Flight;
+import dk.kea.models.Flight;
 
 public class Reader implements Runnable {
     private ServerHandler client;

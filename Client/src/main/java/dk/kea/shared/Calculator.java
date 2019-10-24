@@ -1,11 +1,8 @@
 package dk.kea.shared;
 
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import dk.kea.models.Flight;
+
 import java.util.*;
 import java.util.function.Function;
 import java.util.function.ToDoubleFunction;

@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 
-import dk.kea.shared.Flight;
+import dk.kea.models.Flight;
 
 public class Sender implements Runnable
 {
