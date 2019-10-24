@@ -30,7 +30,7 @@ public class Airport {
 
     public static void airportFlow() {
 
-        System.out.println("Running queue");
+        System.out.println("Running queue:");
 
         // If this should be refactored to somewhere else feel free to do so
         //
@@ -59,6 +59,7 @@ public class Airport {
         // Taxi in
         if(taxi != null)
         {
+            System.out.printf("Taxi -> ");
             taxi.send(flights);
             temp = taxi.readList();
         }
@@ -69,6 +70,7 @@ public class Airport {
         // Luggage out
         if(luggage != null)
         {
+            System.out.printf("Luggage -> ");
             luggage.send(temp);
             temp = luggage.readList();
         }
@@ -76,6 +78,7 @@ public class Airport {
         // Refuel
         if(fuel != null)
         {
+            System.out.printf("Fuel -> ");
             fuel.send(temp);
             temp = fuel.readList();
         }
@@ -83,6 +86,7 @@ public class Airport {
         // Clean
         if(clean != null)
         {
+            System.out.printf("Clean -> ");
             clean.send(temp);
             temp = clean.readList();
         }
@@ -90,6 +94,7 @@ public class Airport {
         // Luggage in
         if(luggage != null)
         {
+            System.out.printf("Luggage -> ");
             luggage.send(temp);
             temp = luggage.readList();
         }
@@ -109,6 +114,8 @@ public class Airport {
         //   //Personel move among neighboring gates
         //   //Personel move among own terminal
         //   //Personel move across terminals
+
+        System.out.printf("Done\n\n");
 
         System.out.println("Ran through the queue with:");
         temp.forEach(plane -> System.out.print("      [" + plane.getName() + ", " + plane.getArrival() + "]\n"));
