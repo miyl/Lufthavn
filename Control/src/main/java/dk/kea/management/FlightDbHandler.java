@@ -38,7 +38,7 @@ public class FlightDbHandler{
                 flight.setPriorityNumber(rs.getInt("priorityNumber"));
                 flight.setStandPlads(rs.getInt("standPlads"));
 
-                ResultSet rs_ = stmt.executeQuery("SELECT * FROM Gate WHERE id = " + flight.getId());
+                ResultSet rs_ = stmt.executeQuery("SELECT * FROM gate WHERE number = " + flight.getId());
                 while(rs_.next()){
                     gate.setNumber(rs_.getInt("number"));
                     gate.setGateSize(rs_.getString("gateSize"));

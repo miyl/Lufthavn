@@ -19,7 +19,7 @@ public class GateDbHandler {
         try {
             Statement stmt = dbConnect.getConnection().createStatement();
 
-            ResultSet rs = stmt.executeQuery("SELECT * FROM Gates");
+            ResultSet rs = stmt.executeQuery("SELECT * FROM gate");
             while(rs.next()){
 
                 Gate gate = new Gate();
