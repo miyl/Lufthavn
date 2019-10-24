@@ -8,7 +8,7 @@ import java.net.Socket;
 import java.util.ArrayList;
 
 import dk.kea.App;
-import dk.kea.shared.Flight;
+import dk.kea.models.Flight;
 import dk.kea.shared.Keyboard;
 import static dk.kea.statics.StaticLib.*;
 

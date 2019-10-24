@@ -1,4 +1,4 @@
-package dk.kea.shared;
+package dk.kea.models;
 
 public class Hold {
     private String skill;

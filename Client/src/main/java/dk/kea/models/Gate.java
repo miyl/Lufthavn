@@ -1,4 +1,4 @@
-package dk.kea.shared;
+package dk.kea.models;
 
 import java.io.Serializable;
 
