@@ -52,14 +52,15 @@ public class UserDbHandler {
             e.printStackTrace();
         }
     }
-    public void delete(String username){
+    public int delete(String username){
         dbConnect = new DBConnect();
         try {
             Statement stmt = dbConnect.getConnection().createStatement();
-            stmt.executeUpdate("delete from Personale_login where brugernavn='"+username+"';");
+            return stmt.executeUpdate("delete from Personale_login where brugernavn='"+username+"';");
         }catch (SQLException e){
             e.printStackTrace();
         }
+        return -1;
     }
     public void print(){
         dbConnect = new DBConnect();

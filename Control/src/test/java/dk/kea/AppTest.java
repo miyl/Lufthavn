@@ -42,10 +42,10 @@ public class AppTest {
         }catch (SQLException e){
             e.printStackTrace();
         }
-        assertEquals(gates.get(0).getNumber(), 1);
-        assertEquals(gates.get(1).getNumber(), 2);
-        assertEquals(gates.get(0).getGateSize(), "lille");
-        assertEquals(gates.get(11).getGateSize(), "stor");
+        assertEquals(1, gates.get(0).getNumber());
+        assertEquals(2, gates.get(1).getNumber());
+        assertEquals("lille", gates.get(0).getGateSize());
+        assertEquals("stor", gates.get(11).getGateSize());
 
 
 
