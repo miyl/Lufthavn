@@ -78,6 +78,8 @@ public class FlightDbHandler implements Crud<Flight> {
         Date departure = flight.getDeparture();
         String luftSelskab = flight.getLuftSelskab();
         Date expectedDeparture = flight.getExpectedDeparture();
+
+
         dbConnect = new DBConnect();
         try{
             Statement stmt = dbConnect.getConnection().createStatement();
@@ -85,7 +87,7 @@ public class FlightDbHandler implements Crud<Flight> {
                     "VALUES('"+model+"', null, '"+flightSize+"', '"+name+"', "+gate+", "+priorityNumber+", "+arrival+", "+departure+", '"+luftSelskab+"', "+expectedDeparture+")");
 
         }catch (Exception e){
-
+            System.out.println(e.getMessage());
         }
     }
 
@@ -101,6 +103,34 @@ public class FlightDbHandler implements Crud<Flight> {
 
     @Override
     public void updateObject(Flight flight) {
+        int id = flight.getId();
+        String model = flight.getModel();
+        String flightSize = flight.getFlightSize();
+        String name = flight.getName();
+        int gate = flight.getGate().getNumber();
+        int priorityNumber = flight.getPriorityNumber();
+        Date arrival = flight.getArrival();
+        Date departure = flight.getDeparture();
+        String luftSelskab = flight.getLuftSelskab();
+        Date expectedDeparture = flight.getExpectedDeparture();
 
+        dbConnect = new DBConnect();
+        try{
+            Statement stmt = dbConnect.getConnection().createStatement();
+            stmt.executeUpdate("UPDATE Fly SET"+
+                    "model = '"+model+"', "+
+                    "flightSize = '"+flightSize+"', "+
+                    "name = '"+name+"', "+
+                    "gate = "+gate+", "+
+                    "priorityNumber = "+priorityNumber+", "+
+                    "arrival = "+arrival+", "+
+                    "departure = "+departure+", "+
+                    "luftSelskab = '"+luftSelskab+"', "+
+                    "expectedDeparture = "+expectedDeparture+" "+
+                    "WHERE fly_id="+id);
+        }
+        catch (Exception e){
+            System.out.println(e.getMessage());
+        }
     }
 }
