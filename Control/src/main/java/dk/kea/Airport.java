@@ -21,7 +21,7 @@ public class Airport {
         //
         while(true) 
         {
-            if(server.isAllConnected())
+            if(server.isOneConnected())
             {
                 airportFlow();
             }
