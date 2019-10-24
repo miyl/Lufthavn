@@ -39,7 +39,6 @@ public class FlightDbHandler implements Crud<Flight> {
                 flight.setArrival(rs.getDate("arrival"));
                 flight.setGate(gate);
                 flight.setPriorityNumber(rs.getInt("priorityNumber"));
-                flight.setStandPlads(rs.getInt("standPlads"));
                 //flight.setExpectedDeparture(rs.getDate("expectedDeparture"));
             
                 gate.setNumber(rs.getInt("number"));

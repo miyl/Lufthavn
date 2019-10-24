@@ -18,7 +18,6 @@ public class Flight implements Serializable {
     private Date arrival;
     private Gate gate;
     private int priorityNumber;
-    private int standPlads;
     private Date expectedDeparture;
 
     public Flight() {
@@ -35,7 +34,6 @@ public class Flight implements Serializable {
         this.arrival = arrival;
         this.gate = gate;
         this.priorityNumber = priorityNumber;
-        this.standPlads = standPlads;
         this.expectedDeparture = expectedDeparture;
     }
 
@@ -115,13 +113,6 @@ public class Flight implements Serializable {
         this.priorityNumber = priorityNumber;
     }
 
-    public int getStandPlads() {
-        return standPlads;
-    }
-
-    public void setStandPlads(int standPlads) {
-        this.standPlads = standPlads;
-    }
 
     public Date getExpectedDeparture() {
         return expectedDeparture;
