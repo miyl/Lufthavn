@@ -8,6 +8,7 @@ import java.sql.Array;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -42,7 +43,7 @@ public class FlightDbHandler{
                 gate.setNumber(rs.getInt("number"));
                 gate.setGateSize(rs.getString("gateSize"));
                 gate.setTerminal(rs.getString("terminal"));
-                
+
                 flights.add(flight);
             }
 
@@ -50,6 +51,17 @@ public class FlightDbHandler{
             e.printStackTrace();
         }
         return flights;
+    }
+    public void create(String model, String flightSize, String name, int gate, int priorityNumber, LocalDateTime arrival, LocalDateTime departure, String luftSelskab, LocalDateTime expectedDeparture){
+        dbConnect = new DBConnect();
+        try{
+            Statement stmt = dbConnect.getConnection().createStatement();
+            stmt.executeUpdate("INSERT INTO Fly (model, standPlads, flightSize, name, gate, priorityNumber, arrival, departure, luftSelskab, expectedDeparture)" +
+                    "VALUES('"+model+"', null, '"+flightSize+"', '"+name+"', "+gate+", "+priorityNumber+", "+arrival+", "+departure+", '"+luftSelskab+"', "+expectedDeparture+")");
+
+        }catch (Exception e){
+
+        }
     }
 
 

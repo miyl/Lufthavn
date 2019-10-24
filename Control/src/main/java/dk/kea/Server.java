@@ -10,7 +10,7 @@ import dk.kea.handlers.CleaningDepartmentHandler;
 import dk.kea.handlers.FuelDepartmentHandler;
 import dk.kea.handlers.LuggageDepartmentHandler;
 import dk.kea.handlers.TaxiDepartmentHandler;
-import dk.kea.management.Users;
+import dk.kea.management.UserDbHandler;
 
 public class Server implements Runnable {
 
@@ -51,7 +51,7 @@ public class Server implements Runnable {
             ObjectInputStream input = new ObjectInputStream(socket.getInputStream());
 
 
-            Users userManage = new Users();
+            UserDbHandler userManage = new UserDbHandler();
 
             String message = input.readUTF();
             String[] splitMessage = message.split(";");
