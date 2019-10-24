@@ -37,7 +37,7 @@ public class FlightDbHandler{
                 flight.setGate(gate);
                 flight.setPriorityNumber(rs.getInt("priorityNumber"));
                 flight.setStandPlads(rs.getInt("standPlads"));
-                flight.setExpectedDeparture(rs.getDate("expectedDeparture"));
+                //flight.setExpectedDeparture(rs.getDate("expectedDeparture"));
             
                 gate.setNumber(rs.getInt("number"));
                 gate.setGateSize(rs.getString("gateSize"));

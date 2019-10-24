@@ -56,7 +56,7 @@ public class Server implements Runnable {
             String message = input.readUTF();
             String[] splitMessage = message.split(";");
             if(userManage.chkCredentials(splitMessage[0], splitMessage[1])){
-                String afdeling =userManage.getAfdeling(splitMessage[0]);
+                String afdeling = userManage.getAfdeling(splitMessage[0]);
                 output.writeUTF("Ok" + ";" + afdeling);
                 output.flush();
 
