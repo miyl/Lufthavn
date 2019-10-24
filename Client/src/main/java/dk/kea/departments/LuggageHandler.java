@@ -32,9 +32,7 @@ public class LuggageHandler extends ServerHandler {
                     if(getFlightList().size() > 0)
                     {
                         System.out.print("[INFO]: Active planes in this department:\n\n");
-                        getFlightList().forEach(value -> System.out.print(
-                            "        [" + value.getId() + ", " + value.getName() + "]\n"
-                            ));
+                        getFlightList().forEach(value -> value.forEach(plane -> System.out.print(plane.getName())));
                         System.out.println();
                     } else {
                         System.out.print("[INFO]: No active planes in this department.\n");

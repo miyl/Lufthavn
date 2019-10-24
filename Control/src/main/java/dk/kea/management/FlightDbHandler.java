@@ -22,7 +22,7 @@ public class FlightDbHandler{
         try {
             Statement stmt = dbConnect.getConnection().createStatement();
 
-            ResultSet rs = stmt.executeQuery("SELECT * FROM Fly");
+            ResultSet rs = stmt.executeQuery("SELECT * FROM Fly inner join gate on Fly.gate = gate.number");
             while(rs.next()){
 
                 Flight flight = new Flight();
@@ -37,13 +37,11 @@ public class FlightDbHandler{
                 flight.setGate(gate);
                 flight.setPriorityNumber(rs.getInt("priorityNumber"));
                 flight.setStandPlads(rs.getInt("standPlads"));
-
-                ResultSet rs_ = stmt.executeQuery("SELECT * FROM gate WHERE number = " + flight.getGate());
-                while(rs_.next()){
-                    gate.setNumber(rs_.getInt("number"));
-                    gate.setGateSize(rs_.getString("gateSize"));
-                    gate.setTerminal(rs_.getString("terminal"));
-                }
+            
+                gate.setNumber(rs.getInt("number"));
+                gate.setGateSize(rs.getString("gateSize"));
+                gate.setTerminal(rs.getString("terminal"));
+                
                 flights.add(flight);
             }
 

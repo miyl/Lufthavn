@@ -4,15 +4,16 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.util.List;
 
 import dk.kea.models.Flight;
 
-public class    DepartmentHandler implements Runnable {
+public class DepartmentHandler implements Runnable {
 
-    private Socket socket;
-    private ObjectInputStream input;
-    private ObjectOutputStream output;
-    private boolean isRunning = true;
+    public Socket socket;
+    public ObjectInputStream input;
+    public ObjectOutputStream output;
+    public boolean isRunning = true;
 
     public String name;
 
@@ -31,38 +32,39 @@ public class    DepartmentHandler implements Runnable {
         try {
             // Dette er bare en test
             while (isRunning) {
-                var data = input.readObject();
-                if(data != null)
-                {
-                    if (data instanceof String) {
-                        System.out.printf(name + " thread: %s \n", (String) data);
-                    }
-                    if (data instanceof Flight) {
-                        var fly = (Flight) data;
-                        sendPlane(fly);
-                    } 
-                }
+                List<Flight> airPlaneList = read();
+                airPlaneList.forEach(value -> System.out.print(
+                    "        [" + value.getId() + ", " + value.getName() + "]\n"
+                    ));
             }
 
             input.close();
             output.close();
             socket.close();
 
-        } catch (IOException | ClassNotFoundException e) {
+        } catch (IOException e) {
             System.out.println("** " + name + " thread exited  **");
 
             isRunning = false;
         }
     }
 
-    public boolean sendPlane(Flight airplane) {
+    public void send(List<Flight> airplane) {
         try {
             output.writeObject(airplane);
             output.flush();
         } catch (IOException e) {
-            return false;
+            System.err.println(e);
         }
-        return true;
+    }
+
+    public List<Flight> read() {
+        try {
+            return (List<Flight>) input.readObject();
+        } catch (ClassNotFoundException | IOException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
     

@@ -33,9 +33,7 @@ public class TaxiHandler extends ServerHandler
                         {
                             System.out.print("[INFO]: Active planes in this department:\n\n");
 
-                            getFlightList().forEach(value -> System.out.print(
-                                "        [" + value.getId() + ", " + value.getName() + "]\n"
-                                ));
+                            getFlightList().forEach(value -> value.forEach(plane -> System.out.print(plane.getName())));
 
                             System.out.println();
                         } else {
@@ -54,7 +52,7 @@ public class TaxiHandler extends ServerHandler
                     case "REMOVE":
                         if(getFlightList().size() > 0)
                         {
-                            System.out.println("[INFO]: Flight [" + getFlightList().get(0).getName() + "] removed from queue.");
+                            getFlightList().forEach(value -> System.out.println("[INFO]: Flight [" + value.get(0).getName() + "] removed from queue."));
                             removeFlightToList();
                         } else {
                             System.out.print("[INFO]: No active planes in this department.\n");

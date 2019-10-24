@@ -3,6 +3,7 @@ package dk.kea.client;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.net.Socket;
+import java.util.List;
 
 import dk.kea.models.Flight;
 
@@ -33,9 +34,9 @@ public class Reader implements Runnable {
         }
     }
 
-    public Flight read() {
+    public List<Flight> read() {
         try {
-            return (Flight) input.readObject();
+            return (List<Flight>) input.readObject();
         } catch (ClassNotFoundException | IOException e) {
             return null;
         }
@@ -49,8 +50,11 @@ public class Reader implements Runnable {
 
     public void readPlanes()
     {
-        Flight airplane = read();
-        client.addFlightToList(airplane);
+        List<Flight> airplaneList = read();
+        airplaneList.forEach(value -> System.out.print(
+                                "        [" + value.getId() + ", " + value.getName() + "]\n"
+                                ));
+        client.addFlightToList(airplaneList);
 
     }
     

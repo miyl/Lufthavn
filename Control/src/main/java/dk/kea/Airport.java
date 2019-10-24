@@ -1,12 +1,9 @@
 package dk.kea;
 
-import dk.kea.management.FlightDbHandler;
-import dk.kea.management.GateDbHandler;
-import dk.kea.models.Flight;
-import dk.kea.models.Gate;
-
-import java.util.ArrayList;
 import java.util.List;
+
+import dk.kea.management.FlightDbHandler;
+import dk.kea.models.Flight;
 
 public class Airport {
 
@@ -22,9 +19,14 @@ public class Airport {
         // Do something
         // ...
         //
-
-
-
+        while(true) 
+        {
+            if (server.isAllConnected()) 
+            {
+                airportFlow();
+                break;
+            }
+        }
     }
 
     public static void airportFlow() {
@@ -33,14 +35,15 @@ public class Airport {
         //
         // FETCH data from the database for the clients
         List<Flight> flights = new FlightDbHandler().getFlights();
-        List<Gate> gates = new GateDbHandler().getGates();
-
-
+        //List<Gate> gates = new GateDbHandler().getGates();
+        
         // GET the client handlers
         var taxi = server.getTaxi();
         var luggage = server.getLuggage();
         var clean = server.getClean();
         var fuel = server.getFuel();
+
+        taxi.send(flights);
 
         // Main airport flow
         // Send gates to all who need it

@@ -6,6 +6,7 @@ import java.io.ObjectOutputStream;
 import java.net.ConnectException;
 import java.net.Socket;
 import java.util.ArrayList;
+import java.util.List;
 
 import dk.kea.App;
 import dk.kea.models.Flight;
@@ -21,7 +22,7 @@ public class ServerHandler {
     public Sender sender;
     public Reader reader;
     public Keyboard keyboard;
-    public ArrayList<Flight> flightList = new ArrayList<>();
+    public List<Flight> flightList = new ArrayList<>();
 
     private Boolean connected = false;
 
@@ -77,12 +78,12 @@ public class ServerHandler {
         return connected;
     }
 
-    public ArrayList<Flight> getFlightList()
+    public ArrayList<List<Flight>> getFlightList()
     {
         return flightList;
     }
 
-    public void addFlightToList(Flight airplane)
+    public void addFlightToList(List<Flight> airplane)
     {
         flightList.add(airplane);
     }
