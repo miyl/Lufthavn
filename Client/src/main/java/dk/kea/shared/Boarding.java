@@ -1,7 +1,7 @@
 package dk.kea.shared;
 import java.util.ArrayList;
 
-//Klasse til boarding af passengers. Fra høj til lav prioritet
+//Klasse til boarding af passengers.
 public class Boarding {
     private ArrayList<String> passengers;
     private int capacity;
