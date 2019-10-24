@@ -125,7 +125,7 @@ public class Airport {
         System.out.printf("Done\n\n");
 
         System.out.println("Ran through the queue with:");
-        temp.forEach(plane -> System.out.print("      [" + plane.getName() + ", " + plane.getArrival() + "]\n"));
+        temp.forEach(plane -> System.out.print("      [" + plane.getName() + ", " + plane.getDeparture() + ", " + plane.getExpectedDeparture() + "]\n"));
         System.out.println();
 
     }
