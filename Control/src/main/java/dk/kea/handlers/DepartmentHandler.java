@@ -32,7 +32,7 @@ public class DepartmentHandler implements Runnable {
         try {
             // Dette er bare en test
             while (isRunning) {
-                
+
             }
 
             input.close();
@@ -56,23 +56,24 @@ public class DepartmentHandler implements Runnable {
     }
 
     public List<Flight> readList() {
+
         try {
             return (List<Flight>) input.readObject();
         } catch (ClassNotFoundException | IOException e) {
-            e.printStackTrace();
             return null;
         }
+
     }
 
     public Flight readSingle() {
+
         try {
             return (Flight) input.readObject();
         } catch (ClassNotFoundException | IOException e) {
-            e.printStackTrace();
             return null;
         }
+        
     }
-
     
 }
 

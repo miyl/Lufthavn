@@ -23,7 +23,7 @@ public class FuelHandler extends ServerHandler {
 
             if (getFlightList().size()>0)
             {
-                for (Flight flight : flightList)
+                for (Flight flight : getFlightList())
                 {
                     if (flight.getFlightSize().equalsIgnoreCase("lille"));
                     {

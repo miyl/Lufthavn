@@ -22,7 +22,7 @@ public class ServerHandler {
     public Sender sender;
     public Reader reader;
     public Keyboard keyboard;
-    public List<Flight> flightList = new ArrayList<>();
+    private List<Flight> flightList = new ArrayList<>();
 
     private Boolean connected = false;
 
@@ -51,7 +51,6 @@ public class ServerHandler {
 
                 System.out.println("[SUCCESS]: Connected to server!");
                 System.out.println("[INFO]: back to MENU with 'exit' command");
-
             }
         } catch (ConnectException e) {
             System.out.println("[ERROR] Connection failed..");

@@ -15,8 +15,6 @@ import java.util.List;
 
 public class LuggageHandler extends ServerHandler {
 
-    Date newDate = new Date();
-
     public LuggageHandler(Socket socket, ObjectInputStream objectInputStream, ObjectOutputStream objectOutputStream){
         super(socket, objectInputStream, objectOutputStream);
     }
@@ -40,7 +38,7 @@ public class LuggageHandler extends ServerHandler {
                        {
                            System.out.print("[INFO]: Active planes in this department:\n\n");
 
-                           getFlightList().forEach(plane -> System.out.print("      [" + plane.getName() + ", " + plane.getExpectedDeparture() + "]\n"));
+                           getFlightList().forEach(plane -> System.out.print("      [" + plane.getId() + ", " + plane.getExpectedDeparture().getTime() + "]\n"));
 
                            System.out.println();
                        } else {
@@ -49,6 +47,7 @@ public class LuggageHandler extends ServerHandler {
                        break;
                    case "SEND":
                        if(getFlightList().size() > 0){
+                           getFlightList().forEach(plane -> System.out.print("      [" + plane.getId() + ", " + plane.getExpectedDeparture().getTime() + "]\n"));
                            sender.sendPlanes(getFlightList());
                            System.out.println("[INFO]: Flights is send to server");
                        } else {
@@ -58,7 +57,7 @@ public class LuggageHandler extends ServerHandler {
                    case "REMOVE":
                        if(getFlightList().size() > 0)
                        {
-                           getFlightList().forEach(plane -> System.out.print("      [" + plane.getName() + "]\n"));
+                           getFlightList().forEach(plane -> System.out.print("      [" + plane.getId() + "]\n"));
                            System.out.println("      removed from local list.");
                            removeFlightList();
                        } else {
@@ -70,7 +69,7 @@ public class LuggageHandler extends ServerHandler {
                        manipulate();
                        break;
                    default:
-                       sender.send(String.join(" ", tokens), false);
+                       System.out.print("[INFO]: Not a command.\n");
                        break;
                }
            }
@@ -81,21 +80,17 @@ public class LuggageHandler extends ServerHandler {
     public void manipulate()
     {
         if(getFlightList().size() > 0){ 
-            for(Flight flight : getFlightList()){
-                if(flight.getGate().getGateSize().equals("lille")){
-                    newDate.setTime(flight.getExpectedDeparture().getTime() * 8640000);
+            getFlightList().forEach(flight -> {
+                if(flight.getFlightSize().equalsIgnoreCase("LILLE"))
+                {
+                    System.out.println("Updating: "+ flight.getId());
+                    Date newDate = new Date();
+                    newDate.setTime(flight.getExpectedDeparture().getTime() + 86400000);
                     flight.setExpectedDeparture(newDate);
                 }
-                if(flight.getGate().getGateSize().equals("mellem")){
-                    //newDate.setTime(flight.getExpectedDeparture().getTime());
-                    //flight.setExpectedDeparture(newDate);
-                }
-                if(flight.getGate().getGateSize().equals("stor")){
-                    //newDate.setTime(flight.getExpectedDeparture().getTime());
-                    //flight.setExpectedDeparture(newDate);
-                }
             }
+            );
+            System.out.println("[INFO] Flight manipulated.");
         }
-        System.out.println("[INFO] Flight manipulated.");
     }
 }

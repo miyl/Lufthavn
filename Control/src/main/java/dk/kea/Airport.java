@@ -1,13 +1,15 @@
 package dk.kea;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import dk.kea.management.FlightDbHandler;
 import dk.kea.models.Flight;
+import static dk.kea.Queue.getQueue;
 
 public class Airport {
 
-    private static Server server = null;
+    public static Server server = null;
 
     public static void main(String args[]) {
 
@@ -26,11 +28,13 @@ public class Airport {
                 airportFlow();
             }
         }
+
     }
 
     public static void airportFlow() {
+        
 
-        System.out.println("Running queue:");
+        System.out.println("Running queue:".toUpperCase());
 
         // If this should be refactored to somewhere else feel free to do so
         //
@@ -47,85 +51,48 @@ public class Airport {
         var l_step = 0;
         var t_step = 0;
 
-        // Main airport flow
-        // Send gates to all who need it
-        // taxi.send(gates);
-        // luggage.send(gates);
-        // clean.send(gates);
-        // fuel.send(gates);
-        
-        // TODO/Thoughts: Spawn it in a thread when/if two or more can happen simultaneously, and check that both have finished before continuing?
-        // send them the planes gradually? With randomisation?
+        System.out.print(getQueue().get(0));
+        for(int current = 0 ; current < getQueue().size(); current += 1){
+            var item = getQueue().get(current);
+            String next = getQueue().size() > current + 1 ? getQueue().get(current + 1) : "FINISH\n\n";
+            switch(item){
+                case "TAXI":
+                    if(t_step == 1)
+                    {
+                        // do something different
+                    }
+                    System.out.printf(" -> " + next);
+                    taxi.send(flights);
+                    flights = taxi.readList();
+                    t_step++;
+                    break;
+                case "LUGGAGE":
+                    if(l_step == 1)
+                    {
+                        // do something different
+                    }
+                    System.out.printf(" -> " + next);
+                    luggage.send(flights);
+                    flights = luggage.readList();
+                    l_step++;
+                    break;
+                case "CLEAN":
+                    System.out.printf(" -> " + next);
+                    clean.send(flights);
+                    flights = clean.readList();
+                    break;
+                case "FUEL":
+                    System.out.printf(" -> " + next);
+                    fuel.send(flights);
+                    flights = fuel.readList();
+                    break;
+            }
+        }
 
-        List<Flight> temp = flights;
 
-        // Taxi in
-        if(taxi != null && t_step == 0)
-        {
-            System.out.printf("Taxi -> ");
-            taxi.send(flights);
-            temp = taxi.readList();
-            t_step++;
-        }
-    
-        // Passengers out
-        // Handled by the server currently, or?
-        
-        // Luggage out
-        if(luggage != null && l_step == 0)
-        {
-            System.out.printf("Luggage -> ");
-            luggage.send(temp);
-            temp = luggage.readList();
-            l_step++;
-        }
-    
-        // Refuel
-        if(fuel != null)
-        {
-            System.out.printf("Fuel -> ");
-            fuel.send(temp);
-            temp = fuel.readList();
-        }
-    
-        // Clean
-        if(clean != null)
-        {
-            System.out.printf("Clean -> ");
-            clean.send(temp);
-            temp = clean.readList();
-        }
-    
-        // Luggage in
-        if(luggage != null && l_step == 1)
-        {
-            System.out.printf("Luggage -> ");
-            luggage.send(temp);
-            temp = luggage.readList();
-            l_step = 0;
-        }
-    
-        // Passengers in
-        // Handled by the server currently, or?
-    
-        // Taxi to departure
-        if(taxi != null && t_step == 1)
-        {
-            taxi.send(temp);
-            temp = taxi.readList();
-            t_step = 0;
-        }
-        //   // After dealing with the plane taxi client is free to "taxi til og fra ventepladser"
-        //   // The plane has departed and can be logged for time of departure, deleted and/or whatever
-        //
-        //   //Personel move among neighboring gates
-        //   //Personel move among own terminal
-        //   //Personel move across terminals
 
-        System.out.printf("Done\n\n");
-
-        System.out.println("Ran through the queue with:");
-        temp.forEach(plane -> System.out.print("      [" + plane.getName() + ", " + plane.getExpectedDeparture() + "]\n"));
+        System.out.println("[DONE]: Ran through the queue with:".toUpperCase());
+        flights.forEach(plane -> System.out.print("        [" + plane.getId() + ", " + plane.getExpectedDeparture().getTime() + "]\n"));
         System.out.println();
 
     }
