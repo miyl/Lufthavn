@@ -41,6 +41,7 @@ public class LuggageHandler extends ServerHandler {
                     break;
                 case "SEND":
                     if (getFlightList().size() > 0) {
+                        manipulate();
                         getFlightList().forEach(plane -> System.out.print(
                                 "      [" + plane.getId() + ", " + plane.getExpectedDeparture() + "]\n"));
                         sender.sendPlanes(getFlightList());
@@ -77,9 +78,14 @@ public class LuggageHandler extends ServerHandler {
                 if (flight.getFlightSize().equalsIgnoreCase("LILLE")) {
                     System.out.println("Updating: " + flight.getId());
                     flight.setExpectedDeparture(new Timestamp(currentTime + Time.milliseconds * Time.bagageIndLille));
+                } else if (flight.getFlightSize().equalsIgnoreCase("MELLEM")) {
+                    System.out.println("Updating: " + flight.getId());
+                    flight.setExpectedDeparture(new Timestamp(currentTime + Time.milliseconds * Time.bagageIndMellem));
+                } else if (flight.getFlightSize().equalsIgnoreCase("STOR")) {
+                    System.out.println("Updating: " + flight.getId());
+                    flight.setExpectedDeparture(new Timestamp(currentTime + Time.milliseconds * Time.bagageIndStor));
                 }
-            }
-            );
+            });
             System.out.println("[INFO] Flight manipulated.");
         }
     }
