@@ -7,15 +7,12 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.net.Socket;
-import java.util.Date;
 import java.util.List;
 
 public class CleaningDepartmentHandler extends DepartmentHandler {
 
     public CleaningDepartmentHandler(Socket socket, ObjectInputStream input, ObjectOutputStream output) {
         super(socket, input, output, "Cleaning");
-
-        System.out.println(name + " department thread started.");
     }
 
     @Override

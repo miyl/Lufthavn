@@ -19,9 +19,9 @@ public class FlightDbHandler implements Crud<Flight> {
 
     @Override
     public List<Flight> fetchAll(){
-        dbConnect = new DBConnect();
         List<Flight> flights = new ArrayList<Flight>();
         try {
+            dbConnect = new DBConnect();
             Statement stmt = dbConnect.getConnection().createStatement();
 
             ResultSet rs = stmt.executeQuery("SELECT * FROM Fly inner join gate on Fly.gate = gate.number");
@@ -46,6 +46,7 @@ public class FlightDbHandler implements Crud<Flight> {
 
                 flights.add(flight);
             }
+            dbConnect.getConnection().close();
 
         }catch (SQLException e){
             e.printStackTrace();
@@ -53,12 +54,13 @@ public class FlightDbHandler implements Crud<Flight> {
         return flights;
     }
     public void addObject(String model, String flightSize, String name, int gate, int priorityNumber, Timestamp arrival, Timestamp departure, String luftSelskab, Timestamp expectedDeparture){
-        dbConnect = new DBConnect();
-        try{
+        try{ 
+            dbConnect = new DBConnect();
+        
             Statement stmt = dbConnect.getConnection().createStatement();
             stmt.executeUpdate("INSERT INTO Fly (model, standPlads, flightSize, name, gate, priorityNumber, arrival, departure, luftSelskab, expectedDeparture)" +
                     "VALUES('"+model+"', null, '"+flightSize+"', '"+name+"', "+gate+", "+priorityNumber+", "+arrival+", "+departure+", '"+luftSelskab+"', "+expectedDeparture+")");
-
+            dbConnect.getConnection().close();
         }catch (Exception e){
 
         }
@@ -77,13 +79,13 @@ public class FlightDbHandler implements Crud<Flight> {
         String luftSelskab = flight.getLuftSelskab();
         Timestamp expectedDeparture = flight.getExpectedDeparture();
 
-
-        dbConnect = new DBConnect();
         try{
+            dbConnect = new DBConnect();
+        
             Statement stmt = dbConnect.getConnection().createStatement();
             stmt.executeUpdate("INSERT INTO Fly (model, standPlads, flightSize, name, gate, priorityNumber, arrival, departure, luftSelskab, expectedDeparture)" +
                     "VALUES('"+model+"', null, '"+flightSize+"', '"+name+"', "+gate+", "+priorityNumber+", "+arrival+", "+departure+", '"+luftSelskab+"', "+expectedDeparture+")");
-
+            dbConnect.getConnection().close();
         }catch (Exception e){
             System.out.println(e.getMessage());
         }
@@ -100,10 +102,9 @@ public class FlightDbHandler implements Crud<Flight> {
     }
 
     public void updateObjects(List<Flight> flights){
-        for (Flight flight:
-             flights) {
+        flights.forEach(flight -> {
             updateObject(flight);
-        }
+        });
     }
 
     @Override
@@ -119,8 +120,9 @@ public class FlightDbHandler implements Crud<Flight> {
         String luftSelskab = flight.getLuftSelskab();
         Timestamp expectedDeparture = flight.getExpectedDeparture();
 
-        dbConnect = new DBConnect();
         try{
+            dbConnect = new DBConnect();
+        
             Statement stmt = dbConnect.getConnection().createStatement();
             stmt.executeUpdate("UPDATE Fly SET "+
                     "model = '"+model+"', "+
@@ -133,6 +135,8 @@ public class FlightDbHandler implements Crud<Flight> {
                     "luftSelskab = '"+luftSelskab+"', "+
                     "expectedDeparture = '"+expectedDeparture+"' "+
                     "WHERE fly_id="+id);
+
+            dbConnect.getConnection().close();
         }
         catch (Exception e){
             System.out.println(e.getMessage());

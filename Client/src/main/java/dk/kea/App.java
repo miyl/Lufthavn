@@ -12,7 +12,7 @@ import java.util.Scanner;
 
 public class App {
 
-    static String address = "10.111.176.104";
+    static String address = "localhost";
     static int port = 5000;
     Scanner scanner = new Scanner(System.in);
     Socket socket;
