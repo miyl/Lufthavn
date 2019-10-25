@@ -10,6 +10,7 @@ import static dk.kea.Queue.getQueue;
 public class Airport {
 
     public static Server server = null;
+    private static FlightDbHandler flightDbHandler = new FlightDbHandler();
 
     public static void main(String args[]) {
 
@@ -17,6 +18,7 @@ public class Airport {
         server = new Server(5000);
         Thread t = new Thread(server);
         t.start();
+
 
         // Do something
         // ...
@@ -39,9 +41,17 @@ public class Airport {
         // If this should be refactored to somewhere else feel free to do so
         //
         // FETCH data from the database for the clients
-        List<Flight> flights = new FlightDbHandler().fetchAll();
+        List<Flight> flightsOld = new FlightDbHandler().fetchAll();
+
+        flightsOld.forEach(flight -> {
+            flight.setExpectedDeparture(flight.getArrival());
+        });
+
+        flightDbHandler.updateObjects(flightsOld);
         //List<Gate> gates = new GateDbHandler().getGates();
-        
+
+        List<Flight> flights = new FlightDbHandler().fetchAll();
+
         // GET the client handlers
         var taxi = server.getTaxi();
         var luggage = server.getLuggage();
@@ -90,7 +100,7 @@ public class Airport {
         }
 
 
-        new FlightDbHandler().updateObjects(flights);
+        flightDbHandler.updateObjects(flights);
         System.out.println("[DONE]: Ran through the queue with:".toUpperCase());
         flights.forEach(plane -> System.out.print("        [" + plane.getId() + ", " + plane.getExpectedDeparture() + "]\n"));
         System.out.println();
