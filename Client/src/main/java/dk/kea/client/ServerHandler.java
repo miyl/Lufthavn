@@ -52,7 +52,6 @@ public class ServerHandler {
 
                 System.out.println("[SUCCESS]: Connected to server!");
                 System.out.println("[INFO]: back to MENU with 'exit' command");
-
             }
         } catch (ConnectException e) {
             System.out.println("[ERROR] Connection failed..");

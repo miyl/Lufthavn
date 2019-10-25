@@ -7,11 +7,10 @@ import dk.kea.shared.Time;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
-import java.util.Date;
+import java.sql.Date;
 
 public class FuelHandler extends ServerHandler {
 
-    Date newDate = new Date();
 
     public FuelHandler(Socket socket, ObjectInputStream objectInputStream, ObjectOutputStream objectOutputStream){
         super( socket, objectInputStream, objectOutputStream);
@@ -23,24 +22,23 @@ public class FuelHandler extends ServerHandler {
 
             if (getFlightList().size()>0)
             {
-                for (Flight flight : flightList)
+                for (Flight flight : getFlightList())
                 {
+                    long currentTime = flight.getExpectedDeparture().getTime();
+
                     if (flight.getFlightSize().equalsIgnoreCase("lille"));
                     {
-                        newDate.setTime(flight.getExpectedDeparture().getTime() / Time.seconds + Time.fuelLille);
-                        flight.setExpectedDeparture(newDate);
+                        flight.setExpectedDeparture(new Date(currentTime / Time.seconds + Time.fuelLille));
                     }
 
                     if (flight.getFlightSize().equalsIgnoreCase("mellem"));
                     {
-                        newDate.setTime(flight.getExpectedDeparture().getTime() / Time.seconds + Time.fuelMellem);
-                        flight.setExpectedDeparture(newDate);
+                        flight.setExpectedDeparture(new Date(currentTime / Time.seconds + Time.fuelMellem));
                     }
 
                     if (flight.getFlightSize().equalsIgnoreCase("stor"));
                     {
-                        newDate.setTime(flight.getExpectedDeparture().getTime() / Time.seconds + Time.fuelStor);
-                        flight.setExpectedDeparture(newDate);
+                        flight.setExpectedDeparture(new Date(currentTime / Time.seconds + Time.fuelStor));
                     }
 
                 }

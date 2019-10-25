@@ -5,13 +5,11 @@ import dk.kea.models.Flight;
 import dk.kea.models.Gate;
 import dk.kea.dbconnect.DBConnect;
 
-import java.sql.Array;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.*;
 import java.util.List;
 
 
@@ -39,7 +37,7 @@ public class FlightDbHandler implements Crud<Flight> {
                 flight.setArrival(rs.getDate("arrival"));
                 flight.setGate(gate);
                 flight.setPriorityNumber(rs.getInt("priorityNumber"));
-                //flight.setExpectedDeparture(rs.getDate("expectedDeparture"));
+                flight.setExpectedDeparture(rs.getDate("expectedDeparture"));
             
                 gate.setNumber(rs.getInt("number"));
                 gate.setGateSize(rs.getString("gateSize"));
@@ -53,7 +51,7 @@ public class FlightDbHandler implements Crud<Flight> {
         }
         return flights;
     }
-    public void addObject(String model, String flightSize, String name, int gate, int priorityNumber, LocalDateTime arrival, LocalDateTime departure, String luftSelskab, LocalDateTime expectedDeparture){
+    public void addObject(String model, String flightSize, String name, int gate, int priorityNumber, Date arrival, Date departure, String luftSelskab, Date expectedDeparture){
         dbConnect = new DBConnect();
         try{
             Statement stmt = dbConnect.getConnection().createStatement();

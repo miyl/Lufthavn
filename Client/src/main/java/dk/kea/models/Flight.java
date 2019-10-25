@@ -1,7 +1,7 @@
 package dk.kea.models;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.util.*;
 
 public class Flight implements Serializable {
     /**
@@ -20,9 +20,7 @@ public class Flight implements Serializable {
     private int priorityNumber;
     private Date expectedDeparture;
 
-    public Flight() {
-    }
-
+    public Flight() {}
 
     public Flight(int id, String name, String model, String flightSize, String luftSelskab, Date departure, Date arrival, Gate gate, int priorityNumber, int standPlads, Date expectedDeparture) {
         this.id = id;
