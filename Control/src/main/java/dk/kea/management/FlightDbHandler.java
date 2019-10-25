@@ -122,16 +122,16 @@ public class FlightDbHandler implements Crud<Flight> {
         dbConnect = new DBConnect();
         try{
             Statement stmt = dbConnect.getConnection().createStatement();
-            stmt.executeUpdate("UPDATE Fly SET"+
+            stmt.executeUpdate("UPDATE Fly SET "+
                     "model = '"+model+"', "+
                     "flightSize = '"+flightSize+"', "+
                     "name = '"+name+"', "+
                     "gate = "+gate+", "+
                     "priorityNumber = "+priorityNumber+", "+
-                    "arrival = "+arrival+", "+
-                    "departure = "+departure+", "+
+                    "arrival = '"+arrival+"', "+
+                    "departure = '"+departure+"', "+
                     "luftSelskab = '"+luftSelskab+"', "+
-                    "expectedDeparture = "+expectedDeparture+" "+
+                    "expectedDeparture = '"+expectedDeparture+"' "+
                     "WHERE fly_id="+id);
         }
         catch (Exception e){
