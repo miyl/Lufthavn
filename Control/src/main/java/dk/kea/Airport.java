@@ -90,7 +90,7 @@ public class Airport {
         }
 
 
-
+        new FlightDbHandler().updateObjects(flights);
         System.out.println("[DONE]: Ran through the queue with:".toUpperCase());
         flights.forEach(plane -> System.out.print("        [" + plane.getId() + ", " + plane.getExpectedDeparture() + "]\n"));
         System.out.println();
