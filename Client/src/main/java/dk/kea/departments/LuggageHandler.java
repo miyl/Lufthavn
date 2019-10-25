@@ -5,7 +5,8 @@ import dk.kea.client.ServerHandler;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
-import java.util.*;
+import java.sql.Timestamp;
+import java.util.Date;
 
 public class LuggageHandler extends ServerHandler {
 
@@ -76,7 +77,7 @@ public class LuggageHandler extends ServerHandler {
                     System.out.println("Updating: " + flight.getId());
                     Date newDate = new Date();
                     newDate.setTime(flight.getExpectedDeparture().getTime() + 86400000);
-                    flight.setExpectedDeparture((Date) newDate);
+                    flight.setExpectedDeparture((Timestamp) newDate);
                 }
             }
             );
