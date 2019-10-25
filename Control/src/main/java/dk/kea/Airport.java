@@ -64,6 +64,7 @@ public class Airport {
         {
             System.out.printf("Taxi -> ");
             taxi.send(flights);
+            taxi.sendNumber(Integer.toString(t_step));
             temp = taxi.readList();
             t_step++;
         }
