@@ -29,5 +29,5 @@ public class Time {
     public static int personaleNabo = 0;
     public static int personaleSammeTerminal = 5;
     public static int personaleAndenTerminal = 10;
-    public static final int seconds = 60;
+    public static final int milliseconds = 60000;
 }

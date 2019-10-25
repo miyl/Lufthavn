@@ -28,17 +28,17 @@ public class FuelHandler extends ServerHandler {
 
                     if (flight.getFlightSize().equalsIgnoreCase("lille"));
                     {
-                        flight.setExpectedDeparture(new Timestamp(currentTime / Time.seconds + Time.fuelLille));
+                        flight.setExpectedDeparture(new Timestamp(currentTime / Time.milliseconds + Time.fuelLille));
                     }
 
                     if (flight.getFlightSize().equalsIgnoreCase("mellem"));
                     {
-                        flight.setExpectedDeparture(new Timestamp(currentTime / Time.seconds + Time.fuelMellem));
+                        flight.setExpectedDeparture(new Timestamp(currentTime / Time.milliseconds + Time.fuelMellem));
                     }
 
                     if (flight.getFlightSize().equalsIgnoreCase("stor"));
                     {
-                        flight.setExpectedDeparture(new Timestamp(currentTime / Time.seconds + Time.fuelStor));
+                        flight.setExpectedDeparture(new Timestamp(currentTime / Time.milliseconds + Time.fuelStor));
                     }
 
                 }
