@@ -99,6 +99,13 @@ public class FlightDbHandler implements Crud<Flight> {
         return null;
     }
 
+    public void updateObjects(List<Flight> flights){
+        for (Flight flight:
+             flights) {
+            updateObject(flight);
+        }
+    }
+
     @Override
     public void updateObject(Flight flight) {
         int id = flight.getId();

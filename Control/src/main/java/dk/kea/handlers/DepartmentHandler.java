@@ -65,6 +65,15 @@ public class DepartmentHandler implements Runnable {
         }
     }
 
+    public void sendNumber(String number) {
+        try {
+            output.writeObject((String) number);
+            output.flush();
+        } catch (IOException e) {
+            System.err.println(e);
+        }
+    }
+
     public List<Flight> readList() {
 
         try {

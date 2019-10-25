@@ -22,7 +22,8 @@ public class ServerHandler {
     public Sender sender;
     public Reader reader;
     public Keyboard keyboard;
-    private List<Flight> flightList = new ArrayList<>();
+    public List<Flight> flightList = new ArrayList<>();
+    public String number;
 
     private Boolean connected = false;
 
@@ -82,10 +83,14 @@ public class ServerHandler {
         return flightList;
     }
 
+    public String getNumber() {return number;}
+
     public void updateFlightList(List<Flight> airplane)
     {
         flightList = airplane;
     }
+
+    public void updateNumber(String number){this.number = number;}
 
     public void removeFlightList()
     {

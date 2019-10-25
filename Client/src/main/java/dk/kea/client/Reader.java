@@ -43,17 +43,17 @@ public class Reader implements Runnable {
     public void readPlanes() {
         try {
             recieved = input.readObject();
-            if(recieved instanceof List<?>)
-            {
+            if(recieved instanceof List<?>){
                 client.updateFlightList((List<Flight>) recieved);
                 System.out.printf("..\n[SERVER]: You recieved a new list of flights\n> ");
-            } else if(recieved instanceof String)
-            {
-                System.out.println("[SERVER]: " + recieved);
+            } else if (recieved instanceof String){
+                client.updateNumber((String) recieved);
             }
             recieved = null;
+
         } catch (ClassNotFoundException | IOException e) {
             
         }
     }
+
 }
