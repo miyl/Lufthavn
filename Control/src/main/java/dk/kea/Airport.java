@@ -98,7 +98,7 @@ public class Airport {
 
 
         System.out.println("[DONE]: Ran through the queue with:".toUpperCase());
-        flights.forEach(plane -> System.out.print("        [" + plane.getId() + ", " + plane.getExpectedDeparture().getTime() + "]\n"));
+        flights.forEach(plane -> System.out.print("        [" + plane.getId() + ", " + plane.getExpectedDeparture() + "]\n"));
         System.out.println();
 
     }

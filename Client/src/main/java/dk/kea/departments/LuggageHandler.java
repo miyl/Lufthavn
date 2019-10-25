@@ -1,12 +1,12 @@
 package dk.kea.departments;
 
 import dk.kea.client.ServerHandler;
+import dk.kea.shared.Time;
 
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.sql.Timestamp;
-import java.util.Date;
 
 public class LuggageHandler extends ServerHandler {
 
@@ -32,7 +32,7 @@ public class LuggageHandler extends ServerHandler {
                         System.out.print("[INFO]: Active planes in this department:\n\n");
 
                         getFlightList().forEach(plane -> System.out.print(
-                                "      [" + plane.getId() + ", " + plane.getExpectedDeparture().getTime() + "]\n"));
+                                "      [" + plane.getId() + ", " + plane.getExpectedDeparture() + "]\n"));
 
                         System.out.println();
                     } else {
@@ -42,7 +42,7 @@ public class LuggageHandler extends ServerHandler {
                 case "SEND":
                     if (getFlightList().size() > 0) {
                         getFlightList().forEach(plane -> System.out.print(
-                                "      [" + plane.getId() + ", " + plane.getExpectedDeparture().getTime() + "]\n"));
+                                "      [" + plane.getId() + ", " + plane.getExpectedDeparture() + "]\n"));
                         sender.sendPlanes(getFlightList());
                         System.out.println("[INFO]: Flights is send to server");
                     } else {
@@ -73,11 +73,10 @@ public class LuggageHandler extends ServerHandler {
     public void manipulate() {
         if (getFlightList().size() > 0) {
             getFlightList().forEach(flight -> {
+                long currentTime = flight.getExpectedDeparture().getTime();
                 if (flight.getFlightSize().equalsIgnoreCase("LILLE")) {
                     System.out.println("Updating: " + flight.getId());
-                    Date newDate = new Date();
-                    newDate.setTime(flight.getExpectedDeparture().getTime() + 86400000);
-                    flight.setExpectedDeparture((Timestamp) newDate);
+                    flight.setExpectedDeparture(new Timestamp(currentTime + Time.milliseconds * Time.bagageIndLille));
                 }
             }
             );
