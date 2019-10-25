@@ -6,31 +6,32 @@ import dk.kea.models.Flight;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.sql.Timestamp;
+import java.util.Date;
 
 public class CleanHandler extends ServerHandler {
     public CleanHandler(Socket socket, ObjectInputStream objectInputStream, ObjectOutputStream objectOutputStream){
         super(socket, objectInputStream, objectOutputStream);
     }
-    public void start(){
+    public void start() {
 
         while (isConnected()) {
 
-            //Får information fra keyboardet - hvis der er noget.
+            // Får information fra keyboardet - hvis der er noget.
             System.out.printf("> ");
             if (keyboard.getReader().hasNextLine()) {
                 String[] tokens = keyboard.getReader().nextLine().toUpperCase().split(" ");
 
-                switch(tokens[0])
-                {
+                switch (tokens[0]) {
                     case "EXIT":
                         close();
                         break;
                     case "LIST":
-                        if(getFlightList().size() > 0)
-                        {
+                        if (getFlightList().size() > 0) {
                             System.out.print("[INFO]: Active planes in this department:\n\n");
 
-                            getFlightList().forEach(plane -> System.out.print("      [" + plane.getName() + "]\n"));
+                            getFlightList().forEach(plane -> System.out.print(
+                                    "      [" + plane.getId() + ", " + plane.getExpectedDeparture().getTime() + "]\n"));
 
                             System.out.println();
                         } else {
@@ -38,17 +39,18 @@ public class CleanHandler extends ServerHandler {
                         }
                         break;
                     case "SEND":
-                        if(getFlightList().size() > 0){
+                        if (getFlightList().size() > 0) {
+                            getFlightList().forEach(plane -> System.out.print(
+                                    "      [" + plane.getId() + ", " + plane.getExpectedDeparture().getTime() + "]\n"));
                             sender.sendPlanes(getFlightList());
                             System.out.println("[INFO]: Flights is send to server");
                         } else {
                             System.out.print("[ERROR]: No active planes in this apartment.\n");
-                        }                        
+                        }
                         break;
                     case "REMOVE":
-                        if(getFlightList().size() > 0)
-                        {
-                            getFlightList().forEach(plane -> System.out.print("      [" + plane.getName() + "]\n"));
+                        if (getFlightList().size() > 0) {
+                            getFlightList().forEach(plane -> System.out.print("      [" + plane.getId() + "]\n"));
                             System.out.println("      removed from local list.");
                             removeFlightList();
                         } else {
@@ -56,11 +58,30 @@ public class CleanHandler extends ServerHandler {
                         }
 
                         break;
-                    default:
-                        sender.send(String.join(" ", tokens), false);
+                    case "MANI":
+                        manipulate();
                         break;
-                }                
+                    default:
+                        System.out.print("[INFO]: Not a command.\n");
+                        break;
+                }
             }
         }
     }
+
+    public void manipulate() {
+        if (getFlightList().size() > 0) {
+            getFlightList().forEach(flight -> {
+                        if (flight.getFlightSize().equalsIgnoreCase("LILLE")) {
+                            System.out.println("Updating: " + flight.getId());
+                            Date newDate = new Date();
+                            newDate.setTime(flight.getExpectedDeparture().getTime() + 86400000);
+                            flight.setExpectedDeparture((Timestamp) newDate);
+                        }
+                    }
+            );
+            System.out.println("[INFO] Flight manipulated.");
+        }
+    }
+
 }
