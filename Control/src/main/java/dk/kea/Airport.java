@@ -1,5 +1,6 @@
 package dk.kea;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,6 +31,7 @@ public class Airport {
             if(server.isAllConnected())
             {
                 airportFlow();
+                break;
             }
         }
 
@@ -38,7 +40,7 @@ public class Airport {
     public static void airportFlow() {
         
 
-        System.out.println("Running qkd,asasueue:".toUpperCase());
+        System.out.println("Running queue:".toUpperCase());
 
         // If this should be refactored to somewhere else feel free to do so
         //
@@ -69,10 +71,10 @@ public class Airport {
 
         System.out.print(queue.get(0));
         for(int current = 0 ; current < queue.size(); current += 1){
-            //flights.forEach(plane -> System.out.print("        [" + plane.getId() + ", " + plane.getExpectedDeparture() + "]\n"));
+            flights.forEach(plane -> System.out.print("\n        [" + plane.getId() + ", " + plane.getExpectedDeparture() + "]"));
             var item = queue.get(current);
             String next = queue.size() > current + 1 ? queue.get(current + 1) : "FINISH\n\n";
-            System.out.printf(" -> " + next);
+            System.out.printf(" -> " + next + "\n").flush();;
             switch(item){
                 case "TAXI":
                     taxi.sendList(flights);

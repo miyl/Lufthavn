@@ -115,10 +115,10 @@ public class FlightDbHandler implements Crud<Flight> {
         String name = flight.getName();
         int gate = flight.getGate().getNumber();
         int priorityNumber = flight.getPriorityNumber();
-        Timestamp arrival = flight.getArrival();
-        Timestamp departure = flight.getDeparture();
+        Timestamp arrival = new Timestamp(flight.getArrival().getTime() - 3600000 * 2);
+        Timestamp departure = new Timestamp(flight.getDeparture().getTime() - 3600000 * 2);
         String luftSelskab = flight.getLuftSelskab();
-        Timestamp expectedDeparture = flight.getExpectedDeparture();
+        Timestamp expectedDeparture = new Timestamp(flight.getExpectedDeparture().getTime() - 3600000 * 2) ;
 
         try{
             dbConnect = new DBConnect();
