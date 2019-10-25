@@ -1,7 +1,6 @@
 package dk.kea.models;
-
 import java.io.Serializable;
-import java.util.*;
+import java.sql.Timestamp;
 
 public class Flight implements Serializable {
     /**
@@ -14,15 +13,15 @@ public class Flight implements Serializable {
     private String model;
     private String flightSize;
     private String luftSelskab;
-    private Date departure;
-    private Date arrival;
+    private Timestamp departure;
+    private Timestamp arrival;
     private Gate gate;
     private int priorityNumber;
-    private Date expectedDeparture;
+    private Timestamp expectedDeparture;
 
     public Flight() {}
 
-    public Flight(int id, String name, String model, String flightSize, String luftSelskab, Date departure, Date arrival, Gate gate, int priorityNumber, int standPlads, Date expectedDeparture) {
+    public Flight(int id, String name, String model, String flightSize, String luftSelskab, Timestamp departure, Timestamp arrival, Gate gate, int priorityNumber, int standPlads, Timestamp expectedDeparture) {
         this.id = id;
         this.name = name;
         this.model = model;
@@ -79,19 +78,19 @@ public class Flight implements Serializable {
         this.luftSelskab = luftSelskab;
     }
 
-    public Date getDeparture() {
+    public Timestamp getDeparture() {
         return departure;
     }
 
-    public void setDeparture(Date departure) {
+    public void setDeparture(Timestamp departure) {
         this.departure = departure;
     }
 
-    public Date getArrival() {
+    public Timestamp getArrival() {
         return arrival;
     }
 
-    public void setArrival(Date arrival) {
+    public void setArrival(Timestamp arrival) {
         this.arrival = arrival;
     }
 
@@ -112,11 +111,11 @@ public class Flight implements Serializable {
     }
 
 
-    public Date getExpectedDeparture() {
+    public Timestamp getExpectedDeparture() {
         return expectedDeparture;
     }
 
-    public void setExpectedDeparture(Date expectedDeparture) {
+    public void setExpectedDeparture(Timestamp expectedDeparture) {
         this.expectedDeparture = expectedDeparture;
     }
 }
