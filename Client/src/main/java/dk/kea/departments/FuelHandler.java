@@ -7,7 +7,7 @@ import dk.kea.shared.Time;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
-import java.sql.Timestamp;
+import java.sql.Date;
 
 public class FuelHandler extends ServerHandler {
 
@@ -28,17 +28,17 @@ public class FuelHandler extends ServerHandler {
 
                     if (flight.getFlightSize().equalsIgnoreCase("lille"));
                     {
-                        flight.setExpectedDeparture(new Timestamp(currentTime / Time.seconds + Time.fuelLille));
+                        flight.setExpectedDeparture(new Date(currentTime / Time.seconds + Time.fuelLille));
                     }
 
                     if (flight.getFlightSize().equalsIgnoreCase("mellem"));
                     {
-                        flight.setExpectedDeparture(new Timestamp(currentTime / Time.seconds + Time.fuelMellem));
+                        flight.setExpectedDeparture(new Date(currentTime / Time.seconds + Time.fuelMellem));
                     }
 
                     if (flight.getFlightSize().equalsIgnoreCase("stor"));
                     {
-                        flight.setExpectedDeparture(new Timestamp(currentTime / Time.seconds + Time.fuelStor));
+                        flight.setExpectedDeparture(new Date(currentTime / Time.seconds + Time.fuelStor));
                     }
 
                 }

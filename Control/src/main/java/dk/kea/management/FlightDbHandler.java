@@ -5,12 +5,11 @@ import dk.kea.models.Flight;
 import dk.kea.models.Gate;
 import dk.kea.dbconnect.DBConnect;
 
-import java.sql.Array;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.sql.Timestamp;
+import java.util.*;
 import java.util.List;
 
 
@@ -34,11 +33,11 @@ public class FlightDbHandler implements Crud<Flight> {
                 flight.setModel(rs.getString("model"));
                 flight.setFlightSize(rs.getString("flightSize"));
                 flight.setLuftSelskab(rs.getString("luftSelskab"));
-                flight.setDeparture(rs.getTimestamp("departure"));
-                flight.setArrival(rs.getTimestamp("arrival"));
+                flight.setDeparture(rs.getDate("departure"));
+                flight.setArrival(rs.getDate("arrival"));
                 flight.setGate(gate);
                 flight.setPriorityNumber(rs.getInt("priorityNumber"));
-                flight.setExpectedDeparture(rs.getTimestamp("expectedDeparture"));
+                flight.setExpectedDeparture(rs.getDate("expectedDeparture"));
             
                 gate.setNumber(rs.getInt("number"));
                 gate.setGateSize(rs.getString("gateSize"));
@@ -52,7 +51,7 @@ public class FlightDbHandler implements Crud<Flight> {
         }
         return flights;
     }
-    public void addObject(String model, String flightSize, String name, int gate, int priorityNumber, Timestamp arrival, Timestamp departure, String luftSelskab, Timestamp expectedDeparture){
+    public void addObject(String model, String flightSize, String name, int gate, int priorityNumber, Date arrival, Date departure, String luftSelskab, Date expectedDeparture){
         dbConnect = new DBConnect();
         try{
             Statement stmt = dbConnect.getConnection().createStatement();
@@ -72,10 +71,10 @@ public class FlightDbHandler implements Crud<Flight> {
         String name = flight.getName();
         int gate = flight.getGate().getNumber();
         int priorityNumber = flight.getPriorityNumber();
-        Timestamp arrival = flight.getArrival();
-        Timestamp departure = flight.getDeparture();
+        Date arrival = flight.getArrival();
+        Date departure = flight.getDeparture();
         String luftSelskab = flight.getLuftSelskab();
-        Timestamp expectedDeparture = flight.getExpectedDeparture();
+        Date expectedDeparture = flight.getExpectedDeparture();
 
 
         dbConnect = new DBConnect();
@@ -107,10 +106,10 @@ public class FlightDbHandler implements Crud<Flight> {
         String name = flight.getName();
         int gate = flight.getGate().getNumber();
         int priorityNumber = flight.getPriorityNumber();
-        Timestamp arrival = flight.getArrival();
-        Timestamp departure = flight.getDeparture();
+        Date arrival = flight.getArrival();
+        Date departure = flight.getDeparture();
         String luftSelskab = flight.getLuftSelskab();
-        Timestamp expectedDeparture = flight.getExpectedDeparture();
+        Date expectedDeparture = flight.getExpectedDeparture();
 
         dbConnect = new DBConnect();
         try{
